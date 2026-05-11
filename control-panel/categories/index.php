@@ -11,13 +11,13 @@ if (!in_array($activeTab, $validTabs)) $activeTab = 'all';
 $conditions = [];
 $params = [];
 if ($activeTab !== 'all') {
-    $conditions[] = "section = ?";
+    $conditions[] = "type = ?";
     $params[] = $activeTab;
 }
 $where = $conditions ? 'WHERE ' . implode(' AND ', $conditions) : '';
 
 try {
-    $sql = "SELECT * FROM categories $where ORDER BY section ASC, name ASC";
+    $sql = "SELECT * FROM categories $where ORDER BY type ASC, name ASC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -161,8 +161,8 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                         <?php foreach ($categories as $cat): ?>
                         <tr>
                             <td><strong><?php echo htmlspecialchars($cat['name']); ?></strong></td>
-                            <td><span class="badge badge-<?php echo $cat['section']; ?>"><?php echo ucfirst($cat['section']); ?></span></td>
-                            <td><span class="badge badge-<?php echo $cat['status']; ?>"><?php echo ucfirst($cat['status']); ?></span></td>
+                            <td><span class="badge badge-<?php echo $cat['type']; ?>"><?php echo ucfirst($cat['type']); ?></span></td>
+                            <td><span class="badge badge-<?php echo $cat['status'] == 1 ? 'active' : 'inactive'; ?>"><?php echo $cat['status'] == 1 ? 'Active' : 'Inactive'; ?></span></td>
                             <td>
                                 <div class="actions">
                                     <a href="edit.php?id=<?php echo $cat['id']; ?>" class="btn-sm btn-edit">Edit</a>

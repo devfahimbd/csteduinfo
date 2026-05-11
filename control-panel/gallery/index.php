@@ -18,8 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_gallery'])) {
             $result = uploadFile($_FILES['image'], 'gallery', ['jpg','jpeg','png','webp','gif']);
             if ($result['success']) {
                 try {
-                    $stmt = $pdo->prepare("INSERT INTO gallery (title, category_id, image) VALUES (?, ?, ?)");
-                    $stmt->execute([$title, $categoryId, $result['path']]);
+                    $slug = createSlug($title) . '-' . time();
+                    $stmt = $pdo->prepare("INSERT INTO gallery (title, slug, category_id, image) VALUES (?, ?, ?, ?)");
+                    $stmt->execute([$title, $slug, $categoryId, $result['path']]);
                     setFlash('success', 'Image added successfully.');
                 } catch (PDOException $e) {
                     setFlash('error', 'Failed to add image.');

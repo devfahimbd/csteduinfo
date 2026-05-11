@@ -14,31 +14,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = sanitizeInput($_POST['title'] ?? '');
             $slug = generateSlug($title, 'notices', 'slug');
             $categoryId = !empty($_POST['category_id']) ? (int)$_POST['category_id'] : null;
-            $publishDate = sanitizeInput($_POST['publish_date'] ?? date('Y-m-d'));
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'inactive';
-            $shortDesc = sanitizeInput($_POST['short_description'] ?? '');
+            $status = ($_POST['status'] ?? 'inactive') === 'active' ? 1 : 0;
+            $isImportant = isset($_POST['is_important']) ? 1 : 0;
             $description = sanitize($_POST['description'] ?? '');
-            $metaTitle = sanitizeInput($_POST['meta_title'] ?? '');
-            $metaDesc = sanitizeInput($_POST['meta_description'] ?? '');
 
-            $file = null;
-            if (!empty($_FILES['file']['name'])) {
-                $result = uploadFile($_FILES['file'], 'notices', ['pdf','doc','docx','xls','xlsx','ppt','pptx','zip','rar','jpg','jpeg','png','gif']);
+            $image = null;
+            if (!empty($_FILES['image']['name'])) {
+                $result = uploadFile($_FILES['image'], 'notices', ['jpg','jpeg','png','webp','gif']);
                 if ($result['success']) {
-                    $file = $result['path'];
+                    $image = $result['path'];
                 }
             }
 
-            $thumbnail = null;
-            if (!empty($_FILES['thumbnail']['name'])) {
-                $result = uploadFile($_FILES['thumbnail'], 'notices', ['jpg','jpeg','png','webp','gif']);
-                if ($result['success']) {
-                    $thumbnail = $result['path'];
-                }
-            }
-
-            $stmt = $pdo->prepare("INSERT INTO notices (title, slug, category_id, publish_date, status, short_description, description, file, thumbnail, meta_title, meta_description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$title, $slug, $categoryId, $publishDate, $status, $shortDesc, $description, $file, $thumbnail, $metaTitle, $metaDesc]);
+            $stmt = $pdo->prepare("INSERT INTO notices (title, slug, category_id, content, image, is_important, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$title, $slug, $categoryId, $description, $image, $isImportant, $status]);
 
             setFlash('success', 'Notice created successfully.');
             header('Location: index.php');
@@ -163,20 +152,14 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             <label>Title *</label>
                             <input type="text" name="title" required placeholder="Enter notice title">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="category_id">
-                                    <option value="">-- Select Category --</option>
-                                    <?php foreach ($categories as $cat): ?>
-                                        <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Publish Date</label>
-                                <input type="date" name="publish_date" value="<?php echo date('Y-m-d'); ?>">
-                            </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="category_id">
+                                <option value="">-- Select Category --</option>
+                                <?php foreach ($categories as $cat): ?>
+                                    <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Status</label>
@@ -186,44 +169,26 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Short Description</label>
-                            <textarea name="short_description" rows="2" placeholder="Brief summary of the notice"></textarea>
+                            <label>Important</label>
+                            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#374151;">
+                                <input type="checkbox" name="is_important" value="1">
+                                Mark as important notice
+                            </label>
                         </div>
                         <div class="form-group">
-                            <label>Full Description</label>
-                            <textarea name="description" rows="6" placeholder="Full notice content"></textarea>
+                            <label>Content</label>
+                            <textarea name="description" rows="6" placeholder="Notice content"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="panel">
-                    <div class="panel-header"><h2>Attachments &amp; Media</h2></div>
-                    <div class="panel-body">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>File Attachment</label>
-                                <input type="file" name="file">
-                                <p class="hint">PDF, DOC, DOCX, XLS, PPT, ZIP, images</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Thumbnail Image</label>
-                                <input type="file" name="thumbnail" accept="image/*">
-                                <p class="hint">JPG, PNG, WebP, GIF</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel">
-                    <div class="panel-header"><h2>SEO Settings</h2></div>
+                    <div class="panel-header"><h2>Image</h2></div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <label>Meta Title</label>
-                            <input type="text" name="meta_title" placeholder="Custom meta title (optional)">
-                        </div>
-                        <div class="form-group">
-                            <label>Meta Description</label>
-                            <textarea name="meta_description" rows="2" placeholder="Custom meta description (optional)"></textarea>
+                            <label>Notice Image</label>
+                            <input type="file" name="image" accept="image/*">
+                            <p class="hint">JPG, PNG, WebP, GIF</p>
                         </div>
                     </div>
                 </div>

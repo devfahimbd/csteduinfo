@@ -39,17 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $facebook = sanitizeInput($_POST['facebook'] ?? '');
             $linkedin = sanitizeInput($_POST['linkedin'] ?? '');
 
-            $photo = $teacher['photo'];
-            if (!empty($_FILES['photo']['name'])) {
-                $result = uploadFile($_FILES['photo'], 'teachers', ['jpg','jpeg','png','webp','gif']);
+            $image = $teacher['image'];
+            if (!empty($_FILES['image']['name'])) {
+                $result = uploadFile($_FILES['image'], 'teachers', ['jpg','jpeg','png','webp','gif']);
                 if ($result['success']) {
-                    if (!empty($teacher['photo'])) deleteFile($teacher['photo']);
-                    $photo = $result['path'];
+                    if (!empty($teacher['image'])) deleteFile($teacher['image']);
+                    $image = $result['path'];
                 }
             }
 
-            $stmt = $pdo->prepare("UPDATE teachers SET name=?, slug=?, designation=?, qualification=?, bio=?, email=?, phone=?, photo=?, category_id=?, serial=?, facebook=?, linkedin=? WHERE id=?");
-            $stmt->execute([$name, $slug, $designation, $qualification, $bio, $email, $phone, $photo, $categoryId, $serial, $facebook, $linkedin, $id]);
+            $stmt = $pdo->prepare("UPDATE teachers SET name=?, slug=?, designation=?, qualification=?, bio=?, email=?, phone=?, image=?, category_id=?, serial=?, facebook=?, linkedin=? WHERE id=?");
+            $stmt->execute([$name, $slug, $designation, $qualification, $bio, $email, $phone, $image, $categoryId, $serial, $facebook, $linkedin, $id]);
 
             setFlash('success', 'Faculty member updated successfully.');
             header('Location: index.php');
@@ -187,10 +187,10 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             </div>
                             <div class="form-group">
                                 <label>Photo</label>
-                                <input type="file" name="photo" accept="image/*">
+                                <input type="file" name="image" accept="image/*">
                                 <p class="hint">JPG, PNG, WebP. Leave empty to keep current.</p>
-                                <?php if (!empty($teacher['photo'])): ?>
-                                    <div class="current-file">Current: <?php echo htmlspecialchars(basename($teacher['photo'])); ?></div>
+                                <?php if (!empty($teacher['image'])): ?>
+                                    <div class="current-file">Current: <?php echo htmlspecialchars(basename($teacher['image'])); ?></div>
                                 <?php endif; ?>
                             </div>
                         </div>

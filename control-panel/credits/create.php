@@ -13,14 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $name = sanitizeInput($_POST['name'] ?? '');
             $role = sanitizeInput($_POST['role'] ?? '');
-            $section = sanitizeInput($_POST['section'] ?? '');
             $icon = in_array($_POST['icon'] ?? '', $iconOptions) ? $_POST['icon'] : 'heart';
             $url = sanitizeInput($_POST['url'] ?? '');
             $sortOrder = (int)($_POST['sort_order'] ?? 0);
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
-            $stmt = $pdo->prepare("INSERT INTO credits (name, role, section, icon, url, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $role, $section, $icon, $url, $sortOrder, $status]);
+            $stmt = $pdo->prepare("INSERT INTO credits (name, role, icon, url, sort_order, status) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $role, $icon, $url, $sortOrder, $status]);
 
             setFlash('success', 'Credit created successfully.');
             header('Location: index.php');
@@ -160,10 +159,6 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group">
-                                <label>Section</label>
-                                <input type="text" name="section" placeholder="e.g. Frontend, Backend">
-                            </div>
                             <div class="form-group">
                                 <label>URL</label>
                                 <input type="url" name="url" placeholder="https://...">

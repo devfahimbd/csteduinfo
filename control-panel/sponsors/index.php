@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_sponsor'])) {
             $name = sanitizeInput($_POST['name'] ?? '');
             $url = sanitizeInput($_POST['url'] ?? '');
             $sortOrder = (int)($_POST['sort_order'] ?? 0);
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
             $logo = null;
             if (!empty($_FILES['logo']['name'])) {
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_sponsor'])) {
                 }
             }
 
-            $stmt = $pdo->prepare("INSERT INTO sponsors (name, logo, url, sort_order, status) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO sponsors (name, logo, website, sort_order, status) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$name, $logo, $url, $sortOrder, $status]);
             setFlash('success', 'Sponsor added successfully.');
         } catch (PDOException $e) {
@@ -198,14 +198,14 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                                 </div>
                             </td>
                             <td>
-                                <?php if ($sp['url']): ?>
-                                    <a href="<?php echo htmlspecialchars($sp['url']); ?>" target="_blank" style="color:#2563eb;font-size:12px;text-decoration:none;"><?php echo htmlspecialchars(mb_strimwidth($sp['url'], 0, 35, '...')); ?></a>
+                                <?php if ($sp['website']): ?>
+                                    <a href="<?php echo htmlspecialchars($sp['website']); ?>" target="_blank" style="color:#2563eb;font-size:12px;text-decoration:none;"><?php echo htmlspecialchars(mb_strimwidth($sp['website'], 0, 35, '...')); ?></a>
                                 <?php else: ?>
                                     <span style="color:#9ca3af;">—</span>
                                 <?php endif; ?>
                             </td>
                             <td><?php echo (int)$sp['sort_order']; ?></td>
-                            <td><span class="badge badge-<?php echo $sp['status']; ?>"><?php echo ucfirst($sp['status']); ?></span></td>
+                            <td><span class="badge badge-<?php echo $sp['status'] == 1 ? 'active' : 'inactive'; ?>"><?php echo $sp['status'] == 1 ? 'Active' : 'Inactive'; ?></span></td>
                             <td>
                                 <div class="actions">
                                     <a href="edit.php?id=<?php echo $sp['id']; ?>" class="btn-sm btn-edit">Edit</a>

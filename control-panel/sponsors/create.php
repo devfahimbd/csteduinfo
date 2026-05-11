@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = sanitizeInput($_POST['name'] ?? '');
             $url = sanitizeInput($_POST['url'] ?? '');
             $sortOrder = (int)($_POST['sort_order'] ?? 0);
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
             $logo = null;
             if (!empty($_FILES['logo']['name'])) {
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            $stmt = $pdo->prepare("INSERT INTO sponsors (name, logo, url, sort_order, status) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO sponsors (name, logo, website, sort_order, status) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$name, $logo, $url, $sortOrder, $status]);
 
             setFlash('success', 'Sponsor created successfully.');

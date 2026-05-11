@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $semester = in_array($_POST['semester'] ?? '', $semesters) ? $_POST['semester'] : '';
             $categoryId = !empty($_POST['category_id']) ? (int)$_POST['category_id'] : null;
             $description = sanitize($_POST['description'] ?? '');
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
             $file = null;
             if (!empty($_FILES['file']['name'])) {

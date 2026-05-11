@@ -7,11 +7,11 @@ require_once 'auth-check.php';
 // Stats queries
 try {
     $totalTeachers = $pdo->query("SELECT COUNT(*) FROM teachers")->fetchColumn();
-    $activeNotices = $pdo->query("SELECT COUNT(*) FROM notices WHERE status = 'active'")->fetchColumn();
-    $activeResources = $pdo->query("SELECT COUNT(*) FROM resources WHERE status = 'active'")->fetchColumn();
+    $activeNotices = $pdo->query("SELECT COUNT(*) FROM notices WHERE status = 1")->fetchColumn();
+    $activeResources = $pdo->query("SELECT COUNT(*) FROM resources WHERE status = 1")->fetchColumn();
     $galleryImages = $pdo->query("SELECT COUNT(*) FROM gallery")->fetchColumn();
 
-    $stmt = $pdo->query("SELECT n.title, c.name AS category, n.publish_date, n.status FROM notices n LEFT JOIN categories c ON n.category_id = c.id ORDER BY n.created_at DESC LIMIT 5");
+    $stmt = $pdo->query("SELECT n.title, c.name AS category, n.created_at, n.status FROM notices n LEFT JOIN categories c ON n.category_id = c.id ORDER BY n.created_at DESC LIMIT 5");
     $recentNotices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $totalTeachers = $activeNotices = $activeResources = $galleryImages = 0;
@@ -216,8 +216,8 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                         <tr>
                             <td><?php echo htmlspecialchars($notice['title']); ?></td>
                             <td><?php echo htmlspecialchars($notice['category'] ?? 'Uncategorized'); ?></td>
-                            <td><span class="badge badge-<?php echo $notice['status']; ?>"><?php echo ucfirst($notice['status']); ?></span></td>
-                            <td><?php echo formatDate($notice['publish_date']); ?></td>
+                            <td><span class="badge badge-<?php echo $notice['status'] == 1 ? 'active' : 'inactive'; ?>"><?php echo $notice['status'] == 1 ? 'Active' : 'Inactive'; ?></span></td>
+                            <td><?php echo formatDate($notice['created_at']); ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

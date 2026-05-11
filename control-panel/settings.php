@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'twitter_url'      => trim($_POST['twitter_url'] ?? ''),
         'linkedin_url'     => trim($_POST['linkedin_url'] ?? ''),
         'youtube_url'      => trim($_POST['youtube_url'] ?? ''),
-        'instagram_url'    => trim($_POST['instagram_url'] ?? ''),
         'footer_text'      => trim($_POST['footer_text'] ?? ''),
     ];
 
@@ -370,10 +369,6 @@ function getSetting($key) {
                             <div>
                                 <label class="form-label">YouTube URL</label>
                                 <input type="url" name="youtube_url" class="form-input" value="<?php echo htmlspecialchars(getSetting('youtube_url')); ?>">
-                            </div>
-                            <div>
-                                <label class="form-label">Instagram URL</label>
-                                <input type="url" name="instagram_url" class="form-input" value="<?php echo htmlspecialchars(getSetting('instagram_url')); ?>">
                             </div>
                         </div>
                     </div>

@@ -76,11 +76,11 @@ if (!empty($credits)) {
                 <?php foreach ($sponsors as $sponsor): ?>
                     <?php if (!empty($sponsor['url'])): ?>
                         <a href="<?= sanitize($sponsor['url']) ?>" target="_blank" rel="noopener" class="sponsor-item" style="display: inline-block; max-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="<?= UPLOAD_URL . '/' . sanitize($sponsor['logo']) ?>" alt="<?= sanitize($sponsor['name']) ?>" style="max-height: 60px; width: auto; object-fit: contain;">
+                            <img src="<?= UPLOAD_URL . sanitize($sponsor['logo']) ?>" alt="<?= sanitize($sponsor['name']) ?>" style="max-height: 60px; width: auto; object-fit: contain;">
                         </a>
                     <?php else: ?>
                         <span class="sponsor-item" style="display: inline-block; max-height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease;">
-                            <img src="<?= UPLOAD_URL . '/' . sanitize($sponsor['logo']) ?>" alt="<?= sanitize($sponsor['name']) ?>" style="max-height: 60px; width: auto; object-fit: contain;">
+                            <img src="<?= UPLOAD_URL . sanitize($sponsor['logo']) ?>" alt="<?= sanitize($sponsor['name']) ?>" style="max-height: 60px; width: auto; object-fit: contain;">
                         </span>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -108,13 +108,13 @@ if (!empty($credits)) {
                 <div class="credits-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;">
                     <?php foreach ($sectionCredits as $credit): ?>
                         <div class="credit-card" style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 14px; transition: box-shadow 0.2s;">
-                            <?php if (!empty($credit['icon']) && !in_array($credit['icon'], ['heart','star','code','award','zap','shield','globe','monitor','users','layers'])): ?>
+                            <?php if (!empty($credit['icon'])): ?>
                                 <div class="credit-icon" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; color: #2563EB;">
-                                    <img src="<?= UPLOAD_URL . '/' . sanitize($credit['icon']) ?>" alt="" style="width: 28px; height: 28px; object-fit: contain; border-radius: 50%;">
+                                    <img src="<?= UPLOAD_URL . sanitize($credit['icon']) ?>" alt="" style="width: 28px; height: 28px; object-fit: contain; border-radius: 50%;">
                                 </div>
                             <?php else: ?>
                                 <div class="credit-icon" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; color: #2563EB;">
-                                    <?= icon(!empty($credit['icon']) ? $credit['icon'] : 'award', 22) ?>
+                                    <?= icon('award', 22) ?>
                                 </div>
                             <?php endif; ?>
                             <div class="credit-info" style="min-width: 0;">
@@ -173,28 +173,28 @@ if (!empty($credits)) {
 
                     <!-- Social Media Links -->
                     <div class="footer-social" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <?php if (!empty($settings['facebook_url'])): ?>
-                            <a href="<?= sanitize($settings['facebook_url']) ?>" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                        <?php if (!empty($settings['facebook'])): ?>
+                            <a href="<?= sanitize($settings['facebook']) ?>" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('facebook', 18) ?>
                             </a>
                         <?php endif; ?>
-                        <?php if (!empty($settings['youtube_url'])): ?>
-                            <a href="<?= sanitize($settings['youtube_url']) ?>" target="_blank" rel="noopener" aria-label="YouTube" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                        <?php if (!empty($settings['youtube'])): ?>
+                            <a href="<?= sanitize($settings['youtube']) ?>" target="_blank" rel="noopener" aria-label="YouTube" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('youtube', 18) ?>
                             </a>
                         <?php endif; ?>
-                        <?php if (!empty($settings['linkedin_url'])): ?>
-                            <a href="<?= sanitize($settings['linkedin_url']) ?>" target="_blank" rel="noopener" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                        <?php if (!empty($settings['linkedin'])): ?>
+                            <a href="<?= sanitize($settings['linkedin']) ?>" target="_blank" rel="noopener" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('linkedin', 18) ?>
                             </a>
                         <?php endif; ?>
-                        <?php if (!empty($settings['twitter_url'])): ?>
-                            <a href="<?= sanitize($settings['twitter_url']) ?>" target="_blank" rel="noopener" aria-label="Twitter" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                        <?php if (!empty($settings['twitter'])): ?>
+                            <a href="<?= sanitize($settings['twitter']) ?>" target="_blank" rel="noopener" aria-label="Twitter" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('twitter', 18) ?>
                             </a>
                         <?php endif; ?>
-                        <?php if (!empty($settings['instagram_url'])): ?>
-                            <a href="<?= sanitize($settings['instagram_url']) ?>" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                        <?php if (!empty($settings['instagram'])): ?>
+                            <a href="<?= sanitize($settings['instagram']) ?>" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('instagram', 18) ?>
                             </a>
                         <?php endif; ?>
@@ -279,35 +279,35 @@ if (!empty($credits)) {
                 <div class="footer-col">
                     <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">Contact Info</h4>
 
-                    <?php if (!empty($settings['site_phone'])): ?>
+                    <?php if (!empty($settings['phone'])): ?>
                     <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px;">
                         <span style="flex-shrink: 0; color: #2563EB; margin-top: 2px;">
                             <?= icon('phone', 16) ?>
                         </span>
                         <div>
                             <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">Phone</span>
-                            <a href="tel:<?= sanitize($settings['site_phone']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
-                                <?= sanitize($settings['site_phone']) ?>
+                            <a href="tel:<?= sanitize($settings['phone']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
+                                <?= sanitize($settings['phone']) ?>
                             </a>
                         </div>
                     </div>
                     <?php endif; ?>
 
-                    <?php if (!empty($settings['site_email'])): ?>
+                    <?php if (!empty($settings['email'])): ?>
                     <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px;">
                         <span style="flex-shrink: 0; color: #2563EB; margin-top: 2px;">
                             <?= icon('mail', 16) ?>
                         </span>
                         <div>
                             <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">Email</span>
-                            <a href="mailto:<?= sanitize($settings['site_email']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
-                                <?= sanitize($settings['site_email']) ?>
+                            <a href="mailto:<?= sanitize($settings['email']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
+                                <?= sanitize($settings['email']) ?>
                             </a>
                         </div>
                     </div>
                     <?php endif; ?>
 
-                    <?php if (!empty($settings['site_address'])): ?>
+                    <?php if (!empty($settings['address'])): ?>
                     <div style="display: flex; align-items: flex-start; gap: 10px;">
                         <span style="flex-shrink: 0; color: #2563EB; margin-top: 2px;">
                             <?= icon('map-pin', 16) ?>
@@ -315,7 +315,7 @@ if (!empty($credits)) {
                         <div>
                             <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">Address</span>
                             <p style="color: #D1D5DB; font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                <?= sanitize($settings['site_address']) ?>
+                                <?= sanitize($settings['address']) ?>
                             </p>
                         </div>
                     </div>

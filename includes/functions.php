@@ -54,6 +54,7 @@ function sanitizeInput($str) {
 }
 
 // --- File Upload ---
+if (!function_exists('uploadFile')) {
 function uploadFile($file, $subdir = '', $allowedTypes = []) {
     if (empty($allowedTypes)) {
         $allowedTypes = array_merge(ALLOWED_IMAGE_TYPES, ALLOWED_FILE_TYPES);
@@ -86,15 +87,19 @@ function uploadFile($file, $subdir = '', $allowedTypes = []) {
 
     return ['success' => false, 'error' => 'Failed to save the uploaded file.'];
 }
+}
 
+if (!function_exists('deleteFile')) {
 function deleteFile($filepath) {
     $fullpath = UPLOAD_DIR . $filepath;
     if (file_exists($fullpath)) {
         unlink($fullpath);
     }
 }
+}
 
 // --- Pagination ---
+if (!function_exists('getPagination')) {
 function getPagination($currentPage, $totalItems, $itemsPerPage = 8) {
     $totalPages = max(1, ceil($totalItems / $itemsPerPage));
     $currentPage = max(1, min($currentPage, $totalPages));
@@ -106,6 +111,7 @@ function getPagination($currentPage, $totalItems, $itemsPerPage = 8) {
         'items_per_page' => $itemsPerPage,
         'total_items' => $totalItems
     ];
+}
 }
 
 function renderPagination($pagination, $baseUrl = '') {
@@ -161,6 +167,7 @@ function formatDate($date) {
     return date('d M, Y', strtotime($date));
 }
 
+if (!function_exists('timeAgo')) {
 function timeAgo($date) {
     if (!$date) return '';
     $now = new DateTime();
@@ -173,6 +180,7 @@ function timeAgo($date) {
     if ($diff->h > 0) return $diff->h . ' hour' . ($diff->h > 1 ? 's' : '') . ' ago';
     if ($diff->i > 0) return $diff->i . ' minute' . ($diff->i > 1 ? 's' : '') . ' ago';
     return 'Just now';
+}
 }
 
 function truncateText($text, $length = 100) {
@@ -187,10 +195,13 @@ function wordTruncate($text, $words = 20) {
 }
 
 // --- Flash Messages ---
+if (!function_exists('setFlash')) {
 function setFlash($type, $message) {
     $_SESSION['flash'] = ['type' => $type, 'message' => $message];
 }
+}
 
+if (!function_exists('getFlash')) {
 function getFlash() {
     if (isset($_SESSION['flash'])) {
         $flash = $_SESSION['flash'];
@@ -198,6 +209,7 @@ function getFlash() {
         return $flash;
     }
     return null;
+}
 }
 
 function displayFlash() {
@@ -289,6 +301,7 @@ function getCategories($section = 'notice') {
     return $stmt->fetchAll();
 }
 
+if (!function_exists('getCategoryName')) {
 function getCategoryName($id) {
     global $pdo;
     if (!$id) return 'Uncategorized';
@@ -296,6 +309,7 @@ function getCategoryName($id) {
     $stmt->execute([$id]);
     $row = $stmt->fetch();
     return $row ? $row['name'] : 'Uncategorized';
+}
 }
 
 // --- SVG Icons Library ---

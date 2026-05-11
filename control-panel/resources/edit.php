@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $semester = in_array($_POST['semester'] ?? '', $semesters) ? $_POST['semester'] : '';
             $categoryId = !empty($_POST['category_id']) ? (int)$_POST['category_id'] : null;
             $description = sanitize($_POST['description'] ?? '');
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
             $file = $resource['file'];
             if (!empty($_FILES['file']['name'])) {
@@ -200,8 +200,8 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             <div class="form-group">
                                 <label>Status</label>
                                 <select name="status">
-                                    <option value="active" <?php echo $resource['status'] === 'active' ? 'selected' : ''; ?>>Active</option>
-                                    <option value="inactive" <?php echo $resource['status'] === 'inactive' ? 'selected' : ''; ?>>Inactive</option>
+                                    <option value="active" <?php echo ($resource['status'] ?? 0) == 1 ? 'selected' : ''; ?>>Active</option>
+                                    <option value="inactive" <?php echo ($resource['status'] ?? 0) != 1 ? 'selected' : ''; ?>>Inactive</option>
                                 </select>
                             </div>
                         </div>

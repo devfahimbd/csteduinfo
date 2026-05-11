@@ -20,7 +20,7 @@ if (!$category) {
     exit;
 }
 
-$sections = ['notice' => 'Notice', 'teacher' => 'Teacher', 'gallery' => 'Gallery', 'resource' => 'Resource'];
+$types = ['notice' => 'Notice', 'teacher' => 'Teacher', 'gallery' => 'Gallery', 'resource' => 'Resource'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
@@ -29,11 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $name = sanitizeInput($_POST['name'] ?? '');
             $slug = generateSlug($name, 'categories', 'slug', $id);
-            $section = in_array($_POST['section'] ?? '', array_keys($sections)) ? $_POST['section'] : 'notice';
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $type = in_array($_POST['type'] ?? '', array_keys($types)) ? $_POST['type'] : 'notice';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
-            $stmt = $pdo->prepare("UPDATE categories SET name=?, slug=?, section=?, status=? WHERE id=?");
-            $stmt->execute([$name, $slug, $section, $status, $id]);
+            $stmt = $pdo->prepare("UPDATE categories SET name=?, slug=?, type=?, status=? WHERE id=?");
+            $stmt->execute([$name, $slug, $type, $status, $id]);
 
             setFlash('success', 'Category updated successfully.');
             header('Location: index.php');
@@ -148,18 +148,18 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             <input type="text" name="name" required value="<?php echo htmlspecialchars($category['name']); ?>">
                         </div>
                         <div class="form-group">
-                            <label>Section *</label>
-                            <select name="section" required>
-                                <?php foreach ($sections as $key => $label): ?>
-                                    <option value="<?php echo $key; ?>" <?php echo $category['section'] === $key ? 'selected' : ''; ?>><?php echo $label; ?></option>
+                            <label>Type *</label>
+                            <select name="type" required>
+                                <?php foreach ($types as $key => $label): ?>
+                                    <option value="<?php echo $key; ?>" <?php echo $category['type'] === $key ? 'selected' : ''; ?>><?php echo $label; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Status</label>
                             <select name="status">
-                                <option value="active" <?php echo $category['status'] === 'active' ? 'selected' : ''; ?>>Active</option>
-                                <option value="inactive" <?php echo $category['status'] === 'inactive' ? 'selected' : ''; ?>>Inactive</option>
+                                <option value="active" <?php echo ($category['status'] ?? 0) == 1 ? 'selected' : ''; ?>>Active</option>
+                                <option value="inactive" <?php echo ($category['status'] ?? 0) != 1 ? 'selected' : ''; ?>>Inactive</option>
                             </select>
                         </div>
                     </div>

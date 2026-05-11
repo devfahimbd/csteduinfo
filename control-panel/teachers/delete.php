@@ -20,9 +20,9 @@ if (!$teacher) {
     exit;
 }
 
-// Delete photo
-if (!empty($teacher['photo'])) {
-    deleteFile($teacher['photo']);
+// Delete image
+if (!empty($teacher['image'])) {
+    deleteFile($teacher['image']);
 }
 
 try {

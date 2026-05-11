@@ -23,16 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $facebook = sanitizeInput($_POST['facebook'] ?? '');
             $linkedin = sanitizeInput($_POST['linkedin'] ?? '');
 
-            $photo = null;
-            if (!empty($_FILES['photo']['name'])) {
-                $result = uploadFile($_FILES['photo'], 'teachers', ['jpg','jpeg','png','webp','gif']);
+            $image = null;
+            if (!empty($_FILES['image']['name'])) {
+                $result = uploadFile($_FILES['image'], 'teachers', ['jpg','jpeg','png','webp','gif']);
                 if ($result['success']) {
-                    $photo = $result['path'];
+                    $image = $result['path'];
                 }
             }
 
-            $stmt = $pdo->prepare("INSERT INTO teachers (name, slug, designation, qualification, bio, email, phone, photo, category_id, serial, facebook, linkedin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $slug, $designation, $qualification, $bio, $email, $phone, $photo, $categoryId, $serial, $facebook, $linkedin]);
+            $stmt = $pdo->prepare("INSERT INTO teachers (name, slug, designation, qualification, bio, email, phone, image, category_id, serial, facebook, linkedin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $slug, $designation, $qualification, $bio, $email, $phone, $image, $categoryId, $serial, $facebook, $linkedin]);
 
             setFlash('success', 'Faculty member added successfully.');
             header('Location: index.php');
@@ -169,7 +169,7 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             </div>
                             <div class="form-group">
                                 <label>Photo</label>
-                                <input type="file" name="photo" accept="image/*">
+                                <input type="file" name="image" accept="image/*">
                                 <p class="hint">JPG, PNG, WebP. Recommended: 300x300px</p>
                             </div>
                         </div>

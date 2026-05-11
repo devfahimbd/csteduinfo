@@ -5,17 +5,6 @@
 CREATE DATABASE IF NOT EXISTS cst_department CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE cst_department;
 
--- =============================================
--- Migration: Fix column mismatches (run these if upgrading from old schema)
--- =============================================
--- Fix sponsors table: rename 'website' to 'url'
-ALTER TABLE sponsors CHANGE COLUMN website url VARCHAR(255) DEFAULT NULL;
-
--- Fix credits table: add missing columns
-ALTER TABLE credits ADD COLUMN IF NOT EXISTS icon VARCHAR(255) DEFAULT NULL AFTER image;
-ALTER TABLE credits ADD COLUMN IF NOT EXISTS url VARCHAR(255) DEFAULT NULL AFTER icon;
-ALTER TABLE credits ADD COLUMN IF NOT EXISTS section VARCHAR(100) DEFAULT 'General' AFTER url;
-
 -- Admins Table
 CREATE TABLE IF NOT EXISTS admins (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -108,7 +97,7 @@ CREATE TABLE IF NOT EXISTS resources (
 CREATE TABLE IF NOT EXISTS sponsors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
-    url VARCHAR(255),
+    website VARCHAR(255),
     logo VARCHAR(255),
     status TINYINT(1) DEFAULT 1,
     sort_order INT DEFAULT 0,
@@ -122,9 +111,6 @@ CREATE TABLE IF NOT EXISTS credits (
     role VARCHAR(150),
     about TEXT,
     image VARCHAR(255),
-    icon VARCHAR(255),
-    url VARCHAR(255),
-    section VARCHAR(100) DEFAULT 'General',
     facebook VARCHAR(255),
     linkedin VARCHAR(255),
     github VARCHAR(255),
@@ -163,7 +149,6 @@ INSERT INTO settings (setting_key, setting_value) VALUES
 ('twitter_url', '#'),
 ('linkedin_url', '#'),
 ('youtube_url', '#'),
-('instagram_url', '#'),
 ('footer_text', '&copy; 2025 CST Department. All Rights Reserved.');
 
 -- Insert Default Categories

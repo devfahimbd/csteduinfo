@@ -4,7 +4,7 @@ require_once '../../includes/functions.php';
 requireLogin();
 require_once '../auth-check.php';
 
-$sections = ['notice' => 'Notice', 'teacher' => 'Teacher', 'gallery' => 'Gallery', 'resource' => 'Resource'];
+$types = ['notice' => 'Notice', 'teacher' => 'Teacher', 'gallery' => 'Gallery', 'resource' => 'Resource'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verifyCSRFToken($_POST['csrf_token'] ?? '')) {
@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $name = sanitizeInput($_POST['name'] ?? '');
             $slug = generateSlug($name, 'categories', 'slug');
-            $section = in_array($_POST['section'] ?? '', array_keys($sections)) ? $_POST['section'] : 'notice';
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $type = in_array($_POST['type'] ?? '', array_keys($types)) ? $_POST['type'] : 'notice';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
-            $stmt = $pdo->prepare("INSERT INTO categories (name, slug, section, status) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$name, $slug, $section, $status]);
+            $stmt = $pdo->prepare("INSERT INTO categories (name, slug, type, status) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$name, $slug, $type, $status]);
 
             setFlash('success', 'Category created successfully.');
             header('Location: index.php');
@@ -132,9 +132,9 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             <input type="text" name="name" required placeholder="Enter category name">
                         </div>
                         <div class="form-group">
-                            <label>Section *</label>
-                            <select name="section" required>
-                                <?php foreach ($sections as $key => $label): ?>
+                            <label>Type *</label>
+                            <select name="type" required>
+                                <?php foreach ($types as $key => $label): ?>
                                     <option value="<?php echo $key; ?>"><?php echo $label; ?></option>
                                 <?php endforeach; ?>
                             </select>

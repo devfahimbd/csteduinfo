@@ -4,11 +4,7 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'cst_department');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-// Auto-detect SITE_URL from current directory (works on any XAMPP/WAMP setup)
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-$host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
-$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-define('SITE_URL', $protocol . '://' . $host . $basePath);
+define('SITE_URL', 'http://localhost/csteduinfo');
 
 // Site Paths
 define('BASE_PATH', __DIR__ . '/..');

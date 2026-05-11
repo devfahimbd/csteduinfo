@@ -5,7 +5,7 @@ requireLogin();
 require_once '../auth-check.php';
 
 try {
-    $stmt = $pdo->query("SELECT t.*, c.name AS category_name FROM teachers t LEFT JOIN categories c ON t.category_id = c.id ORDER BY t.serial ASC");
+    $stmt = $pdo->query("SELECT t.*, c.name AS category_name FROM teachers t LEFT JOIN categories c ON t.category_id = c.id ORDER BY t.sort_order ASC");
     $teachers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $teachers = [];
@@ -129,7 +129,7 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                         <tr>
                             <td>
                                 <div class="teacher-cell">
-                                    <img class="teacher-avatar" src="<?php echo $teacher['photo'] ? UPLOAD_URL . htmlspecialchars($teacher['photo']) : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAzOCAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxOSIgY3k9IjE5IiByPSIxOSIgZmlsbD0iI2U1ZTdlYiIvPjx0ZXh0IHg9IjE5IiB5PSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzlhY2EzZiIgZm9udC1zaXplPSIxNiI+P3Y8L3RleHQ+PC9zdmc+'; ?>" alt="<?php echo htmlspecialchars($teacher['name']); ?>" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAzOCAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxOSIgY3k9IjE5IiByPSIxOSIgZmlsbD0iI2U1ZTdlYiIvPjwvc3ZnPg=='">
+                                    <img class="teacher-avatar" src="<?php echo $teacher['image'] ? UPLOAD_URL . htmlspecialchars($teacher['image']) : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAzOCAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxOSIgY3k9IjE5IiByPSIxOSIgZmlsbD0iI2U1ZTdlYiIvPjx0ZXh0IHg9IjE5IiB5PSIyNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzlhY2EzZiIgZm9udC1zaXplPSIxNiI+P3Y8L3RleHQ+PC9zdmc+'; ?>" alt="<?php echo htmlspecialchars($teacher['name']); ?>" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHZpZXdCb3g9IjAgMCAzOCAzOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxOSIgY3k9IjE5IiByPSIxOSIgZmlsbD0iI2U1ZTdlYiIvPjwvc3ZnPg=='">
                                     <div>
                                         <div class="teacher-name"><?php echo htmlspecialchars($teacher['name']); ?></div>
                                         <div class="teacher-designation"><?php echo htmlspecialchars($teacher['designation'] ?? ''); ?></div>
@@ -137,7 +137,7 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                                 </div>
                             </td>
                             <td><?php echo htmlspecialchars($teacher['category_name'] ?? '—'); ?></td>
-                            <td><?php echo (int)$teacher['serial']; ?></td>
+                            <td><?php echo (int)$teacher['sort_order']; ?></td>
                             <td>
                                 <div class="actions">
                                     <a href="edit.php?id=<?php echo $teacher['id']; ?>" class="btn-sm btn-edit">Edit</a>

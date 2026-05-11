@@ -153,8 +153,8 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                         <tr>
                             <td><strong><?php echo htmlspecialchars($notice['title']); ?></strong></td>
                             <td><?php echo htmlspecialchars($notice['category_name'] ?? 'Uncategorized'); ?></td>
-                            <td><span class="badge badge-<?php echo $notice['status']; ?>"><?php echo ucfirst($notice['status']); ?></span></td>
-                            <td><?php echo formatDate($notice['publish_date']); ?></td>
+                            <td><span class="badge badge-<?php echo $notice['status'] == 1 ? 'active' : 'inactive'; ?>"><?php echo $notice['status'] == 1 ? 'Active' : 'Inactive'; ?></span></td>
+                            <td><?php echo formatDate($notice['created_at']); ?></td>
                             <td>
                                 <div class="actions">
                                     <a href="edit.php?id=<?php echo $notice['id']; ?>" class="btn-sm btn-edit">Edit</a>

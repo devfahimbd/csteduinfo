@@ -12,14 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_credit'])) {
         try {
             $name = sanitizeInput($_POST['name'] ?? '');
             $role = sanitizeInput($_POST['role'] ?? '');
-            $section = sanitizeInput($_POST['section'] ?? '');
             $icon = sanitizeInput($_POST['icon'] ?? 'heart');
             $url = sanitizeInput($_POST['url'] ?? '');
             $sortOrder = (int)($_POST['sort_order'] ?? 0);
-            $status = in_array($_POST['status'] ?? '', ['active', 'inactive']) ? $_POST['status'] : 'active';
+            $status = ($_POST['status'] ?? 'active') === 'active' ? 1 : 0;
 
-            $stmt = $pdo->prepare("INSERT INTO credits (name, role, section, icon, url, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $role, $section, $icon, $url, $sortOrder, $status]);
+            $stmt = $pdo->prepare("INSERT INTO credits (name, role, icon, url, sort_order, status) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $role, $icon, $url, $sortOrder, $status]);
             setFlash('success', 'Credit added successfully.');
         } catch (PDOException $e) {
             setFlash('error', 'Failed to add credit.');
@@ -160,7 +159,6 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                         <tr>
                             <th>Name</th>
                             <th>Role</th>
-                            <th>Section</th>
                             <th>Icon</th>
                             <th>Sort</th>
                             <th>Status</th>
@@ -172,12 +170,11 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                         <tr>
                             <td><strong><?php echo htmlspecialchars($cr['name']); ?></strong></td>
                             <td><?php echo htmlspecialchars($cr['role'] ?? '—'); ?></td>
-                            <td><?php echo htmlspecialchars($cr['section'] ?? '—'); ?></td>
                             <td>
                                 <div class="credit-icon"><?php echo icon($cr['icon'] ?? 'heart', 16); ?></div>
                             </td>
                             <td><?php echo (int)$cr['sort_order']; ?></td>
-                            <td><span class="badge badge-<?php echo $cr['status']; ?>"><?php echo ucfirst($cr['status']); ?></span></td>
+                            <td><span class="badge badge-<?php echo $cr['status'] == 1 ? 'active' : 'inactive'; ?>"><?php echo $cr['status'] == 1 ? 'Active' : 'Inactive'; ?></span></td>
                             <td>
                                 <div class="actions">
                                     <a href="edit.php?id=<?php echo $cr['id']; ?>" class="btn-sm btn-edit">Edit</a>

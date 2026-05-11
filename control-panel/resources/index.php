@@ -140,7 +140,7 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                             <td><?php echo htmlspecialchars($res['semester'] ?? '—'); ?></td>
                             <td><?php echo htmlspecialchars($res['category_name'] ?? '—'); ?></td>
                             <td><?php echo (int)$res['downloads']; ?></td>
-                            <td><span class="badge badge-<?php echo $res['status']; ?>"><?php echo ucfirst($res['status']); ?></span></td>
+                            <td><span class="badge badge-<?php echo $res['status'] == 1 ? 'active' : 'inactive'; ?>"><?php echo $res['status'] == 1 ? 'Active' : 'Inactive'; ?></span></td>
                             <td>
                                 <div class="actions">
                                     <a href="edit.php?id=<?php echo $res['id']; ?>" class="btn-sm btn-edit">Edit</a>
