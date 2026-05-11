@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /control-panel/
+Disallow: /assets/uploads/
+Sitemap: sitemap.php

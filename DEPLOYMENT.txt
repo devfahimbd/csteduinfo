@@ -1,0 +1,159 @@
+=============================================
+CST Department Website - Deployment Guide
+=============================================
+
+SYSTEM REQUIREMENTS:
+- XAMPP (Apache + MySQL)
+- PHP 7.4+ with PDO MySQL extension
+- Web browser (Chrome, Firefox, Edge)
+
+=============================================
+STEP 1: Copy Files
+=============================================
+
+1. Copy the entire "cst-website" folder to:
+   C:\xampp\htdocs\cst-website
+
+   (On Mac/Linux: /Applications/XAMPP/xamppfiles/htdocs/cst-website)
+
+
+=============================================
+STEP 2: Start XAMPP
+=============================================
+
+1. Open XAMPP Control Panel
+2. Start Apache
+3. Start MySQL
+
+
+=============================================
+STEP 3: Import Database
+=============================================
+
+1. Open your browser, go to: http://localhost/phpmyadmin
+2. Click "New" to create a new database
+3. Database name: cst_department
+4. Collation: utf8mb4_unicode_ci
+5. Click "Create"
+6. Go to "Import" tab
+7. Choose file: database/schema.sql
+8. Click "Import" button
+
+
+=============================================
+STEP 4: Configure Database
+=============================================
+
+If your MySQL has a password, edit:
+  includes/config.php
+
+Change these lines:
+  define('DB_USER', 'root');    // Your MySQL username
+  define('DB_PASS', '');        // Your MySQL password
+
+
+=============================================
+STEP 5: Create Upload Folders
+=============================================
+
+Make sure these folders exist and are writable:
+  assets/uploads/logo/
+  assets/uploads/favicon/
+  assets/uploads/gallery/
+  assets/uploads/teachers/
+  assets/uploads/sponsors/
+
+(They should already exist. If not, create them manually.)
+
+
+=============================================
+STEP 6: Access Website
+=============================================
+
+Frontend: http://localhost/cst-website/
+Admin Panel: http://localhost/cst-website/control-panel/
+
+Default Admin Login:
+  Email: admin@cst.edu.bd
+  Password: admin123
+
+
+=============================================
+IMPORTANT NOTES
+=============================================
+
+1. In XAMPP, make sure mod_rewrite is enabled in Apache
+   (It is enabled by default in XAMPP)
+
+2. If you get 404 errors on inner pages, check:
+   - .htaccess file exists in the root folder
+   - Apache mod_rewrite is enabled
+
+3. For production deployment:
+   - Change DB_USER and DB_PASS
+   - Change SITE_URL in config.php
+   - Create a strong admin password
+   - Set error_reporting(0) in config.php
+   - Enable SSL/HTTPS
+
+4. Default categories are pre-loaded:
+   - Notices: General, Academic, Event, Exam
+   - Faculty: Professor, Associate Professor, Assistant Professor, Lecturer
+   - Gallery: Seminar, Workshop, Campus Life
+   - Resources: Lecture Notes, Books, Software
+
+
+=============================================
+FILE STRUCTURE
+=============================================
+
+cst-website/
+├── .htaccess              (URL rewriting)
+├── index.php              (Homepage)
+├── about.php              (About page)
+├── faculty.php            (Faculty listing)
+├── notice.php             (Notice listing)
+├── notice-details.php     (Single notice)
+├── teacher-details.php    (Single teacher)
+├── gallery.php            (Photo gallery)
+├── gallery-details.php    (Single photo)
+├── resources.php          (Resources listing)
+├── resource-details.php   (Single resource)
+├── contact.php            (Contact page with form)
+├── download.php           (File download handler)
+├── 404.php                (404 error page)
+├── sitemap.php            (XML sitemap)
+├── robots.txt             (Search engine rules)
+├── database/
+│   └── schema.sql         (Database schema)
+├── includes/
+│   └── config.php         (Config & functions)
+├── assets/
+│   ├── css/
+│   │   ├── style.css      (Frontend styles)
+│   │   └── admin.css      (Admin panel styles)
+│   ├── js/
+│   │   └── main.js        (Frontend JavaScript)
+│   └── uploads/           (Upload directory)
+│       ├── logo/
+│       ├── favicon/
+│       ├── gallery/
+│       ├── teachers/
+│       └── sponsors/
+└── control-panel/
+    ├── index.php          (Admin dashboard)
+    ├── login.php          (Admin login)
+    ├── logout.php         (Admin logout)
+    ├── notices.php        (Manage notices)
+    ├── notice-edit.php    (Add/edit notice)
+    ├── teachers.php       (Manage faculty)
+    ├── teacher-edit.php   (Add/edit teacher)
+    ├── gallery.php        (Manage gallery)
+    ├── gallery-edit.php   (Add/edit photo)
+    ├── resources.php      (Manage resources)
+    ├── resource-edit.php  (Add/edit resource)
+    ├── categories.php     (Manage categories)
+    ├── sponsors.php       (Manage sponsors)
+    ├── credits.php        (Manage credits)
+    ├── messages.php       (View messages)
+    └── settings.php       (Site settings)
