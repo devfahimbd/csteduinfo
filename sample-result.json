@@ -1,0 +1,61 @@
+{
+  "exam_year": "2022",
+  "regulation_year": "2016",
+  "semester": "1st Semester",
+  "program": "Diploma In Engineering",
+  "students": [
+    {
+      "roll": "200010",
+      "institute_code": "49166",
+      "institute": "Dhaka Polytechnic Institute, Dhaka",
+      "cgpa": 3.52,
+      "status": "passed",
+      "failed_subjects": [],
+      "total_failed": 0
+    },
+    {
+      "roll": "200013",
+      "institute_code": "12053",
+      "institute": "Thakurgaon Polytechnic Institute, Thakurgaon",
+      "cgpa": null,
+      "status": "referred",
+      "failed_subjects": [
+        "25913(T)",
+        "26711(T)"
+      ],
+      "total_failed": 2
+    },
+    {
+      "roll": "200015",
+      "institute_code": "49166",
+      "institute": "Dhaka Polytechnic Institute, Dhaka",
+      "cgpa": 2.81,
+      "status": "passed",
+      "failed_subjects": [],
+      "total_failed": 0
+    },
+    {
+      "roll": "200018",
+      "institute_code": "49265",
+      "institute": "Chittagong Polytechnic Institute, Chittagong",
+      "cgpa": null,
+      "status": "failed",
+      "failed_subjects": [
+        "25711(T)",
+        "25811(T)",
+        "25831(P)",
+        "26311(T)"
+      ],
+      "total_failed": 4
+    },
+    {
+      "roll": "200020",
+      "institute_code": "49265",
+      "institute": "Chittagong Polytechnic Institute, Chittagong",
+      "cgpa": 3.98,
+      "status": "passed",
+      "failed_subjects": [],
+      "total_failed": 0
+    }
+  ]
+}

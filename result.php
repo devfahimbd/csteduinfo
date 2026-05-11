@@ -28,6 +28,14 @@ try {
 } catch (Exception $e) {
     $regYears = [];
 }
+
+// ─── Semesters ───
+$semesterOrder = ["1st Semester","2nd Semester","3rd Semester","4th Semester","5th Semester","6th Semester","7th Semester","8th Semester"];
+try {
+    $allSemesters = $pdo->query("SELECT DISTINCT semester FROM result_batches WHERE status = 'completed' ORDER BY FIELD(semester, '1st Semester','2nd Semester','3rd Semester','4th Semester','5th Semester','6th Semester','7th Semester','8th Semester')")->fetchAll(PDO::FETCH_COLUMN);
+} catch (Exception $e) {
+    $allSemesters = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -455,6 +463,7 @@ try {
             .result-search-card { margin: -36px 16px 0; padding: 24px; border-radius: var(--radius-lg); }
             .result-search-card .form-row { grid-template-columns: 1fr !important; }
             .student-info-grid { grid-template-columns: 1fr 1fr; }
+            .result-search-card .form-row-optional { grid-template-columns: 1fr 1fr !important; }
             .stats-grid { grid-template-columns: 1fr 1fr; }
         }
 
@@ -600,17 +609,11 @@ try {
     <!-- Search Card (overlapping hero) -->
     <div class="result-search-card">
         <h2>Search Your Result</h2>
-        <p class="subtitle">Enter your roll number and select regulation year to find your result</p>
+        <p class="subtitle">Enter your roll number to find your result. Regulation and Semester are optional.</p>
         <form id="searchForm" onsubmit="return false;">
-            <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
                 <div class="form-group">
-                    <label>Program</label>
-                    <select disabled>
-                        <option selected>Diploma In Engineering</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Regulation Year</label>
+                    <label>Regulation Year <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
                     <select id="regulationYear">
                         <?php if (empty($regYears)): ?>
                             <option value="">No data available</option>
@@ -620,6 +623,25 @@ try {
                                 <option value="<?php echo htmlspecialchars($yr); ?>"><?php echo htmlspecialchars($yr); ?> Regulation</option>
                             <?php endforeach; ?>
                         <?php endif; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Semester <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
+                    <select id="semesterSelect">
+                        <?php if (empty($allSemesters)): ?>
+                            <option value="">No data available</option>
+                        <?php else: ?>
+                            <option value="">All Semesters</option>
+                            <?php foreach ($allSemesters as $sem): ?>
+                                <option value="<?php echo htmlspecialchars($sem); ?>"><?php echo htmlspecialchars($sem); ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Program</label>
+                    <select disabled>
+                        <option selected>Diploma In Engineering</option>
                     </select>
                 </div>
             </div>
@@ -870,6 +892,7 @@ try {
     function searchResult() {
         var roll = document.getElementById('rollInput').value.trim();
         var regYear = document.getElementById('regulationYear').value;
+        var semester = document.getElementById('semesterSelect').value;
 
         if (!roll) {
             document.getElementById('rollInput').focus();
@@ -886,6 +909,7 @@ try {
         var formData = new FormData();
         formData.append('roll', roll);
         formData.append('regulation_year', regYear);
+        formData.append('semester', semester);
 
         fetch('<?php echo SITE_URL; ?>/api/result-search.php', {
             method: 'POST',

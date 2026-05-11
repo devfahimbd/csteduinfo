@@ -2,6 +2,17 @@
 /**
  * Result Search API - AJAX endpoint
  * Returns student result data as JSON
+ * 
+ * Parameters:
+ *   roll (required) - Student roll number
+ *   regulation_year (optional) - Filter by regulation year
+ *   semester (optional) - Filter by semester (e.g., "1st Semester")
+ * 
+ * Logic:
+ *   - If only roll provided → show ALL results for that roll (all semesters)
+ *   - If roll + regulation_year → show results for that regulation
+ *   - If roll + semester → show results for that specific semester
+ *   - If roll + regulation_year + semester → show results for that specific combination
  */
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/result-parser.php';
@@ -16,35 +27,37 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $roll = isset($_POST['roll']) ? trim($_POST['roll']) : '';
 $regulationYear = isset($_POST['regulation_year']) ? trim($_POST['regulation_year']) : '';
+$semester = isset($_POST['semester']) ? trim($_POST['semester']) : '';
 
 if (empty($roll)) {
     echo json_encode(['success' => false, 'message' => 'Roll number is required']);
     exit;
 }
 
-$parser = new ResultPdfParser($pdo);
+// ─── Build query based on filters ───
+$where = "WHERE s.roll = ? AND b.status = 'completed'";
+$params = [$roll];
 
-// Build query
 if (!empty($regulationYear)) {
-    $stmt = $pdo->prepare("
-        SELECT s.*, b.exam_year, b.regulation_year, b.semester, b.program
-        FROM result_students s
-        JOIN result_batches b ON s.batch_id = b.id
-        WHERE s.roll = ? AND b.regulation_year = ? AND b.status = 'completed'
-        ORDER BY b.semester ASC
-    ");
-    $stmt->execute([$roll, $regulationYear]);
-} else {
-    $stmt = $pdo->prepare("
-        SELECT s.*, b.exam_year, b.regulation_year, b.semester, b.program
-        FROM result_students s
-        JOIN result_batches b ON s.batch_id = b.id
-        WHERE s.roll = ? AND b.status = 'completed'
-        ORDER BY b.exam_year DESC, b.semester ASC
-    ");
-    $stmt->execute([$roll]);
+    $where .= " AND b.regulation_year = ?";
+    $params[] = $regulationYear;
 }
 
+if (!empty($semester)) {
+    $where .= " AND b.semester = ?";
+    $params[] = $semester;
+}
+
+$sql = "
+    SELECT s.*, b.exam_year, b.regulation_year, b.semester, b.program
+    FROM result_students s
+    JOIN result_batches b ON s.batch_id = b.id
+    {$where}
+    ORDER BY b.exam_year DESC, b.semester ASC
+";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
 $results = $stmt->fetchAll();
 
 if (empty($results)) {
@@ -53,6 +66,7 @@ if (empty($results)) {
 }
 
 // Get all subjects for name mapping
+$parser = new ResultPdfParser($pdo);
 $allSubjects = $parser->getAllSubjects();
 $subjectMap = [];
 foreach ($allSubjects as $sub) {

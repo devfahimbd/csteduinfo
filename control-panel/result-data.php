@@ -72,7 +72,7 @@ $currentBatch = $batchId ? $parser->getBatch($batchId) : null;
 
 // If no batch specified, redirect to scraper
 if (!$currentBatch && !$batchId) {
-    header('Location: result-scraper.php');
+    header('Location: result-json-upload.php');
     exit;
 }
 
@@ -125,7 +125,7 @@ foreach ($allSubjects as $sub) {
             </div>
             <div class="nav-section">
                 <div class="nav-section-title">RESULTS</div>
-                <a href="result-scraper.php"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15l2 2 4-4"></path></svg>PDF Scraper</a>
+                <a href="result-json-upload.php"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>Upload JSON</a>
                 <a href="result-data.php<?php echo $batchId ? '?batch_id='.$batchId : ''; ?>" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>Result Data</a>
                 <a href="result-subjects.php"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>Subject Codes</a>
             </div>
@@ -164,7 +164,7 @@ foreach ($allSubjects as $sub) {
             </div>
             <div class="topbar-actions">
                 <?php if ($currentBatch): ?>
-                <a href="result-scraper.php" class="btn btn-sm" style="background:#EFF6FF;color:#2563EB;border:1px solid #BFDBFE;">Back to Scraper</a>
+                <a href="result-json-upload.php" class="btn btn-sm" style="background:#EFF6FF;color:#2563EB;border:1px solid #BFDBFE;">Back to Upload</a>
                 <?php endif; ?>
                 <div class="admin-user">
                     <div class="avatar"><?php echo htmlspecialchars($adminInitial); ?></div>

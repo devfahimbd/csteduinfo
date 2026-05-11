@@ -265,8 +265,13 @@ img { max-width: 100%; height: auto; display: block; }
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow: visible;
     margin-bottom: 24px;
+}
+
+.admin-card-header:first-child {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    overflow: hidden;
 }
 
 .admin-card-header {
@@ -299,7 +304,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .admin-card-body:has(.data-table) {
     padding: 0;
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 /* Data Table */
