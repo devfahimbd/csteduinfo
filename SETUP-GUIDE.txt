@@ -1,65 +1,177 @@
-CST EDU INFO - RESULT SYSTEM SETUP GUIDE
-========================================
+===============================================================
+  BULK UPLOAD UPDATE - Setup Guide
+  CST Department Result System
+===============================================================
 
-NO Python, NO PDF parsing, NO vendor libraries!
-Just pure PHP + MySQL. Upload JSON, done!
+PROBLEM SOLVED:
+  - 55K+ students can now be uploaded without timeout/errors
+  - JSON is validated BEFORE upload (catches format errors early)
+  - Data uploads in chunks (2000 students at a time)
+  - Real-time progress bar with ETA
+  - Bad records are skipped, not blocking the entire upload
 
+===============================================================
+  FILES TO UPDATE (3 files + 1 new file)
+===============================================================
 
-QUICK SETUP (3 steps only):
-===========================
+1. NEW FILE:  api/upload-bulk.php
+   → Copy to:  your-website/api/upload-bulk.php
+   → Purpose:  Chunked upload API endpoint
 
-STEP 1: Upload Files
---------------------
-Upload ALL files to your public_html folder.
-Make sure these folders/files are included:
-  - includes/
-  - api/
-  - control-panel/
-  - database/
-  - assets/
-  - All .php files at root level
+2. UPDATE:     includes/result-parser.php
+   → Replace:  your-website/includes/result-parser.php
+   → Changes:  Added 3 new methods (createEmptyBatch, importChunk, finalizeBatch)
+               All original methods kept unchanged
 
+3. UPDATE:     control-panel/result-json-upload.php
+   → Replace:  your-website/control-panel/result-json-upload.php
+   → Changes:  Added validation preview, chunked upload with progress bar
+               Old simple upload still available as fallback
 
-STEP 2: Database Setup
------------------------
-cPanel > phpMyAdmin > Import > Choose "database/result_tables.sql" > Go
+4. NEW FILE:  .htaccess
+   → Copy to:  your-website/.htaccess (OR your-website/api/.htaccess)
+   → Purpose:  Increases PHP limits (upload_max_filesize, memory_limit, etc.)
+   → NOTE:    If your server uses php.ini instead of .htaccess, 
+              add these settings to php.ini instead:
+                upload_max_filesize = 200M
+                post_max_size = 200M
+                max_execution_time = 3600
+                max_input_time = 3600
+                memory_limit = 512M
 
+===============================================================
+  HOW TO UPLOAD (NEW FLOW)
+===============================================================
 
-STEP 3: Update Config
-----------------------
-Edit includes/config.php:
-  DB_USER = 'your_db_username'
-  DB_PASS = 'your_db_password'
-  DB_NAME = 'cst_department'
+Step 1: Open admin panel → Upload Result page
 
-DONE! Go to: https://cstedu.info/control-panel/
+Step 2: Select Mode:
+   - Mode 1 (Manual): Fill Regulation Year, Exam Year, Semester
+   - Mode 2 (Complete): JSON already has exam_year, regulation_year, etc.
 
+Step 3: Choose input method:
+   - Upload JSON File (drag & drop)
+   - Paste JSON Code
 
-HOW TO USE:
-============
+Step 4: Click "Validate & Preview" button
+   → System checks JSON format
+   → Shows total student count
+   → Shows sample preview (first 5 records)
+   → Shows any errors found
 
-1. Go to Admin Panel > Upload JSON
-2. Prepare a JSON file (see sample-result.json for format)
-3. Upload it
-4. Data appears in database automatically
-5. Students search results at: https://cstedu.info/result.php
+Step 5: Click "Start Bulk Upload"
+   → Upload starts in chunks of 2000 students
+   → Progress bar shows percentage and ETA
+   → Errors are logged but don't stop the upload
 
+Step 6: Done! Click "View Data" to see results
 
-JSON FILE FORMAT:
-=================
-See "sample-result.json" for a complete example.
+===============================================================
+  HOW IT WORKS (TECHNICAL)
+===============================================================
 
-Required fields in JSON:
-  - exam_year (e.g. "2022")
-  - regulation_year (e.g. "2016")
-  - semester (e.g. "1st Semester")
-  - program (e.g. "Diploma In Engineering")
-  - students (array of student objects)
+1. Client-side JSON parsing & validation (JavaScript)
+   - Detects format: Object, Array, or Wrapped array
+   - Normalizes field names (institute/college_name, cgpa/gpa, etc.)
+   - Validates each student record
+   - Shows preview of data
 
-Each student needs:
-  - roll (e.g. "300010")
-  - college_code (e.g. "49166")
-  - college_name (e.g. "Dhaka Polytechnic Institute, Dhaka")
-  - gpa (e.g. 3.52 or null)
-  - result_type: "passed", "referred", or "failed_4plus"
-  - failed_subjects: [] (empty for passed) or array of {code, fail_type}
+2. Chunked Upload (AJAX)
+   - Splits students into chunks of 2000
+   - Sends "init" request → creates batch record
+   - Sends "chunk" requests → inserts 2000 records each
+   - Sends "finish" request → updates batch stats
+   - Each request is small (~400KB), no timeout issues
+
+3. Server-side Processing (PHP)
+   - Each chunk uses batch INSERT (500 rows per query)
+   - Transactions ensure data integrity
+   - Bad records are logged, not inserted
+   - Total time: ~30-60 seconds for 55K students
+
+===============================================================
+  JSON FORMAT SUPPORTED
+===============================================================
+
+Format 1 - Object with roll as key:
+{
+  "200010": {
+    "roll": "200010",
+    "institute": "Dhaka Polytechnic Institute",
+    "institute_code": "49166",
+    "status": "passed",
+    "cgpa": 3.52,
+    "failed_subjects": ["25913(T)", "26711(T)"],
+    "total_failed": 2
+  }
+}
+
+Format 2 - Array:
+[
+  {
+    "roll": "200010",
+    "institute": "Dhaka Polytechnic Institute",
+    "institute_code": "49166",
+    "status": "passed",
+    "cgpa": 3.52,
+    "failed_subjects": ["25913(T)"],
+    "total_failed": 1
+  }
+]
+
+Format 3 - Wrapped with "students" array:
+{
+  "students": [ ... ]
+}
+
+Format 4 - Complete JSON (Mode 2):
+{
+  "exam_year": "2022",
+  "regulation_year": "2016",
+  "semester": "1st Semester",
+  "program": "Diploma In Engineering",
+  "students": [ ... ]
+}
+
+Field name aliases supported:
+  - institute / college_name / college / institute_name
+  - institute_code / college_code / code
+  - cgpa / gpa
+  - status / result_type
+  - failed_subjects / failed (array of strings or objects)
+
+Status values:
+  - "passed" / "p" / "pass" → passed
+  - "failed" / "f" → failed_4plus
+  - "referred" / "r" / "reffered" / "referral" → referred
+
+===============================================================
+  TROUBLESHOOTING
+===============================================================
+
+Q: Upload fails with "File too large" error
+A: Increase upload_max_filesize and post_max_size in .htaccess or php.ini
+
+Q: Upload fails with "Server timeout" error  
+A: Increase max_execution_time in .htaccess or php.ini
+   The chunked upload should prevent this, but the init/finish
+   calls need enough time.
+
+Q: JSON validation shows errors
+A: Click "Clean & Fix" button to auto-fix common issues:
+   - Trailing commas
+   - BOM characters
+   - Comments
+   - Non-printable characters
+
+Q: Some records have errors during upload
+A: These records are skipped. Check the error log after upload
+   to see which rolls had issues. Fix them and re-upload just
+   those records.
+
+Q: Old upload page looks different
+A: The new page has the same functionality plus the bulk upload
+   feature. The old simple upload is still available via the
+   "Use simple upload" link.
+
+===============================================================

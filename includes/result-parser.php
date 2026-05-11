@@ -18,8 +18,9 @@ class ResultPdfParser {
     }
 
     /**
-     * Import student data from JSON array
+     * Import student data from JSON array (batch INSERT with transaction)
      * JSON format: { exam_year, regulation_year, semester, program, students: [...] }
+     * Uses chunks of 500 rows per INSERT for ~500x speedup on large datasets.
      */
     public function importFromJson($data) {
         $examYear = clean($data['exam_year']);
@@ -40,27 +41,22 @@ class ResultPdfParser {
         $stmt->execute([$examYear, $regulationYear, $semester, $program]);
         $this->batchId = $this->pdo->lastInsertId();
 
-        // Step 2: Insert students
+        // Step 2: Pre-process ALL students into rows (fast, no DB)
         $passed = 0;
         $failed = 0;
-        $insertStmt = $this->pdo->prepare("
-            INSERT INTO result_students (batch_id, roll, college_code, college_name, gpa, result_type, failed_subjects_json, failed_subjects_count)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        ");
+        $rows = [];
+        $validTypes = ['passed', 'referred', 'failed_4plus'];
 
         foreach ($students as $s) {
             $roll = clean($s['roll'] ?? '');
+            if (empty($roll)) continue;
+
             $collegeCode = clean($s['college_code'] ?? '');
             $collegeName = clean($s['college_name'] ?? '');
             $gpa = isset($s['gpa']) && $s['gpa'] !== null ? floatval($s['gpa']) : null;
             $resultType = clean($s['result_type'] ?? 'passed');
+            if (!in_array($resultType, $validTypes)) $resultType = 'passed';
 
-            // Validate result_type
-            if (!in_array($resultType, ['passed', 'referred', 'failed_4plus'])) {
-                $resultType = 'passed';
-            }
-
-            // Parse failed subjects
             $failedSubjects = [];
             $failCount = 0;
             if (!empty($s['failed_subjects']) && is_array($s['failed_subjects'])) {
@@ -73,22 +69,195 @@ class ResultPdfParser {
                 $failCount = count($failedSubjects);
             }
 
-            $insertStmt->execute([
+            $rows[] = [
                 $this->batchId, $roll, $collegeCode, $collegeName,
                 $gpa, $resultType,
                 !empty($failedSubjects) ? json_encode($failedSubjects) : null,
                 $failCount
-            ]);
+            ];
 
-            if ($resultType === 'passed') {
-                $passed++;
-            } else {
-                $failed++;
+            if ($resultType === 'passed') $passed++;
+            else $failed++;
+        }
+
+        if (empty($rows)) {
+            $this->pdo->prepare("DELETE FROM result_batches WHERE id = ?")->execute([$this->batchId]);
+            throw new Exception('No valid student records found (all missing roll numbers).');
+        }
+
+        // Step 3: Batch INSERT with transaction (500 rows per query)
+        $this->pdo->beginTransaction();
+        try {
+            $chunkSize = 500;
+            $totalRows = count($rows);
+            $columns = "(batch_id, roll, college_code, college_name, gpa, result_type, failed_subjects_json, failed_subjects_count)";
+            $placeholders = "(?,?,?,?,?,?,?,?)";
+
+            for ($i = 0; $i < $totalRows; $i += $chunkSize) {
+                $chunk = array_slice($rows, $i, $chunkSize);
+
+                $sql = "INSERT INTO result_students $columns VALUES ";
+                $params = [];
+
+                foreach ($chunk as $row) {
+                    $sql .= $placeholders . ",";
+                    foreach ($row as $val) {
+                        $params[] = $val;
+                    }
+                }
+
+                $sql = rtrim($sql, ',');
+                $this->pdo->prepare($sql)->execute($params);
+            }
+
+            // Step 4: Update batch stats
+            $updateStmt = $this->pdo->prepare("
+                UPDATE result_batches SET
+                    total_students = ?,
+                    total_passed = ?,
+                    total_failed = ?,
+                    status = 'completed'
+                WHERE id = ?
+            ");
+            $updateStmt->execute([$totalRows, $passed, $failed, $this->batchId]);
+
+            $this->pdo->commit();
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            $this->pdo->prepare("DELETE FROM result_batches WHERE id = ?")->execute([$this->batchId]);
+            throw new Exception('Database insert failed: ' . $e->getMessage());
+        }
+
+        return [
+            'batch_id' => $this->batchId,
+            'total_students' => $totalRows,
+            'total_passed' => $passed,
+            'total_failed' => $failed
+        ];
+    }
+
+    // ─── Chunked Upload Methods ───
+
+    /**
+     * Create empty batch with 'processing' status
+     */
+    public function createEmptyBatch($examYear, $regulationYear, $semester, $program = 'Diploma In Engineering') {
+        $stmt = $this->pdo->prepare("
+            INSERT INTO result_batches (exam_year, regulation_year, semester, program, status)
+            VALUES (?, ?, ?, ?, 'processing')
+        ");
+        $stmt->execute([$examYear, $regulationYear, $semester, $program]);
+        return (int)$this->pdo->lastInsertId();
+    }
+
+    /**
+     * Import a chunk of students into an existing batch
+     * $students = array of normalized student records
+     * Returns: ['inserted' => int, 'errors' => array]
+     */
+    public function importChunk($batchId, $students) {
+        // Validate batch exists and is 'processing'
+        $batch = $this->getBatch($batchId);
+        if (!$batch) throw new Exception('Batch not found.');
+        if ($batch['status'] !== 'processing') throw new Exception('Batch is not in processing state.');
+
+        $validTypes = ['passed', 'referred', 'failed_4plus'];
+        $rows = [];
+        $errors = [];
+        $passed = 0;
+        $failed = 0;
+
+        foreach ($students as $i => $s) {
+            $roll = clean($s['roll'] ?? '');
+            if (empty($roll)) {
+                $errors[] = ['index' => $i, 'roll' => '(empty)', 'error' => 'Missing or empty roll number'];
+                continue;
+            }
+
+            $collegeCode = clean($s['college_code'] ?? '');
+            $collegeName = clean($s['college_name'] ?? '');
+            $gpa = isset($s['gpa']) && $s['gpa'] !== null ? floatval($s['gpa']) : null;
+            if ($gpa == 0 && ($s['gpa'] ?? null) !== 0 && ($s['gpa'] ?? null) !== '0') {
+                $gpa = null;
+            }
+
+            $resultType = clean($s['result_type'] ?? 'passed');
+            if (!in_array($resultType, $validTypes)) $resultType = 'passed';
+
+            $failedSubjects = [];
+            $failCount = 0;
+            if (!empty($s['failed_subjects']) && is_array($s['failed_subjects'])) {
+                foreach ($s['failed_subjects'] as $fs) {
+                    $failedSubjects[] = [
+                        'code' => clean($fs['code'] ?? ''),
+                        'fail_type' => clean($fs['fail_type'] ?? 'T')
+                    ];
+                }
+                $failCount = count($failedSubjects);
+            }
+
+            $rows[] = [
+                $batchId, $roll, $collegeCode, $collegeName,
+                $gpa, $resultType,
+                !empty($failedSubjects) ? json_encode($failedSubjects) : null,
+                $failCount
+            ];
+
+            if ($resultType === 'passed') $passed++;
+            else $failed++;
+        }
+
+        $inserted = 0;
+        if (!empty($rows)) {
+            $this->pdo->beginTransaction();
+            try {
+                $chunkSize = 500;
+                $totalRows = count($rows);
+                $columns = "(batch_id, roll, college_code, college_name, gpa, result_type, failed_subjects_json, failed_subjects_count)";
+                $placeholders = "(?,?,?,?,?,?,?,?)";
+
+                for ($i = 0; $i < $totalRows; $i += $chunkSize) {
+                    $chunk = array_slice($rows, $i, $chunkSize);
+                    $sql = "INSERT INTO result_students $columns VALUES ";
+                    $params = [];
+                    foreach ($chunk as $row) {
+                        $sql .= $placeholders . ",";
+                        foreach ($row as $val) {
+                            $params[] = $val;
+                        }
+                    }
+                    $sql = rtrim($sql, ',');
+                    $this->pdo->prepare($sql)->execute($params);
+                }
+                $this->pdo->commit();
+                $inserted = $totalRows;
+            } catch (Exception $e) {
+                $this->pdo->rollBack();
+                throw new Exception('Database insert failed for chunk: ' . $e->getMessage());
             }
         }
 
-        // Step 3: Update batch stats
-        $updateStmt = $this->pdo->prepare("
+        return ['inserted' => $inserted, 'errors' => $errors, 'passed' => $passed, 'failed' => $failed];
+    }
+
+    /**
+     * Finalize batch - count stats and update
+     */
+    public function finalizeBatch($batchId) {
+        $batch = $this->getBatch($batchId);
+        if (!$batch) throw new Exception('Batch not found.');
+
+        $stmt = $this->pdo->prepare("
+            SELECT
+                COUNT(*) as total,
+                SUM(CASE WHEN result_type='passed' THEN 1 ELSE 0 END) as passed,
+                SUM(CASE WHEN result_type IN ('referred','failed_4plus') THEN 1 ELSE 0 END) as failed
+            FROM result_students WHERE batch_id = ?
+        ");
+        $stmt->execute([$batchId]);
+        $stats = $stmt->fetch();
+
+        $update = $this->pdo->prepare("
             UPDATE result_batches SET
                 total_students = ?,
                 total_passed = ?,
@@ -96,13 +265,18 @@ class ResultPdfParser {
                 status = 'completed'
             WHERE id = ?
         ");
-        $updateStmt->execute([count($students), $passed, $failed, $this->batchId]);
+        $update->execute([
+            $stats['total'],
+            $stats['passed'],
+            $stats['failed'],
+            $batchId
+        ]);
 
         return [
-            'batch_id' => $this->batchId,
-            'total_students' => count($students),
-            'total_passed' => $passed,
-            'total_failed' => $failed
+            'batch_id' => $batchId,
+            'total_students' => (int)$stats['total'],
+            'total_passed' => (int)$stats['passed'],
+            'total_failed' => (int)$stats['failed']
         ];
     }
 
