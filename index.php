@@ -294,7 +294,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
         </div>
         <div class="hero-visual">
             <lottie-player
-                src="<?php echo SITE_URL; ?>/assets/lottie/developer.json"
+                src="<?php echo SITE_URL; ?>/assets/lottie/coding.json"
                 background="transparent"
                 speed="1"
                 loop
