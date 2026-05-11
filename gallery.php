@@ -243,7 +243,7 @@ function galleryDate($dateStr) {
         <div class="nav-wrapper">
             <!-- Brand -->
             <a href="<?php echo SITE_URL; ?>" class="nav-brand">
-                <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                     <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                 <?php else: ?>
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">
@@ -334,7 +334,7 @@ function galleryDate($dateStr) {
                 ?>
                     <div class="gallery-card" data-category="<?php echo clean($catName); ?>">
                         <a href="<?php echo SITE_URL; ?>/gallery-details.php?slug=<?php echo clean($item['slug']); ?>" class="gallery-card-link">
-                            <?php if ($item['image'] && file_exists(BASE_PATH . '/' . $item['image'])): ?>
+                            <?php if ($item['image'] && file_exists(UPLOAD_PATH . '/' . $item['image'])): ?>
                                 <img src="<?php echo UPLOAD_URL . '/' . clean($item['image']); ?>" alt="<?php echo clean($item['title']); ?>" class="card-img" loading="lazy">
                             <?php else: ?>
                                 <div class="card-img-placeholder">
@@ -392,7 +392,7 @@ function galleryDate($dateStr) {
             <!-- Column 1: About -->
             <div class="footer-col">
                 <div class="nav-brand" style="margin-bottom:14px;">
-                    <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                    <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                         <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                     <?php else: ?>
                         <svg width="40" height="40" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">

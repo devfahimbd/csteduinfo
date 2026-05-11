@@ -303,7 +303,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
         <div class="nav-wrapper">
             <!-- Brand -->
             <a href="<?php echo SITE_URL; ?>" class="nav-brand">
-                <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                     <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                 <?php else: ?>
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">
@@ -376,7 +376,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
 
             <!-- Left: Image -->
             <div class="teacher-detail-image">
-                <?php if (!empty($teacher['image']) && file_exists(BASE_PATH . '/' . $teacher['image'])): ?>
+                <?php if (!empty($teacher['image']) && file_exists(UPLOAD_PATH . '/' . $teacher['image'])): ?>
                     <img src="<?php echo UPLOAD_URL . '/' . clean($teacher['image']); ?>" alt="<?php echo clean($teacher['name']); ?>">
                 <?php else: ?>
                     <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(clean($teacher['name'])); ?>&background=DBEAFE&color=2563EB&size=400&bold=true&format=svg" alt="<?php echo clean($teacher['name']); ?>">
@@ -486,7 +486,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
             <!-- Column 1: About -->
             <div class="footer-col">
                 <div class="nav-brand" style="margin-bottom:14px;">
-                    <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                    <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                         <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                     <?php else: ?>
                         <svg width="40" height="40" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">

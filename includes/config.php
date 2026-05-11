@@ -200,8 +200,8 @@ function uploadFile($file, $dir, $allowed = ['jpg','jpeg','png','gif','webp','pd
 
 // Delete File
 function deleteFile($filepath) {
-    if ($filepath && file_exists(BASE_PATH . '/' . $filepath)) {
-        unlink(BASE_PATH . '/' . $filepath);
+    if ($filepath && file_exists(UPLOAD_PATH . '/' . $filepath)) {
+        unlink(UPLOAD_PATH . '/' . $filepath);
     }
 }
 

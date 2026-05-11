@@ -284,11 +284,22 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .admin-card-body {
-    padding: 0;
+    padding: 24px;
 }
 
 .admin-card-body.with-padding {
     padding: 24px;
+}
+
+/* When admin-card-body contains tables, remove padding (table has its own padding) */
+.admin-card-body .data-table {
+    margin: -24px;
+    width: calc(100% + 48px);
+}
+
+.admin-card-body:has(.data-table) {
+    padding: 0;
+    overflow: hidden;
 }
 
 /* Data Table */
@@ -421,6 +432,51 @@ textarea.form-control {
 
 select.form-control {
     cursor: pointer;
+}
+
+/* Form Input (used by inline forms in admin pages) */
+.form-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Form Select (used by inline forms in admin pages) */
+.form-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--white);
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: auto;
+}
+
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 
 .form-hint {
@@ -717,7 +773,88 @@ select.form-control {
     color: var(--text);
 }
 
-/* Responsive */
+/* ============================================
+   Admin Card Body Padding Helper
+   ============================================ */
+.admin-card-body form {
+    margin: 0;
+}
+
+/* Form grid within cards */
+.admin-card-body [style*="grid"] {
+    gap: 16px;
+}
+
+/* ============================================
+   Table Image in Admin
+   ============================================ */
+.table-img {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    display: inline-block;
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+@media (max-width: 768px) {
+    .admin-card-body [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    .admin-card-body [style*="grid-column: span 2"] {
+        grid-column: span 1 !important;
+    }
+}
+
+/* ============================================
+   Professional Polish
+   ============================================ */
+.admin-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-card-header h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+}
+
+/* Smooth transitions for all interactive elements */
+.btn,
+.badge,
+.data-table tr,
+.nav-sidebar a {
+    transition: all 0.2s ease;
+}
+
+/* Loading overlay fix */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.3s;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
 @media (max-width: 1024px) {
     .sidebar {
         transform: translateX(-100%);

@@ -202,7 +202,7 @@ if ($notice) {
         <div class="nav-wrapper">
             <!-- Brand -->
             <a href="<?php echo SITE_URL; ?>" class="nav-brand">
-                <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                     <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                 <?php else: ?>
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">
@@ -273,7 +273,7 @@ if ($notice) {
     <div class="container">
         <div class="detail-content">
 
-            <?php if (!empty($notice['image']) && file_exists(BASE_PATH . '/' . $notice['image'])): ?>
+            <?php if (!empty($notice['image']) && file_exists(UPLOAD_PATH . '/' . $notice['image'])): ?>
                 <img src="<?php echo UPLOAD_URL . '/' . clean($notice['image']); ?>" alt="<?php echo clean($notice['title']); ?>" class="detail-image">
             <?php endif; ?>
 
@@ -352,7 +352,7 @@ if ($notice) {
             <!-- Column 1: About -->
             <div class="footer-col">
                 <div class="nav-brand" style="margin-bottom:14px;">
-                    <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                    <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                         <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                     <?php else: ?>
                         <svg width="40" height="40" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">

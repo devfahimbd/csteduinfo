@@ -126,7 +126,7 @@ try {
         <div class="nav-wrapper">
             <!-- Brand -->
             <a href="<?php echo SITE_URL; ?>" class="nav-brand">
-                <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                     <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                 <?php else: ?>
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">
@@ -219,7 +219,7 @@ try {
                     ?>
                     <div class="teacher-card" data-category="<?php echo clean($catSlug); ?>">
                         <div class="teacher-img-wrap">
-                            <?php if ($teacher['image'] && file_exists(BASE_PATH . '/' . $teacher['image'])): ?>
+                            <?php if ($teacher['image'] && file_exists(UPLOAD_PATH . '/' . $teacher['image'])): ?>
                                 <img src="<?php echo UPLOAD_URL . '/' . clean($teacher['image']); ?>" alt="<?php echo clean($teacher['name']); ?>">
                             <?php else: ?>
                                 <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(clean($teacher['name'])); ?>&amp;background=DBEAFE&amp;color=2563EB&amp;size=300&amp;bold=true" alt="<?php echo clean($teacher['name']); ?>">
@@ -287,7 +287,7 @@ try {
             <!-- Column 1: About -->
             <div class="footer-col">
                 <div class="nav-brand" style="margin-bottom:14px;">
-                    <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                    <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                         <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?> Logo">
                     <?php else: ?>
                         <svg width="40" height="40" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">

@@ -218,7 +218,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
     <div class="nav-container">
         <div class="nav-wrapper">
             <a href="<?php echo SITE_URL; ?>" class="nav-brand">
-                <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                     <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="KPI CST">
                 <?php else: ?>
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">
@@ -732,7 +732,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <?php foreach ($teachers as $teacher): ?>
                     <div class="teacher-card">
                         <div class="teacher-img-wrap">
-                            <?php if ($teacher['image'] && file_exists(BASE_PATH . '/' . $teacher['image'])): ?>
+                            <?php if ($teacher['image'] && file_exists(UPLOAD_PATH . '/' . $teacher['image'])): ?>
                                 <img src="<?php echo UPLOAD_URL . '/' . clean($teacher['image']); ?>" alt="<?php echo clean($teacher['name']); ?>">
                             <?php else: ?>
                                 <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(clean($teacher['name'])); ?>&background=DBEAFE&color=2563EB&size=300&bold=true" alt="<?php echo clean($teacher['name']); ?>">
@@ -791,7 +791,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
             <div class="gallery-grid">
                 <?php foreach ($gallery as $item): ?>
                     <a href="<?php echo SITE_URL; ?>/gallery-details.php?slug=<?php echo clean($item['slug']); ?>" class="gallery-card">
-                        <?php if ($item['image'] && file_exists(BASE_PATH . '/' . $item['image'])): ?>
+                        <?php if ($item['image'] && file_exists(UPLOAD_PATH . '/' . $item['image'])): ?>
                             <img src="<?php echo UPLOAD_URL . '/' . clean($item['image']); ?>" alt="<?php echo clean($item['title']); ?>" loading="lazy">
                         <?php else: ?>
                             <div class="gallery-placeholder">
@@ -836,7 +836,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
         </div>
         <div class="sponsor-logos">
             <?php foreach ($sponsors as $sponsor): ?>
-                <?php if ($sponsor['logo'] && file_exists(BASE_PATH . '/' . $sponsor['logo'])): ?>
+                <?php if ($sponsor['logo'] && file_exists(UPLOAD_PATH . '/' . $sponsor['logo'])): ?>
                     <a href="<?php echo !empty($sponsor['website']) ? clean($sponsor['website']) : '#'; ?>" target="_blank">
                         <img src="<?php echo UPLOAD_URL . '/' . clean($sponsor['logo']); ?>" alt="<?php echo clean($sponsor['name']); ?>">
                     </a>
@@ -863,7 +863,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
         <div class="credits-grid">
             <?php foreach ($credits as $credit): ?>
                 <div class="credit-card">
-                    <?php if ($credit['image'] && file_exists(BASE_PATH . '/' . $credit['image'])): ?>
+                    <?php if ($credit['image'] && file_exists(UPLOAD_PATH . '/' . $credit['image'])): ?>
                         <img src="<?php echo UPLOAD_URL . '/' . clean($credit['image']); ?>" alt="<?php echo clean($credit['name']); ?>">
                     <?php else: ?>
                         <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(clean($credit['name'])); ?>&background=EFF6FF&color=2563EB&size=200&bold=true" alt="<?php echo clean($credit['name']); ?>">
@@ -923,7 +923,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
         <div class="footer-grid">
             <div class="footer-col">
                 <div class="nav-brand" style="margin-bottom:14px;">
-                    <?php if ($siteLogo && file_exists(BASE_PATH . '/' . $siteLogo)): ?>
+                    <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                         <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="KPI CST">
                     <?php else: ?>
                         <svg width="40" height="40" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;"><rect x="10" y="12" width="24" height="18" rx="2" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M15 20h14M15 24h10M15 28h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="14" r="4" fill="#10B981"/></svg>
