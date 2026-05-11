@@ -8,6 +8,7 @@ $totalTeachers = 0;
 $totalGallery = 0;
 $totalResources = 0;
 $totalContacts = 0;
+$totalResultStudents = 0;
 $recentNotices = [];
 $recentContacts = [];
 
@@ -30,6 +31,10 @@ try {
 try {
     $totalContacts = (int) $pdo->query('SELECT COUNT(*) FROM contact_messages WHERE is_read = 0')->fetchColumn();
 } catch (PDOException $e) { $totalContacts = 0; }
+
+try {
+    $totalResultStudents = (int) $pdo->query('SELECT COUNT(*) FROM result_students')->fetchColumn();
+} catch (PDOException $e) { $totalResultStudents = 0; }
 
 // Fetch 5 latest notices
 try {
@@ -91,6 +96,33 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
                         <line x1="10" y1="14" x2="21" y2="3"></line>
                     </svg>
                     Website
+                </a>
+            </div>
+
+            <!-- RESULTS -->
+            <div class="nav-section">
+                <div class="nav-section-title">RESULTS</div>
+                <a href="result-scraper.php">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <path d="M9 15l2 2 4-4"></path>
+                    </svg>
+                    PDF Scraper
+                </a>
+                <a href="result-data.php">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    Result Data
+                </a>
+                <a href="result-subjects.php">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    Subject Codes
                 </a>
             </div>
 
@@ -280,10 +312,32 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
                         <p>Resources</p>
                     </div>
                 </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="color:#0891B2;background:#ECFEFF;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <path d="M9 15l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <h3><?php echo number_format($totalResultStudents); ?></h3>
+                        <p>Result Records</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Quick Actions -->
             <div class="quick-actions">
+                <a href="result-scraper.php" class="quick-action">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>Upload Result PDF</span>
+                </a>
                 <a href="notices.php?action=add" class="quick-action">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>

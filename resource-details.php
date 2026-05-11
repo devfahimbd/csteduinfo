@@ -283,6 +283,7 @@ if ($resource) {
                 <li><a href="<?php echo SITE_URL; ?>/notice.php">Notices</a></li>
                 <li><a href="<?php echo SITE_URL; ?>/gallery.php">Gallery</a></li>
                 <li><a href="<?php echo SITE_URL; ?>/resources.php" class="active">Resources</a></li>
+                <li><a href="<?php echo SITE_URL; ?>/result.php">Result</a></li>
                 <li><a href="<?php echo SITE_URL; ?>/contact.php">Contact</a></li>
             </ul>
 
