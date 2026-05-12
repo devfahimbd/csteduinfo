@@ -1,10 +1,12 @@
 <?php
 // Database Configuration
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'fahimweb_csteduinfo');
-define('DB_USER', 'fahimweb_csteduinfo');
-define('DB_PASS', 'fahimweb_csteduinfo');
-define('SITE_URL', 'https://cstedu.info');
+define('DB_NAME', 'cst_department');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+// Auto-detect subdirectory path (works on both XAMPP localhost and cPanel live server)
+$_scriptDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+define('SITE_URL', $_scriptDir);
 
 // Site Paths
 define('BASE_PATH', __DIR__ . '/..');
