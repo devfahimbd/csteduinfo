@@ -20,7 +20,7 @@ if (!empty($regulationYear)) {
 
 // 1. Overall stats
 $stmt = $pdo->prepare("
-    SELECT 
+    SELECT
         COUNT(DISTINCT b.id) as total_batches,
         COUNT(s.id) as total_students,
         SUM(CASE WHEN s.result_type = 'passed' THEN 1 ELSE 0 END) as total_passed,
@@ -36,7 +36,7 @@ $overall = $stmt->fetch();
 
 // 2. Per-semester stats
 $stmt = $pdo->prepare("
-    SELECT 
+    SELECT
         b.semester,
         b.exam_year,
         b.regulation_year,
@@ -54,23 +54,12 @@ $stmt->execute($params);
 $semesterStats = $stmt->fetchAll();
 
 // 3. Most failed subjects (top 15)
-$stmt = $pdo->prepare("
+$stmt2 = $pdo->query("
     SELECT s.failed_subjects_json
     FROM result_students s
     JOIN result_batches b ON s.batch_id = b.id
-    $where AND s.failed_subjects_json IS NOT NULL
+    WHERE b.status = 'completed' AND s.failed_subjects_json IS NOT NULL
 ");
-if (!empty($regulationYear)) {
-    $stmt2 = $pdo->prepare($stmt->queryString);
-    $stmt2->execute($params);
-} else {
-    $stmt2 = $pdo->query("
-        SELECT s.failed_subjects_json
-        FROM result_students s
-        JOIN result_batches b ON s.batch_id = b.id
-        WHERE b.status = 'completed' AND s.failed_subjects_json IS NOT NULL
-    ");
-}
 
 $subjectFailCount = [];
 $subjectDetails = $parser->getAllSubjects();
@@ -84,17 +73,32 @@ while ($row = $stmt2->fetch()) {
     $decoded = json_decode($json, true);
     if (is_array($decoded)) {
         foreach ($decoded as $item) {
-            $code = $item['code'];
-            $ft = $item['fail_type'] ?? 'T';
-            $key = $code . '_' . $ft;
+            $rawCode = isset($item['code']) ? trim($item['code']) : '';
+            $rawType = isset($item['fail_type']) ? trim($item['fail_type']) : 'T';
+
+            // Bulletproof: if code contains (T,P) or (T) suffix, extract pure code
+            if (preg_match('/^(\d{5})\s*\(([^)]+)\)\s*$/', $rawCode, $m)) {
+                $rawCode = $m[1];
+                $rawType = strtoupper(preg_replace('/[,\s]+/', '', $m[2]));
+            }
+
+            // Normalize fail_type
+            $ft = strtoupper(preg_replace('/[,\s]+/', '', $rawType));
+            $key = $rawCode . '_' . $ft;
+
+            $subInfo = isset($subjectMap[$rawCode]) ? $subjectMap[$rawCode] : null;
+            $subName = $subInfo ? $subInfo['subject_name'] : 'Unknown';
+
             if (!isset($subjectFailCount[$key])) {
+                $failTypeLabel = ($ft === 'TP' || $ft === 'PT') ? 'T,P' : $ft;
                 $subjectFailCount[$key] = [
-                    'code' => $code,
-                    'fail_type' => $ft,
-                    'count' => 0,
-                    'subject_name' => isset($subjectMap[$code]) ? $subjectMap[$code]['subject_name'] : 'Unknown',
-                    't_full' => isset($subjectMap[$code]) ? $subjectMap[$code]['t_full_name'] : 'Theory',
-                    'p_full' => isset($subjectMap[$code]) ? $subjectMap[$code]['p_full_name'] : 'Practical',
+                    'code'            => $rawCode,
+                    'fail_type'       => $ft,
+                    'fail_type_label' => $failTypeLabel,
+                    'count'           => 0,
+                    'subject_name'    => $subName,
+                    't_full'          => $subInfo ? $subInfo['t_full_name'] : 'Theory',
+                    'p_full'          => $subInfo ? $subInfo['p_full_name'] : 'Practical',
                 ];
             }
             $subjectFailCount[$key]['count']++;
@@ -105,12 +109,9 @@ while ($row = $stmt2->fetch()) {
 usort($subjectFailCount, function($a, $b) { return $b['count'] - $a['count']; });
 $topFailedSubjects = array_slice($subjectFailCount, 0, 15);
 
-// 4. College-wise stats (top 20 by student count)
-$collegeWhere = str_replace('b.status', 'b.status', $where);
-$collegeParams = $params;
-
+// 4. College-wise stats (top 20)
 $stmt3 = $pdo->prepare("
-    SELECT 
+    SELECT
         s.college_code,
         s.college_name,
         COUNT(s.id) as total_students,
@@ -120,12 +121,12 @@ $stmt3 = $pdo->prepare("
         ROUND((SUM(CASE WHEN s.result_type = 'passed' THEN 1 ELSE 0 END) / COUNT(s.id)) * 100, 1) as pass_rate
     FROM result_students s
     JOIN result_batches b ON s.batch_id = b.id
-    $collegeWhere
+    $where
     GROUP BY s.college_code, s.college_name
     ORDER BY total_students DESC
     LIMIT 20
 ");
-$stmt3->execute($collegeParams);
+$stmt3->execute($params);
 $collegeStats = $stmt3->fetchAll();
 
 echo json_encode([

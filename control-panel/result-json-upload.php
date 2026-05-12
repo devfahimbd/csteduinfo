@@ -1543,23 +1543,41 @@ Must include exam_year, regulation_year, semester, and students array:
                 for (var i = 0; i < rawFailed.length; i++) {
                     var fs = rawFailed[i];
                     if (typeof fs === 'string') {
-                        // Parse "25913(T)" format
-                        var match = fs.match(/^(\d{5})\s*\((\w+)\)$/);
+                        // Parse "25913(T)" or "25913(T,P)" or "25913(T, P)" format
+                        var match = fs.match(/^(\d{5})\s*\(([^)]+)\)\s*$/);
                         if (match) {
-                            out.failed_subjects.push({ code: match[1], fail_type: match[2] });
+                            // Extract just the 5-digit code and normalize fail_type
+                            var extractedType = match[2].replace(/[,\s]+/g, '').toUpperCase();
+                            out.failed_subjects.push({ code: match[1], fail_type: extractedType });
                         } else {
-                            // Try "25913-T" or just a code
+                            // Try "25913-T" or just a 5-digit code
                             var match2 = fs.match(/^(\d{5})\s*[-/]?\s*(\w+)?$/);
                             if (match2) {
                                 out.failed_subjects.push({ code: match2[1], fail_type: (match2[2] || 'T') });
                             } else {
-                                out.failed_subjects.push({ code: String(fs).trim(), fail_type: 'T' });
+                                // Last resort: try to extract any 5-digit code from the string
+                                var match3 = fs.match(/(\d{5})/);
+                                if (match3) {
+                                    out.failed_subjects.push({ code: match3[1], fail_type: 'T' });
+                                } else {
+                                    out.failed_subjects.push({ code: String(fs).trim(), fail_type: 'T' });
+                                }
                             }
                         }
                     } else if (typeof fs === 'object' && fs !== null) {
+                        var rawCode = String(fs.code || fs.subject_code || '').trim();
+                        var rawFailType = String(fs.fail_type || fs.type || 'T').trim();
+                        // Bulletproof: if code contains (T,P) suffix, extract pure 5-digit code
+                        var codeMatch = rawCode.match(/^(\d{5})\s*\(([^)]+)\)\s*$/);
+                        if (codeMatch) {
+                            rawCode = codeMatch[1];
+                            rawFailType = codeMatch[2].replace(/[,\s]+/g, '').toUpperCase();
+                        }
+                        // Normalize: remove commas/spaces (e.g., "T,P" -> "TP")
+                        var normType = rawFailType.replace(/[,\s]+/g, '').toUpperCase();
                         out.failed_subjects.push({
-                            code: String(fs.code || fs.subject_code || '').trim(),
-                            fail_type: String(fs.fail_type || fs.type || 'T').trim()
+                            code: rawCode,
+                            fail_type: normType
                         });
                     }
                 }

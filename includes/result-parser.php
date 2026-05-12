@@ -61,9 +61,18 @@ class ResultPdfParser {
             $failCount = 0;
             if (!empty($s['failed_subjects']) && is_array($s['failed_subjects'])) {
                 foreach ($s['failed_subjects'] as $fs) {
+                    $rawCode = clean($fs['code'] ?? '');
+                    $rawType = strtoupper(clean($fs['fail_type'] ?? 'T'));
+                    // Bulletproof: if code contains (T,P) suffix, extract pure 5-digit code
+                    if (preg_match('/^(\d{5})\s*\(([^)]+)\)\s*$/', $rawCode, $cm)) {
+                        $rawCode = $cm[1];
+                        $rawType = strtoupper(preg_replace('/[,\s]+/', '', $cm[2]));
+                    }
+                    // Normalize: remove commas, spaces from fail_type (e.g., "T,P" -> "TP")
+                    $normalizedType = preg_replace('/[,\s]+/', '', $rawType);
                     $failedSubjects[] = [
-                        'code' => clean($fs['code'] ?? ''),
-                        'fail_type' => clean($fs['fail_type'] ?? 'T')
+                        'code' => $rawCode,
+                        'fail_type' => $normalizedType
                     ];
                 }
                 $failCount = count($failedSubjects);
@@ -188,9 +197,18 @@ class ResultPdfParser {
             $failCount = 0;
             if (!empty($s['failed_subjects']) && is_array($s['failed_subjects'])) {
                 foreach ($s['failed_subjects'] as $fs) {
+                    $rawCode = clean($fs['code'] ?? '');
+                    $rawType = strtoupper(clean($fs['fail_type'] ?? 'T'));
+                    // Bulletproof: if code contains (T,P) suffix, extract pure 5-digit code
+                    if (preg_match('/^(\d{5})\s*\(([^)]+)\)\s*$/', $rawCode, $cm)) {
+                        $rawCode = $cm[1];
+                        $rawType = strtoupper(preg_replace('/[,\s]+/', '', $cm[2]));
+                    }
+                    // Normalize: remove commas, spaces from fail_type (e.g., "T,P" -> "TP")
+                    $normalizedType = preg_replace('/[,\s]+/', '', $rawType);
                     $failedSubjects[] = [
-                        'code' => clean($fs['code'] ?? ''),
-                        'fail_type' => clean($fs['fail_type'] ?? 'T')
+                        'code' => $rawCode,
+                        'fail_type' => $normalizedType
                     ];
                 }
                 $failCount = count($failedSubjects);

@@ -2,24 +2,12 @@
 /**
  * Result Search API - AJAX endpoint
  * Returns student result data as JSON
- * 
- * Parameters:
- *   roll (required) - Student roll number
- *   regulation_year (optional) - Filter by regulation year
- *   semester (optional) - Filter by semester (e.g., "1st Semester")
- * 
- * Logic:
- *   - If only roll provided → show ALL results for that roll (all semesters)
- *   - If roll + regulation_year → show results for that regulation
- *   - If roll + semester → show results for that specific semester
- *   - If roll + regulation_year + semester → show results for that specific combination
  */
 require_once __DIR__ . '/../includes/config.php';
 require_once __DIR__ . '/../includes/result-parser.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Only accept POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
     exit;
@@ -34,7 +22,7 @@ if (empty($roll)) {
     exit;
 }
 
-// ─── Build query based on filters ───
+// Build query
 $where = "WHERE s.roll = ? AND b.status = 'completed'";
 $params = [$roll];
 
@@ -77,37 +65,61 @@ foreach ($allSubjects as $sub) {
 $enrichedResults = [];
 foreach ($results as $row) {
     $failedSubjects = $row['failed_subjects_json'] ? json_decode($row['failed_subjects_json'], true) : [];
-    
+
     $enrichedFailed = [];
     if (is_array($failedSubjects)) {
         foreach ($failedSubjects as $fs) {
-            $code = $fs['code'];
-            $failType = $fs['fail_type'] ?? 'T';
-            $subInfo = isset($subjectMap[$code]) ? $subjectMap[$code] : null;
-            
+            $rawCode = isset($fs['code']) ? trim($fs['code']) : '';
+            $rawType = isset($fs['fail_type']) ? trim($fs['fail_type']) : 'T';
+
+            // Bulletproof: if code contains (T,P) or (T) suffix, extract pure 5-digit code
+            if (preg_match('/^(\d{5})\s*\(([^)]+)\)\s*$/', $rawCode, $m)) {
+                $rawCode = $m[1];
+                $rawType = strtoupper(preg_replace('/[,\s]+/', '', $m[2]));
+            }
+
+            // Normalize fail_type: remove commas, spaces (e.g. "T,P" -> "TP")
+            $failType = strtoupper(preg_replace('/[,\s]+/', '', $rawType));
+
+            // Look up subject info
+            $subInfo = isset($subjectMap[$rawCode]) ? $subjectMap[$rawCode] : null;
+            $subName = $subInfo ? $subInfo['subject_name'] : 'Unknown Subject';
+
+            // Build display values
+            if ($failType === 'T') {
+                $fullForm = $subName . ' Theory Fail';
+            } elseif ($failType === 'P') {
+                $fullForm = $subName . ' Practical Fail';
+            } else {
+                $fullForm = $subName . ' Theory & Practical Fail';
+            }
+
+            // Display label for badge (TP -> "T,P")
+            $failTypeLabel = ($failType === 'TP' || $failType === 'PT') ? 'T,P' : $failType;
+
             $enrichedFailed[] = [
-                'code' => $code,
-                'fail_type' => $failType,
-                'subject_name' => $subInfo ? $subInfo['subject_name'] : 'Unknown Subject',
-                't_full' => $subInfo ? $subInfo['t_full_name'] : 'Theory',
-                'p_full' => $subInfo ? $subInfo['p_full_name'] : 'Practical',
+                'code'            => $rawCode,
+                'fail_type'       => $failType,
+                'fail_type_label' => $failTypeLabel,
+                'subject_name'    => $subName,
+                'full_form'       => $fullForm,
             ];
         }
     }
 
     $enrichedResults[] = [
-        'id' => $row['id'],
-        'roll' => $row['roll'],
-        'college_code' => $row['college_code'],
-        'college_name' => $row['college_name'],
-        'gpa' => $row['gpa'] !== null ? floatval($row['gpa']) : null,
-        'result_type' => $row['result_type'],
+        'id'                    => $row['id'],
+        'roll'                  => $row['roll'],
+        'college_code'          => $row['college_code'],
+        'college_name'          => $row['college_name'],
+        'gpa'                   => $row['gpa'] !== null ? floatval($row['gpa']) : null,
+        'result_type'           => $row['result_type'],
         'failed_subjects_count' => (int)$row['failed_subjects_count'],
-        'failed_subjects' => $enrichedFailed,
-        'exam_year' => $row['exam_year'],
-        'regulation_year' => $row['regulation_year'],
-        'semester' => $row['semester'],
-        'program' => $row['program'],
+        'failed_subjects'       => $enrichedFailed,
+        'exam_year'             => $row['exam_year'],
+        'regulation_year'       => $row['regulation_year'],
+        'semester'              => $row['semester'],
+        'program'               => $row['program'],
     ];
 }
 

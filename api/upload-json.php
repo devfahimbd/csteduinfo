@@ -182,18 +182,29 @@ try {
         $failedSubjects = [];
         if (!empty($s['failed_subjects']) && is_array($s['failed_subjects'])) {
             foreach ($s['failed_subjects'] as $fs) {
-                if (is_string($fs) && preg_match('/^(\d{5})\(([TPtp]+)\)$/', trim($fs), $m)) {
-                    $failedSubjects[] = ['code' => $m[1], 'fail_type' => strtoupper($m[2])];
+                if (is_string($fs) && preg_match('/^(\d{5})\(([TPtp,]+)\)$/', trim($fs), $m)) {
+                    // Normalize fail_type: remove commas, spaces, convert to uppercase (e.g., "T,P" -> "TP", "t, p" -> "TP")
+                    $normalized = strtoupper(preg_replace('/[,\s]+/', '', $m[2]));
+                    $failedSubjects[] = ['code' => $m[1], 'fail_type' => $normalized];
                 } elseif (is_array($fs) && isset($fs['code'])) {
+                    $rawCode = clean($fs['code']);
+                    $rawType = strtoupper(clean($fs['fail_type'] ?? 'T'));
+                    // Bulletproof: if code contains (T,P) suffix, extract pure code
+                    if (preg_match('/^(\d{5})\s*\(([^)]+)\)\s*$/', $rawCode, $cm)) {
+                        $rawCode = $cm[1];
+                        $rawType = strtoupper(preg_replace('/[,\s]+/', '', $cm[2]));
+                    }
+                    $normalized = preg_replace('/[,\s]+/', '', $rawType);
                     $failedSubjects[] = [
-                        'code' => clean($fs['code']),
-                        'fail_type' => strtoupper(clean($fs['fail_type'] ?? 'T'))
+                        'code' => $rawCode,
+                        'fail_type' => $normalized
                     ];
                 } elseif (is_string($fs) && preg_match('/^(\d{5})$/', trim($fs))) {
                     $failedSubjects[] = ['code' => trim($fs), 'fail_type' => 'T'];
                 } elseif (is_string($fs) && preg_match('/^(\d{5})\(([^)]+)\)$/', trim($fs), $m)) {
                     // Fallback: any format like 25913(X)
-                    $failedSubjects[] = ['code' => $m[1], 'fail_type' => strtoupper($m[2])];
+                    $normalized = strtoupper(preg_replace('/[,\s]+/', '', $m[2]));
+                    $failedSubjects[] = ['code' => $m[1], 'fail_type' => $normalized];
                 }
             }
         }

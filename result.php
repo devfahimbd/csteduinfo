@@ -1041,18 +1041,23 @@ try {
         } else if (r.failed_subjects && r.failed_subjects.length > 0) {
             html += '<table class="failed-table"><thead><tr><th>#</th><th>Subject Code</th><th>Subject Name</th><th>Failed In</th><th>Full Form</th></tr></thead><tbody>';
             r.failed_subjects.forEach(function(fs, i) {
-                var failTypeClass = fs.fail_type === 'T' ? 'T' : (fs.fail_type === 'P' ? 'P' : 'TP');
-                var fullFormText = '';
-                if (fs.fail_type === 'T') fullFormText = fs.t_full;
-                else if (fs.fail_type === 'P') fullFormText = fs.p_full;
-                else fullFormText = fs.t_full + ' & ' + fs.p_full;
+                // Backend now sends: code, fail_type, fail_type_label, subject_name, full_form
+                // fail_type: "T", "P", or "TP" (normalized)
+                // fail_type_label: "T", "P", or "T,P" (for display)
+                // full_form: "Subject Name Theory Fail" or "Subject Name Theory & Practical Fail"
+
+                var ft = fs.fail_type || 'T';
+                var failTypeClass = ft === 'T' ? 'T' : (ft === 'P' ? 'P' : 'TP');
+                var failTypeLabel = fs.fail_type_label || (ft === 'TP' || ft === 'PT' ? 'T,P' : ft);
+                var subjectName = fs.subject_name || 'Unknown Subject';
+                var fullForm = fs.full_form || subjectName + ' Theory Fail';
 
                 html += '<tr>';
                 html += '<td>' + (i + 1) + '</td>';
                 html += '<td><span class="code-badge">' + escapeHtml(fs.code) + '</span></td>';
-                html += '<td>' + escapeHtml(fs.subject_name) + '</td>';
-                html += '<td><span class="fail-type-tag ' + failTypeClass + '">' + escapeHtml(fs.fail_type) + '</span></td>';
-                html += '<td style="font-size:13px;color:#64748B;">' + escapeHtml(fullFormText) + '</td>';
+                html += '<td>' + escapeHtml(subjectName) + '</td>';
+                html += '<td><span class="fail-type-tag ' + failTypeClass + '">' + escapeHtml(failTypeLabel) + '</span></td>';
+                html += '<td style="font-size:13px;color:#64748B;">' + escapeHtml(fullForm) + '</td>';
                 html += '</tr>';
             });
             html += '</tbody></table>';
@@ -1125,7 +1130,7 @@ try {
                 html += '<div class="fail-bar-item">';
                 html += '<div class="fail-bar-rank' + rankClass + '">' + (i + 1) + '</div>';
                 html += '<div class="fail-bar-info">';
-                html += '<div class="fail-bar-name">' + escapeHtml(fs.subject_name) + ' <small>[' + escapeHtml(fs.code) + ']</small></div>';
+                html += '<div class="fail-bar-name">' + escapeHtml(fs.subject_name) + ' <small>[' + escapeHtml(fs.code) + ' (' + escapeHtml(fs.fail_type_label || fs.fail_type) + ')]</small></div>';
                 html += '<div class="fail-bar-track"><div class="fail-bar-fill" style="width:' + pct + '%;background:' + barColor + ';"></div></div>';
                 html += '</div>';
                 html += '<div class="fail-bar-count">' + fs.count.toLocaleString() + ' <small style="color:#94A3B8;font-weight:400;">fails</small></div>';

@@ -319,13 +319,34 @@ foreach ($allSubjects as $sub) {
                                         <?php if (!empty($failedSubjects)): ?>
                                             <div style="display:flex;flex-wrap:wrap;gap:4px;">
                                                 <?php foreach ($failedSubjects as $fs):
-                                                    $code = $fs['code'];
-                                                    $failType = $fs['fail_type'] ?? 'T';
-                                                    $subInfo = isset($subjectMap[$code]) ? $subjectMap[$code] : null;
-                                                    $subName = $subInfo ? $subInfo['subject_name'] : $code;
+                                                    // Bulletproof: extract clean code even if stored as "25911(T,P)"
+                                                    $rawCode = trim($fs['code'] ?? '');
+                                                    $rawType = strtoupper(trim($fs['fail_type'] ?? 'T'));
+
+                                                    // If code itself contains (T,P) or (T) suffix, extract the pure code
+                                                    if (preg_match('/^(\d{5})\s*\(([^)]+)\)\s*$/', $rawCode, $m)) {
+                                                        $rawCode = $m[1];
+                                                        $rawType = strtoupper(preg_replace('/[,\s]+/', '', $m[2]));
+                                                    }
+
+                                                    // Normalize fail_type: remove commas/spaces (e.g., "T,P" -> "TP")
+                                                    $failType = strtoupper(preg_replace('/[,\s]+/', '', $rawType));
+
+                                                    $subInfo = isset($subjectMap[$rawCode]) ? $subjectMap[$rawCode] : null;
+                                                    $subName = $subInfo ? $subInfo['subject_name'] : $rawCode;
+                                                    // Display fail_type as T,P for combined failures
+                                                    $failTypeDisplay = ($failType === 'TP' || $failType === 'PT') ? 'T,P' : $failType;
+                                                    // Build full form display
+                                                    if ($failType === 'T') {
+                                                        $fullFormText = $subName . ' Theory Fail';
+                                                    } elseif ($failType === 'P') {
+                                                        $fullFormText = $subName . ' Practical Fail';
+                                                    } else {
+                                                        $fullFormText = $subName . ' Theory & Practical Fail';
+                                                    }
                                                 ?>
-                                                    <span style="display:inline-block;background:#FEF2F2;color:#991B1B;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:500;" title="<?php echo htmlspecialchars($subName); ?> (<?php echo htmlspecialchars($failType); ?>)">
-                                                        <?php echo htmlspecialchars($code); ?> (<?php echo htmlspecialchars($failType); ?>)
+                                                    <span style="display:inline-block;background:#FEF2F2;color:#991B1B;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:500;" title="<?php echo htmlspecialchars($fullFormText); ?>">
+                                                        <?php echo htmlspecialchars($rawCode); ?> (<?php echo htmlspecialchars($failTypeDisplay); ?>)
                                                     </span>
                                                 <?php endforeach; ?>
                                             </div>
