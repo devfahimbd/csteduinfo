@@ -4,9 +4,11 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'cst_department');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-// Auto-detect subdirectory path (works on both XAMPP localhost and cPanel live server)
-$_scriptDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-define('SITE_URL', $_scriptDir);
+// Auto-detect project root URL from this config file's location (always correct from any page)
+$_docRoot = rtrim(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '/');
+$_configDir = str_replace('\\', '/', __DIR__);
+$_projectRoot = dirname($_configDir);
+define('SITE_URL', str_replace($_docRoot, '', $_projectRoot));
 
 // Site Paths
 define('BASE_PATH', __DIR__ . '/..');
