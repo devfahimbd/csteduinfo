@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Handle file upload
         $filePath = $oldFile;
+        $originalFileName = $_POST['existing_file_name'] ?? '';
         if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
             $uploaded = uploadFile($_FILES['file'], 'resources', ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', 'txt', 'csv']);
             if ($uploaded) {
@@ -52,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     deleteFile($oldFile);
                 }
                 $filePath = $uploaded;
+                $originalFileName = $_FILES['file']['name'];
             }
         }
 
@@ -60,17 +62,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt = $pdo->prepare('
                     UPDATE resources SET
                         title = ?, slug = ?, category_id = ?, description = ?,
-                        file_path = ?, external_url = ?, status = ?
+                        file_path = ?, external_url = ?, status = ?, file_name = ?
                     WHERE id = ?
                 ');
-                $stmt->execute([$title, $slug, $category_id, $description, $filePath, $external_url, $status, $id]);
+                $stmt->execute([$title, $slug, $category_id, $description, $filePath, $external_url, $status, $originalFileName, $id]);
                 setFlash('success', 'Resource updated successfully.');
             } else {
                 $stmt = $pdo->prepare('
-                    INSERT INTO resources (title, slug, category_id, description, file_path, external_url, status)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO resources (title, slug, category_id, description, file_path, external_url, status, file_name)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ');
-                $stmt->execute([$title, $slug, $category_id, $description, $filePath, $external_url, $status]);
+                $stmt->execute([$title, $slug, $category_id, $description, $filePath, $external_url, $status, $originalFileName]);
                 setFlash('success', 'Resource created successfully.');
             }
             header('Location: resources.php');
@@ -225,8 +227,9 @@ $pageTitle = $isEdit ? 'Edit Resource' : 'Add New Resource';
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                         <polyline points="14 2 14 8 20 8"></polyline>
                                     </svg>
-                                    <span style="font-size:13px;color:#334155;word-break:break-all;"><?php echo htmlspecialchars(basename($resource['file_path'])); ?></span>
+                                    <span style="font-size:13px;color:#334155;word-break:break-all;"><?php echo htmlspecialchars(!empty($resource['file_name']) ? $resource['file_name'] : basename($resource['file_path'])); ?></span>
                                     <input type="hidden" name="existing_file" value="<?php echo htmlspecialchars($resource['file_path']); ?>">
+                                    <input type="hidden" name="existing_file_name" value="<?php echo htmlspecialchars($resource['file_name'] ?? ''); ?>">
                                 </div>
                             <?php endif; ?>
                         </div>

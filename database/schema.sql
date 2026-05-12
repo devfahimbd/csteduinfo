@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS resources (
     description TEXT,
     category_id INT,
     file_path VARCHAR(255),
+    file_name VARCHAR(255),
     external_url VARCHAR(255),
     status TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

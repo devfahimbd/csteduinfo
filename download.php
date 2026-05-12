@@ -15,6 +15,8 @@ switch ($type) {
     case 'resource':
         $table = 'resources';
         $col = 'file_path';
+        $nameCol = 'title';
+        $extraCol = 'file_name';
         break;
     case 'gallery':
         $table = 'gallery';
@@ -30,7 +32,12 @@ switch ($type) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT {$col} FROM {$table} WHERE id = ? AND status = 1");
+    // For resources, also fetch title and file_name to use as download name
+    if ($type === 'resource' && isset($extraCol)) {
+        $stmt = $pdo->prepare("SELECT {$col}, title, file_name FROM {$table} WHERE id = ? AND status = 1");
+    } else {
+        $stmt = $pdo->prepare("SELECT {$col} FROM {$table} WHERE id = ? AND status = 1");
+    }
     $stmt->execute([$id]);
     $item = $stmt->fetch();
     
@@ -39,7 +46,7 @@ try {
         exit;
     }
     
-    $filepath = BASE_PATH . '/' . $item[$col];
+    $filepath = UPLOAD_PATH . '/' . $item[$col];
     
     if (!file_exists($filepath)) {
         header('Location: ' . SITE_URL);
@@ -56,6 +63,9 @@ try {
         'ppt' => 'application/vnd.ms-powerpoint',
         'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
         'zip' => 'application/zip',
+        'rar' => 'application/vnd.rar',
+        'txt' => 'text/plain',
+        'csv' => 'text/csv',
         'jpg' => 'image/jpeg',
         'jpeg' => 'image/jpeg',
         'png' => 'image/png',
@@ -66,15 +76,29 @@ try {
     $ext = strtolower(pathinfo($filepath, PATHINFO_EXTENSION));
     $mimeType = isset($mimeTypes[$ext]) ? $mimeTypes[$ext] : 'application/octet-stream';
     
-    // Force download for documents, inline for images
+    // Determine the download filename
     $isImage = in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+    
+    // For resources: use original file_name if stored, otherwise use title + extension
+    if ($type === 'resource') {
+        $originalName = '';
+        if (!empty($item['file_name'])) {
+            $originalName = basename($item['file_name']);
+        } else {
+            // Fallback: use resource title + file extension
+            $resourceTitle = !empty($item['title']) ? $item['title'] : 'resource';
+            $originalName = $resourceTitle . '.' . $ext;
+        }
+    } else {
+        $originalName = basename($filepath);
+    }
     
     if ($isImage) {
         header('Content-Type: ' . $mimeType);
-        header('Content-Disposition: inline; filename="' . basename($filepath) . '"');
+        header('Content-Disposition: inline; filename="' . $originalName . '"');
     } else {
         header('Content-Type: ' . $mimeType);
-        header('Content-Disposition: attachment; filename="' . basename($filepath) . '"');
+        header('Content-Disposition: attachment; filename="' . $originalName . '"');
     }
     header('Content-Length: ' . filesize($filepath));
     header('Cache-Control: public, max-age=3600');
