@@ -878,10 +878,10 @@ try {
         return div.innerHTML;
     }
 
-    function buildStatCard(color, bg, iconPath, value, label) {
+    function buildStatCard(color, bg, iconSvg, value, label) {
         return '<div class="stat-card">' +
             '<div class="stat-icon-sm" style="background:' + bg + ';color:' + color + ';">' +
-            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="' + iconPath + '"/></svg>' +
+            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + iconSvg + '</svg>' +
             '</div>' +
             '<div class="stat-value" style="color:' + color + ';">' + value.toLocaleString() + '</div>' +
             '<div class="stat-label">' + label + '</div>' +
@@ -1091,10 +1091,10 @@ try {
 
         // Overview cards
         html += '<div class="stats-grid">';
-        html += buildStatCard('#2563EB', '#EFF6FF', 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2', parseInt(o.total_students || 0), 'Total Students');
-        html += buildStatCard('#16A34A', '#F0FDF4', 'M22 11.08V12a10 10 0 1 1-5.93-9.14', parseInt(o.total_passed || 0), 'Passed');
-        html += buildStatCard('#DC2626', '#FEF2F2', 'M12 9v2m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z', parseInt(o.total_failed || 0), 'Failed/Referred');
-        html += buildStatCard('#9333EA', '#FAF5FF', 'M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2', parseFloat(o.avg_gpa || 0).toFixed(2), 'Average GPA');
+        html += buildStatCard('#2563EB', '#EFF6FF', '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', parseInt(o.total_students || 0), 'Total Students');
+        html += buildStatCard('#16A34A', '#F0FDF4', '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>', parseInt(o.total_passed || 0), 'Passed');
+        html += buildStatCard('#DC2626', '#FEF2F2', '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>', parseInt(o.total_failed || 0), 'Failed/Referred');
+        html += buildStatCard('#9333EA', '#FAF5FF', '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', parseFloat(o.avg_gpa || 0).toFixed(2), 'Average GPA');
         html += '</div>';
 
         // Semester-wise stats

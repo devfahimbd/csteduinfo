@@ -171,13 +171,21 @@ function buildPageUrl($page, $currentQuery = '') {
             font-size: 22px;
             font-weight: 700;
             line-height: 1;
+            color: #FFFFFF;
         }
 
         .notice-date .month {
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
-            opacity: 0.9;
+            color: #FFFFFF;
+            letter-spacing: 0.5px;
+        }
+
+        .notice-date .year {
+            font-size: 10px;
+            font-weight: 400;
+            opacity: 0.75;
         }
 
         .notice-content {
@@ -477,9 +485,11 @@ function buildPageUrl($page, $currentQuery = '') {
                 <?php foreach ($notices as $notice):
                     $catName   = !empty($notice['category_name']) ? $notice['category_name'] : getCategoryName($pdo, $notice['category_id']);
                     $tagClass  = noticeTagClass($catName);
-                    $dateObj   = new DateTime($notice['created_at']);
+                    $noticeDate = !empty($notice['created_at']) ? $notice['created_at'] : date('Y-m-d H:i:s');
+                    $dateObj   = new DateTime($noticeDate);
                     $dayNum    = $dateObj->format('d');
-                    $monthStr  = monthAbbr($notice['created_at']);
+                    $monthStr  = monthAbbr($noticeDate);
+                    $yearStr   = $dateObj->format('Y');
                     $isImportant = (strtolower($catName) === 'important' || strpos(strtolower($catName), 'important') !== false);
                 ?>
                     <div class="notice-card" data-category="<?php echo clean($catName); ?>">
