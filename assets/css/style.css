@@ -263,7 +263,6 @@ img {
     transition: var(--transition);
 }
 
-.nav-links .nav-more > a:hover .nav-icon,
 .nav-links .nav-more.open > a .nav-icon {
     opacity: 1;
 }
@@ -277,9 +276,7 @@ img {
     margin-left: -2px;
 }
 
-.nav-links .nav-more:hover > a .chevron-icon {
-    color: var(--primary);
-}
+/* Hover styling is handled via .open class only (prevents shake) */
 
 .nav-links .nav-more.open > a .chevron-icon {
     transform: rotate(180deg);
@@ -302,8 +299,7 @@ img {
     animation: dropdownSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-links .nav-more.open .nav-dropdown,
-.nav-links .nav-more:hover .nav-dropdown {
+.nav-links .nav-more.open .nav-dropdown {
     display: block;
 }
 
@@ -1607,35 +1603,48 @@ textarea.form-control {
         border-radius: var(--radius-sm);
         justify-content: flex-start;
     }
-    /* Mobile dropdown */
+    /* Mobile: hide More button, show all dropdown items as regular nav links */
     .nav-links .nav-more {
         width: 100%;
     }
     .nav-links .nav-more > a {
-        width: 100%;
-        padding: 12px 14px;
-        justify-content: space-between;
+        display: none; /* Hide the More button on mobile */
     }
     .nav-links .nav-more .nav-dropdown {
-        display: none;
+        display: block !important; /* Always show dropdown items */
         position: static;
         box-shadow: none;
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        padding: 6px;
-        margin-top: 4px;
-        margin-bottom: 4px;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
         min-width: 0;
-        background: var(--bg);
+        background: transparent;
+        animation: none;
     }
     .nav-links .nav-more .nav-dropdown::before {
         display: none;
     }
-    .nav-links .nav-more.open .nav-dropdown {
-        display: block;
+    .nav-links .nav-more .nav-dropdown .dropdown-divider {
+        display: none; /* Hide divider on mobile */
     }
-    .nav-links .nav-more:hover .nav-dropdown {
-        display: none;
+    .nav-links .nav-more .nav-dropdown a {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: var(--radius-sm);
+        justify-content: flex-start;
+        color: var(--text) !important;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .nav-links .nav-more .nav-dropdown a:hover,
+    .nav-links .nav-more .nav-dropdown a.active {
+        background: var(--primary-lighter);
+        color: var(--primary) !important;
+    }
+    .nav-links .nav-more .nav-dropdown a .dropdown-icon {
+        width: 18px;
+        height: 18px;
     }
     .mobile-toggle { display: block; }
     .nav-container { position: relative; }
