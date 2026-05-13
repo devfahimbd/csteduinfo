@@ -1573,7 +1573,7 @@ textarea.form-control {
 
 @media (min-width: 769px) {
     .header {
-        background: var(--white);
+        background: transparent;
         border-bottom: none;
         box-shadow: none;
     }
