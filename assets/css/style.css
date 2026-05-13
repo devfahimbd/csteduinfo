@@ -398,11 +398,11 @@ img {
 }
 
 /* ============================================
-   Hero Section
+   Hero Section - White + Soft Blue Glow
    ============================================ */
 .hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    border-bottom: none;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 40%, #e8f1fd 70%, #ffffff 100%);
+    border-bottom: 1px solid var(--border);
     overflow: hidden;
     position: relative;
 }
@@ -414,7 +414,7 @@ img {
     right: 0;
     width: 50%;
     height: 100%;
-    background: radial-gradient(ellipse at 70% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 70% 50%, rgba(37, 99, 235, 0.07) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -425,7 +425,7 @@ img {
     left: -100%;
     width: 60%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), rgba(255,255,255,0.06), rgba(255,255,255,0.02), transparent);
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.02), rgba(37, 99, 235, 0.06), rgba(37, 99, 235, 0.02), transparent);
     animation: heroShine 6s ease-in-out infinite;
     pointer-events: none;
 }
@@ -453,33 +453,33 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(37, 99, 235, 0.15);
-    color: #60a5fa;
+    background: rgba(37, 99, 235, 0.08);
+    color: #2563eb;
     padding: 6px 14px;
     border-radius: 50px;
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 20px;
-    border: 1px solid rgba(37, 99, 235, 0.3);
+    border: 1px solid rgba(37, 99, 235, 0.15);
 }
 
 .hero-title {
     font-size: 42px;
     font-weight: 800;
     line-height: 1.15;
-    color: #ffffff;
+    color: #1e293b;
     margin-bottom: 16px;
     letter-spacing: -0.5px;
 }
 
 .hero-title .highlight {
-    color: #60a5fa;
-    text-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
+    color: #2563eb;
+    text-shadow: 0 0 30px rgba(37, 99, 235, 0.15);
 }
 
 .hero-desc {
     font-size: 16px;
-    color: #94a3b8;
+    color: #64748b;
     line-height: 1.8;
     margin-bottom: 30px;
     max-width: 500px;
@@ -496,19 +496,19 @@ img {
     gap: 40px;
     margin-top: 40px;
     padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid var(--border);
 }
 
 .hero-stat h3 {
     font-size: 28px;
     font-weight: 700;
-    color: #60a5fa;
+    color: #2563eb;
     line-height: 1;
 }
 
 .hero-stat p {
     font-size: 13px;
-    color: #94a3b8;
+    color: #64748b;
     margin-top: 4px;
 }
 
@@ -760,6 +760,9 @@ img {
 .section-header {
     text-align: center;
     margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-badge {
@@ -784,6 +787,33 @@ img {
     color: var(--text);
     margin-bottom: 12px;
     letter-spacing: -0.3px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Blue highlight for last part of section title */
+.section-title .title-blue {
+    color: #2563eb;
+    position: relative;
+    display: inline-block;
+}
+
+/* Blue curved underline beneath the blue-highlighted part */
+.section-title .title-blue::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    border-radius: 2px;
+    animation: blueUnderlineShine 3s ease-in-out infinite;
+}
+
+@keyframes blueUnderlineShine {
+    0%, 100% { opacity: 0.7; box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
+    50% { opacity: 1; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3); }
 }
 
 .section-desc {
@@ -1399,11 +1429,11 @@ textarea.form-control {
 }
 
 /* ============================================
-   Page Header / Banner
+   Page Header / Banner - White + Soft Blue
    ============================================ */
 .page-banner {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border-bottom: none;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 50%, #e8f1fd 100%);
+    border-bottom: 1px solid var(--border);
     padding: 40px 0;
     text-align: center;
     position: relative;
@@ -1417,7 +1447,7 @@ textarea.form-control {
     left: -100%;
     width: 50%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.05), rgba(37,99,235,0.1), rgba(37,99,235,0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.03), rgba(37,99,235,0.07), rgba(37,99,235,0.03), transparent);
     animation: pageBannerShine 5s ease-in-out infinite;
     pointer-events: none;
 }
@@ -1431,7 +1461,7 @@ textarea.form-control {
 .page-banner h1 {
     font-size: 30px;
     font-weight: 700;
-    color: #ffffff;
+    color: #1e293b;
     margin-bottom: 8px;
 }
 
@@ -1441,19 +1471,19 @@ textarea.form-control {
     justify-content: center;
     gap: 8px;
     font-size: 13px;
-    color: #94a3b8;
+    color: #64748b;
 }
 
 .breadcrumb a {
-    color: #60a5fa;
+    color: #2563eb;
 }
 
 .breadcrumb a:hover {
-    color: #93bbfd;
+    color: #1d4ed8;
 }
 
 .breadcrumb .separator {
-    color: #475569;
+    color: #94a3b8;
 }
 
 /* ============================================
@@ -1510,11 +1540,11 @@ textarea.form-control {
 }
 
 /* ============================================
-   Footer
+   Footer - White + Soft Blue
    ============================================ */
 .footer {
-    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
-    border-top: none;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    border-top: 1px solid var(--border);
     padding: 50px 0 0;
     position: relative;
     overflow: hidden;
@@ -1527,7 +1557,7 @@ textarea.form-control {
     left: -100%;
     width: 40%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.03), rgba(37,99,235,0.06), rgba(37,99,235,0.03), transparent);
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.02), rgba(37,99,235,0.05), rgba(37,99,235,0.02), transparent);
     animation: footerShine 7s ease-in-out infinite;
     pointer-events: none;
 }
@@ -1548,13 +1578,13 @@ textarea.form-control {
 .footer-col h4 {
     font-size: 15px;
     font-weight: 600;
-    color: #e2e8f0;
+    color: #1e293b;
     margin-bottom: 18px;
 }
 
 .footer-col p {
     font-size: 13px;
-    color: #94a3b8;
+    color: #64748b;
     line-height: 1.7;
 }
 
@@ -1568,14 +1598,14 @@ textarea.form-control {
 
 .footer-links a {
     font-size: 13px;
-    color: #94a3b8;
+    color: #64748b;
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
 .footer-links a:hover {
-    color: #60a5fa;
+    color: #2563eb;
 }
 
 .footer-social {
@@ -1588,8 +1618,8 @@ textarea.form-control {
     width: 36px;
     height: 36px;
     border-radius: var(--radius-sm);
-    background: rgba(37, 99, 235, 0.1);
-    color: #94a3b8;
+    background: rgba(37, 99, 235, 0.08);
+    color: #64748b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1602,11 +1632,11 @@ textarea.form-control {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid var(--border);
     padding: 18px 0;
     text-align: center;
     font-size: 13px;
-    color: #64748b;
+    color: #94a3b8;
 }
 
 /* ============================================
@@ -2362,6 +2392,9 @@ textarea.form-control {
 .sem-journey-header {
     text-align: center;
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sem-journey-badge {
@@ -2385,6 +2418,26 @@ textarea.form-control {
     color: #1E293B;
     margin-bottom: 14px;
     letter-spacing: -0.5px;
+    position: relative;
+    display: inline-block;
+}
+
+.sem-journey-title .title-blue {
+    color: #2563eb;
+    position: relative;
+    display: inline-block;
+}
+
+.sem-journey-title .title-blue::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    border-radius: 2px;
+    animation: blueUnderlineShine 3s ease-in-out infinite;
 }
 
 .sem-journey-desc {

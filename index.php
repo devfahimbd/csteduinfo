@@ -323,7 +323,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     আমাদের সম্পর্কে
                 </div>
-                <h2 class="section-title" style="text-align:left;">খুলনা পলিটেকনিক ইনস্টিটিউটে সিএসটি</h2>
+                <h2 class="section-title" style="text-align:left;">খুলনা পলিটেকনিক ইনস্টিটিউটে <span class="title-blue">সিএসটি</span></h2>
                 <p style="color:#64748B;line-height:1.8;margin-bottom:16px;">
                     কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি (সিএসটি) বিভাগ <strong style="color:#1E293B;">খুলনা পলিটেকনিক ইনস্টিটিউট</strong>-এর অন্যতম প্রধান প্রযুক্তি বিভাগ, যা বাংলাদেশের অন্যতম বৃহৎ ও স্বনামধন্য পলিটেকনিক ইনস্টিটিউট, ১৯৬৩ সালে বাংলাদেশ কারিগরি শিক্ষা বোর্ড (বিটিইবি)-এর অধীনে প্রতিষ্ঠিত।
                 </p>
@@ -395,7 +395,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16l4-4-4-4"/><path d="M8 12h8"/></svg>
                 আমাদের উদ্দেশ্য
             </div>
-            <h2 class="section-title">লক্ষ্য ও উদ্দেশ্য</h2>
+            <h2 class="section-title">লক্ষ্য ও <span class="title-blue">উদ্দেশ্য</span></h2>
             <p class="section-desc">প্রযুক্তি শিক্ষায় শ্রেষ্ঠত্ব অর্জনের প্রতিশ্রুতিতে আমাদের পথপ্রদর্শক নীতিসমূহ।</p>
         </div>
         <div class="mv-grid">
@@ -455,7 +455,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                 কেন সিএসটি কেপিআই
             </div>
-            <h2 class="section-title">আমাদের বৈশিষ্ট্য</h2>
+            <h2 class="section-title">আমাদের <span class="title-blue">বৈশিষ্ট্য</span></h2>
             <p class="section-desc">জেনে নিন কেন খুলনা পলিটেকনিক ইনস্টিটিউটের সিএসটি বিভাগ আগ্রহী প্রযুক্তিবিদদের জন্য শ্রেষ্ঠ পছন্দ।</p>
         </div>
         <div class="grid-4">
@@ -529,7 +529,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                 একাডেমিক রোডম্যাপ
             </div>
-            <h2 class="sem-journey-title">সেমিস্টার যাত্রা</h2>
+            <h2 class="sem-journey-title">সেমিস্টার <span class="title-blue">যাত্রা</span></h2>
             <p class="sem-journey-desc">আমাদের ৪ বছরের ডিপ্লোমা প্রোগ্রাম ভিত্তিগত বিষয় থেকে শুরু করে জাভাস্ক্রিপ্ট, রিঅ্যাক্ট, নোড.জেএস, মঙ্গোডিবি, নেক্সট.জেএস এবং এক্সপ্রেসের মতো অত্যাধুনিক প্রযুক্তি পর্যন্ত সবকিছু অন্তর্ভুক্ত করে। প্রতিটি সেমিস্টারে ক্লিক করে পাঠ্যক্রম দেখুন।</p>
         </div>
 

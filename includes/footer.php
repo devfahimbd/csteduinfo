@@ -42,19 +42,19 @@ if (!empty($credits)) {
     <!-- ============================================
          CTA Section
          ============================================ -->
-    <section class="cta-section" style="background-color: #2563EB; color: #fff; padding: 64px 0; text-align: center;">
+    <section class="cta-section" style="background: linear-gradient(135deg, #f0f7ff 0%, #dbeafe 50%, #f0f7ff 100%); color: var(--text); padding: 64px 0; text-align: center; position: relative; overflow: hidden;">
         <div class="container" style="position: relative; z-index: 2;">
-            <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 12px; color: #fff;">
+            <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 12px; color: #1e293b;">
                 অন্বেষণ করতে প্রস্তুত?
             </h2>
-            <p style="font-size: 1.1rem; opacity: 0.9; max-width: 560px; margin: 0 auto 32px; color: #fff; line-height: 1.6;">
+            <p style="font-size: 1.1rem; max-width: 560px; margin: 0 auto 32px; color: #64748b; line-height: 1.6;">
                 আমাদের প্রোগ্রাম, আমাদের শিক্ষকমণ্ডলীর সাথে পরিচিত হন এবং কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজিতে সফল হওয়ার জন্য প্রয়োজনীয় রিসোর্স খুঁজে নিন।
             </p>
             <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                <a href="<?= SITE_URL ?>/notice.php" class="btn btn-primary" style="background: #fff; color: #2563EB; border: 2px solid #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s;">
+                <a href="<?= SITE_URL ?>/notice.php" class="btn btn-primary" style="padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s;">
                     <?= icon('bell', 16) ?> নোটিশ দেখুন
                 </a>
-                <a href="<?= SITE_URL ?>/contact.php" class="btn btn-secondary" style="background: transparent; color: #fff; border: 2px solid #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s;">
+                <a href="<?= SITE_URL ?>/contact.php" class="btn btn-outline" style="padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s;">
                     <?= icon('send', 16) ?> যোগাযোগ করুন
                 </a>
             </div>
@@ -149,7 +149,7 @@ if (!empty($credits)) {
     <!-- ============================================
          Main Footer
          ============================================ -->
-    <footer class="footer" style="background-color: #1F2937; color: #D1D5DB; padding: 64px 0 0;">
+    <footer class="footer" style="background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); color: #64748b; padding: 64px 0 0;">
         <div class="container">
             <div class="footer-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
 
@@ -163,10 +163,10 @@ if (!empty($credits)) {
                                 <?= icon('code', 22) ?>
                             </span>
                         <?php endif; ?>
-                        <span style="font-size: 1.25rem; font-weight: 700; color: #F9FAFB;"><?= sanitize(siteName()) ?></span>
+                        <span style="font-size: 1.25rem; font-weight: 700; color: #1e293b;"><?= sanitize(siteName()) ?></span>
                     </a>
                     <?php if (($tagline = siteTagline())): ?>
-                        <p style="font-size: 0.9rem; color: #9CA3AF; line-height: 1.6; margin-bottom: 20px;">
+                        <p style="font-size: 0.9rem; color: #64748b; line-height: 1.6; margin-bottom: 20px;">
                             <?= sanitize($tagline) ?>
                         </p>
                     <?php endif; ?>
@@ -174,27 +174,27 @@ if (!empty($credits)) {
                     <!-- Social Media Links -->
                     <div class="footer-social" style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <?php if (!empty($settings['facebook'])): ?>
-                            <a href="<?= sanitize($settings['facebook']) ?>" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                            <a href="<?= sanitize($settings['facebook']) ?>" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(37, 99, 235, 0.08); color: #64748b; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('facebook', 18) ?>
                             </a>
                         <?php endif; ?>
                         <?php if (!empty($settings['youtube'])): ?>
-                            <a href="<?= sanitize($settings['youtube']) ?>" target="_blank" rel="noopener" aria-label="YouTube" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                            <a href="<?= sanitize($settings['youtube']) ?>" target="_blank" rel="noopener" aria-label="YouTube" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(37, 99, 235, 0.08); color: #64748b; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('youtube', 18) ?>
                             </a>
                         <?php endif; ?>
                         <?php if (!empty($settings['linkedin'])): ?>
-                            <a href="<?= sanitize($settings['linkedin']) ?>" target="_blank" rel="noopener" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                            <a href="<?= sanitize($settings['linkedin']) ?>" target="_blank" rel="noopener" aria-label="LinkedIn" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(37, 99, 235, 0.08); color: #64748b; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('linkedin', 18) ?>
                             </a>
                         <?php endif; ?>
                         <?php if (!empty($settings['twitter'])): ?>
-                            <a href="<?= sanitize($settings['twitter']) ?>" target="_blank" rel="noopener" aria-label="Twitter" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                            <a href="<?= sanitize($settings['twitter']) ?>" target="_blank" rel="noopener" aria-label="Twitter" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(37, 99, 235, 0.08); color: #64748b; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('twitter', 18) ?>
                             </a>
                         <?php endif; ?>
                         <?php if (!empty($settings['instagram'])): ?>
-                            <a href="<?= sanitize($settings['instagram']) ?>" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #D1D5DB; text-decoration: none; transition: all 0.2s;">
+                            <a href="<?= sanitize($settings['instagram']) ?>" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; background: rgba(37, 99, 235, 0.08); color: #64748b; text-decoration: none; transition: all 0.2s;">
                                 <?= icon('instagram', 18) ?>
                             </a>
                         <?php endif; ?>
@@ -203,40 +203,40 @@ if (!empty($credits)) {
 
                 <!-- Column 2: Quick Links -->
                 <div class="footer-col">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">দ্রুত লিংক</h4>
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin-bottom: 20px;">দ্রুত লিংক</h4>
                     <ul style="list-style: none; margin: 0; padding: 0;">
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('home', 14) ?> হোম
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/about.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/about.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('info', 14) ?> সম্পর্কে
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/faculty.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/faculty.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('users', 14) ?> শিক্ষকমণ্ডলী
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/notice.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/notice.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('bell', 14) ?> নোটিশ
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/resources.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/resources.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('book', 14) ?> রিসোর্স
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/gallery.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/gallery.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('image', 14) ?> গ্যালারি
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/contact.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/contact.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('mail', 14) ?> যোগাযোগ
                             </a>
                         </li>
@@ -245,30 +245,30 @@ if (!empty($credits)) {
 
                 <!-- Column 3: Resources -->
                 <div class="footer-col">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">রিসোর্স</h4>
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin-bottom: 20px;">রিসোর্স</h4>
                     <ul style="list-style: none; margin: 0; padding: 0;">
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/resources.php?type=study_materials" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/resources.php?type=study_materials" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('file-text', 14) ?> অধ্যয়ন সামগ্রী
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/resources.php?type=previous_questions" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/resources.php?type=previous_questions" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('file-text', 14) ?> বিগত প্রশ্ন
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/resources.php?type=syllabus" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/resources.php?type=syllabus" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('file-text', 14) ?> সিলেবাস
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/resources.php?type=class_routine" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/resources.php?type=class_routine" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('calendar', 14) ?> ক্লাস রুটিন
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/resources.php?type=lab_manuals" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                            <a href="<?= SITE_URL ?>/resources.php?type=lab_manuals" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
                                 <?= icon('monitor', 14) ?> ল্যাব ম্যানুয়াল
                             </a>
                         </li>
@@ -277,7 +277,7 @@ if (!empty($credits)) {
 
                 <!-- Column 4: Contact Info -->
                 <div class="footer-col">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">যোগাযোগের তথ্য</h4>
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #1e293b; margin-bottom: 20px;">যোগাযোগের তথ্য</h4>
 
                     <?php if (!empty($settings['phone'])): ?>
                     <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px;">
@@ -286,7 +286,7 @@ if (!empty($credits)) {
                         </span>
                         <div>
                             <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">ফোন</span>
-                            <a href="tel:<?= sanitize($settings['phone']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
+                            <a href="tel:<?= sanitize($settings['phone']) ?>" style="color: #64748b; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
                                 <?= sanitize($settings['phone']) ?>
                             </a>
                         </div>
@@ -300,7 +300,7 @@ if (!empty($credits)) {
                         </span>
                         <div>
                             <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">ইমেইল</span>
-                            <a href="mailto:<?= sanitize($settings['email']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
+                            <a href="mailto:<?= sanitize($settings['email']) ?>" style="color: #64748b; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
                                 <?= sanitize($settings['email']) ?>
                             </a>
                         </div>
@@ -314,7 +314,7 @@ if (!empty($credits)) {
                         </span>
                         <div>
                             <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">ঠিকানা</span>
-                            <p style="color: #D1D5DB; font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            <p style="color: #64748b; font-size: 0.9rem; line-height: 1.5; margin: 0;">
                                 <?= sanitize($settings['address']) ?>
                             </p>
                         </div>
@@ -324,8 +324,8 @@ if (!empty($credits)) {
             </div>
 
             <!-- Footer Bottom Bar -->
-            <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; margin-top: 48px; text-align: center;">
-                <p style="font-size: 0.85rem; color: #6B7280; margin: 0;">
+            <div class="footer-bottom" style="border-top: 1px solid #e2e8f0; padding: 20px 0; margin-top: 48px; text-align: center;">
+                <p style="font-size: 0.85rem; color: #94a3b8; margin: 0;">
                     &copy; <?= date('Y') ?> <?= sanitize(!empty($settings['copyright_text']) ? $settings['copyright_text'] : siteName()) ?>. সর্বস্বত্ব সংরক্ষিত।
                 </p>
             </div>
