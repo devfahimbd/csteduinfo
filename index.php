@@ -669,7 +669,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                 সর্বশেষ আপডেট
             </div>
-            <h2 class="section-title">সাম্প্রতিক নোটিশ</h2>
+            <h2 class="section-title">সাম্প্রতিক <span class="title-blue">নোটিশ</span></h2>
             <p class="section-desc">বিভাগের সর্বশেষ ঘোষণা ও আপডেট দেখুন।</p>
         </div>
         <?php if (!empty($notices)): ?>
@@ -734,7 +734,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                 আমাদের দল
             </div>
-            <h2 class="section-title">অভিজ্ঞ শিক্ষকমণ্ডলী</h2>
+            <h2 class="section-title">অভিজ্ঞ <span class="title-blue">শিক্ষকমণ্ডলী</span></h2>
             <p class="section-desc">পরবর্তী প্রজন্মের প্রযুক্তি নেতাদের পথপ্রদর্শনকারী নিবেদিতপ্রাণ শিক্ষকগণ।</p>
         </div>
         <?php if (!empty($teachers)): ?>
@@ -794,7 +794,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
                 ফটো গ্যালারি
             </div>
-            <h2 class="section-title">আমাদের মুহূর্ত</h2>
+            <h2 class="section-title">আমাদের <span class="title-blue">মুহূর্ত</span></h2>
             <p class="section-desc">সিএসটি বিভাগের প্রাণবন্ত জীবন, অনুষ্ঠান ও কার্যক্রমের এক ঝলক।</p>
         </div>
         <?php if (!empty($gallery)): ?>
@@ -842,7 +842,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
     <div class="container">
         <div style="text-align:center;margin-bottom:30px;">
             <div class="section-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg> আমাদের অংশীদার</div>
-            <h2 class="section-title" style="margin-bottom:6px;">স্পন্সর</h2>
+            <h2 class="section-title" style="margin-bottom:6px;"><span class="title-blue">স্পন্সর</span></h2>
         </div>
         <div class="sponsor-logos">
             <?php foreach ($sponsors as $sponsor): ?>
@@ -867,7 +867,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
     <div class="container">
         <div class="section-header">
             <div class="section-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> দল</div>
-            <h2 class="section-title">কৃতজ্ঞতা</h2>
+            <h2 class="section-title"><span class="title-blue">কৃতজ্ঞতা</span></h2>
             <p class="section-desc">এই ওয়েবসাইট ও বিভাগের উদ্যোগের পেছনের প্রতিভাবান মানুষদের প্রশংসা।</p>
         </div>
         <div class="credits-grid">
@@ -953,23 +953,23 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
             <div class="footer-col">
                 <h4>দ্রুত লিংক</h4>
                 <ul class="footer-links">
-                    <li><a href="<?php echo SITE_URL; ?>">হোম</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/about.php">সম্পর্কে</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/faculty.php">শিক্ষকমণ্ডলী</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/notice.php">নোটিশ</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/gallery.php">গ্যালারি</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/result.php">ফলাফল</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/contact.php">যোগাযোগ</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> হোম</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/about.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> সম্পর্কে</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> শিক্ষকমণ্ডলী</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> নোটিশ</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/gallery.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> গ্যালারি</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/result.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> ফলাফল</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/contact.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> যোগাযোগ</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>রিসোর্স</h4>
                 <ul class="footer-links">
-                    <li><a href="<?php echo SITE_URL; ?>/resources.php">লেকচার নোট</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/resources.php">ই-বুক</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/resources.php">সফটওয়্যার</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/notice.php">পরীক্ষার সূচি</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/notice.php">একাডেমিক ক্যালেন্ডার</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/resources.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> লেকচার নোট</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/resources.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> ই-বুক</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/resources.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> সফটওয়্যার</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> পরীক্ষার সূচি</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> একাডেমিক ক্যালেন্ডার</a></li>
                 </ul>
             </div>
             <div class="footer-col">

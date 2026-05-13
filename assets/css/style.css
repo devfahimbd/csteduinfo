@@ -429,7 +429,6 @@ img {
    ============================================ */
 .hero {
     background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 40%, #e8f1fd 70%, #ffffff 100%);
-    border-bottom: 1px solid var(--border);
     overflow: hidden;
     position: relative;
 }
@@ -882,7 +881,7 @@ img {
     font-size: 32px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     letter-spacing: -0.3px;
     position: relative;
     display: inline-block;
@@ -895,17 +894,19 @@ img {
     display: inline-block;
 }
 
-/* Blue curved underline beneath the blue-highlighted part */
+/* Blue pencil-stroke underline beneath the blue-highlighted part */
 .section-title .title-blue::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
+    bottom: -5px;
+    left: -5%;
+    width: 110%;
     height: 3px;
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    border-radius: 2px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+    border-radius: 0 50% 50% 50%;
+    transform: rotate(-0.5deg);
     animation: blueUnderlineShine 3s ease-in-out infinite;
+    opacity: 0.85;
 }
 
 @keyframes blueUnderlineShine {
@@ -2549,13 +2550,15 @@ textarea.form-control {
 .sem-journey-title .title-blue::after {
     content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
+    bottom: -5px;
+    left: -5%;
+    width: 110%;
     height: 3px;
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    border-radius: 2px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+    border-radius: 0 50% 50% 50%;
+    transform: rotate(-0.5deg);
     animation: blueUnderlineShine 3s ease-in-out infinite;
+    opacity: 0.85;
 }
 
 .sem-journey-desc {
@@ -3193,7 +3196,7 @@ textarea.form-control {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 40%, #e8f1fd 70%, #ffffff 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 50%, #e8f1fd 100%);
     z-index: 99999;
     display: flex;
     align-items: center;
