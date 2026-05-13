@@ -1560,6 +1560,111 @@ textarea.form-control {
 }
 
 /* ============================================
+   Premium Navbar — Glass Effect + Animated Glow Border
+   (PC / Desktop only — min-width: 769px)
+   ============================================ */
+@media (min-width: 769px) {
+    .header {
+        background: transparent;
+        border-bottom: none;
+    }
+
+    .header.scrolled {
+        box-shadow: none;
+    }
+
+    .nav-container {
+        padding: 0 28px;
+        margin-top: 10px;
+    }
+
+    .nav-wrapper {
+        background: rgba(255, 255, 255, 0.52);
+        backdrop-filter: blur(22px) saturate(1.6);
+        -webkit-backdrop-filter: blur(22px) saturate(1.6);
+        border-radius: 18px;
+        padding: 12px 28px;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        box-shadow:
+            0 8px 32px rgba(37, 99, 235, 0.06),
+            0 2px 8px rgba(0, 0, 0, 0.04);
+        position: relative;
+        overflow: visible;
+    }
+
+    /* Scrolled — slightly more opaque for readability */
+    .header.scrolled .nav-wrapper {
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow:
+            0 8px 32px rgba(37, 99, 235, 0.08),
+            0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    /* ─── Animated blue glow that travels along the border ─── */
+    .nav-wrapper::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 20px;
+        padding: 2px;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0%,
+            transparent 30%,
+            rgba(37, 99, 235, 0.75) 48%,
+            rgba(37, 99, 235, 0.08) 58%,
+            transparent 68%,
+            transparent 100%
+        );
+        /* Mask: only the border ring is visible */
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        animation: navGlowSpin 4s linear infinite;
+    }
+
+    /* Extra glow layer — soft outer aura */
+    .nav-wrapper::after {
+        content: '';
+        position: absolute;
+        inset: -6px;
+        border-radius: 24px;
+        background: conic-gradient(
+            from 180deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(37, 99, 235, 0.18) 50%,
+            transparent 60%,
+            transparent 100%
+        );
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        padding: 6px;
+        pointer-events: none;
+        animation: navGlowSpin 4s linear infinite;
+        filter: blur(4px);
+        opacity: 0.6;
+    }
+}
+
+@keyframes navGlowSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ============================================
    Responsive
    ============================================ */
 @media (max-width: 1024px) {
