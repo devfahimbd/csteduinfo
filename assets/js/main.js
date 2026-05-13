@@ -33,9 +33,11 @@
       );
     });
 
-    // Close menu when a nav link is clicked
+    // Close menu when a nav link is clicked (but NOT when clicking More dropdown toggle)
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
+        // Skip the More dropdown toggle — let it open the dropdown instead of closing the menu
+        if (this.parentElement && this.parentElement.classList.contains('nav-more')) return;
         navLinks.classList.remove('open');
         mobileToggle.setAttribute('aria-expanded', 'false');
       });
