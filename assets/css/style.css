@@ -1560,13 +1560,22 @@ textarea.form-control {
 }
 
 /* ============================================
-   Premium Navbar — Glass Effect + Animated Glow Border
+   Premium Navbar — Glass Effect + Traveling Border Glow
    (PC / Desktop only — min-width: 769px)
    ============================================ */
+
+/* Register custom property for glow animation */
+@property --border-glow {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 @media (min-width: 769px) {
     .header {
-        background: transparent;
+        background: var(--white);
         border-bottom: none;
+        box-shadow: none;
     }
 
     .header.scrolled {
@@ -1579,44 +1588,39 @@ textarea.form-control {
     }
 
     .nav-wrapper {
-        background: rgba(255, 255, 255, 0.52);
+        background: rgba(255, 255, 255, 0.55);
         backdrop-filter: blur(22px) saturate(1.6);
         -webkit-backdrop-filter: blur(22px) saturate(1.6);
         border-radius: 18px;
         padding: 12px 28px;
-        border: 1px solid rgba(255, 255, 255, 0.32);
-        box-shadow:
-            0 8px 32px rgba(37, 99, 235, 0.06),
-            0 2px 8px rgba(0, 0, 0, 0.04);
+        border: 1px solid var(--border);
+        box-shadow: none;
         position: relative;
         overflow: visible;
     }
 
-    /* Scrolled — slightly more opaque for readability */
     .header.scrolled .nav-wrapper {
-        background: rgba(255, 255, 255, 0.72);
-        box-shadow:
-            0 8px 32px rgba(37, 99, 235, 0.08),
-            0 2px 12px rgba(0, 0, 0, 0.06);
+        background: rgba(255, 255, 255, 0.75);
     }
 
-    /* ─── Animated blue glow that travels along the border ─── */
+    /* ─── Sharp traveling blue glow along the border ─── */
     .nav-wrapper::before {
         content: '';
         position: absolute;
-        inset: -2px;
+        inset: -1.5px;
         border-radius: 20px;
-        padding: 2px;
+        padding: 1.5px;
         background: conic-gradient(
-            from 0deg,
+            from var(--border-glow),
             transparent 0%,
-            transparent 30%,
-            rgba(37, 99, 235, 0.75) 48%,
-            rgba(37, 99, 235, 0.08) 58%,
-            transparent 68%,
+            transparent 37%,
+            rgba(37, 99, 235, 0.15) 43%,
+            rgba(37, 99, 235, 0.95) 47%,
+            rgba(37, 99, 235, 0.95) 48%,
+            rgba(37, 99, 235, 0.15) 52%,
+            transparent 57%,
             transparent 100%
         );
-        /* Mask: only the border ring is visible */
         -webkit-mask:
             linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);
@@ -1626,21 +1630,25 @@ textarea.form-control {
             linear-gradient(#fff 0 0);
         mask-composite: exclude;
         pointer-events: none;
-        animation: navGlowSpin 4s linear infinite;
+        animation: borderGlowTravel 3.5s linear infinite;
     }
 
-    /* Extra glow layer — soft outer aura */
+    /* Soft outer glow aura behind the sharp border light */
     .nav-wrapper::after {
         content: '';
         position: absolute;
-        inset: -6px;
-        border-radius: 24px;
+        inset: -5px;
+        border-radius: 23px;
+        padding: 5px;
         background: conic-gradient(
-            from 180deg,
+            from var(--border-glow),
             transparent 0%,
-            transparent 40%,
-            rgba(37, 99, 235, 0.18) 50%,
-            transparent 60%,
+            transparent 37%,
+            rgba(37, 99, 235, 0.05) 43%,
+            rgba(37, 99, 235, 0.3) 47%,
+            rgba(37, 99, 235, 0.3) 48%,
+            rgba(37, 99, 235, 0.05) 52%,
+            transparent 57%,
             transparent 100%
         );
         -webkit-mask:
@@ -1651,17 +1659,15 @@ textarea.form-control {
             linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);
         mask-composite: exclude;
-        padding: 6px;
         pointer-events: none;
-        animation: navGlowSpin 4s linear infinite;
-        filter: blur(4px);
-        opacity: 0.6;
+        animation: borderGlowTravel 3.5s linear infinite;
+        filter: blur(6px);
     }
 }
 
-@keyframes navGlowSpin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+@keyframes borderGlowTravel {
+    from { --border-glow: 0deg; }
+    to   { --border-glow: 360deg; }
 }
 
 /* ============================================
