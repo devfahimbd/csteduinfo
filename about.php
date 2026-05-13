@@ -23,7 +23,7 @@ $youtubeUrl    = siteSetting('youtube_url', '#');
 $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Department. All Rights Reserved.');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
     <title><?php echo clean($pageTitle); ?></title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Lottie Player -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -120,18 +120,18 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
 
             <!-- Navigation Links -->
             <ul class="nav-links">
-                <li><a href="<?php echo SITE_URL; ?>"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/about.php" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>About</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Faculty</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Notices</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>হোম</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/about.php" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>সম্পর্কে</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>শিক্ষকমণ্ডলী</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>নোটিশ</span></a></li>
                 <li class="nav-more">
-                    <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>More</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+                    <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>আরও</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
                     <div class="nav-dropdown">
-                    <a href="<?php echo SITE_URL; ?>/gallery.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Gallery</span></a>
-                    <a href="<?php echo SITE_URL; ?>/resources.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Resources</span></a>
-                    <a href="<?php echo SITE_URL; ?>/result.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Result</span></a>
+                    <a href="<?php echo SITE_URL; ?>/gallery.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>গ্যালারি</span></a>
+                    <a href="<?php echo SITE_URL; ?>/resources.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>রিসোর্স</span></a>
+                    <a href="<?php echo SITE_URL; ?>/result.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>ফলাফল</span></a>
                     <div class="dropdown-divider"></div>
-                    <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Contact</span></a>
+                    <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>যোগাযোগ</span></a>
                     </div>
                 </li>
                 </ul>
@@ -153,16 +153,16 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
      ============================================ -->
 <section class="page-banner">
     <div class="container">
-        <h1>About Us</h1>
+        <h1>আমাদের সম্পর্কে</h1>
         <div class="breadcrumb">
             <a href="<?php echo SITE_URL; ?>">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Home
+                হোম
             </a>
             <span class="separator">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
-            <span>About</span>
+            <span>সম্পর্কে</span>
         </div>
     </div>
 </section>
@@ -177,26 +177,17 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
             <div>
                 <div class="section-badge">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                    Who We Are
+                    আমরা কারা
                 </div>
-                <h2 class="section-title" style="text-align:left;margin-bottom:20px;">Department of Computer Science &amp; Technology</h2>
+                <h2 class="section-title" style="text-align:left;margin-bottom:20px;">কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি বিভাগ</h2>
                 <p style="font-size:15px;color:#64748B;line-height:1.8;margin-bottom:16px;">
-                    The Department of Computer Science &amp; Technology (CST) was established with a vision to produce
-                    skilled computing professionals who can meet the challenges of a rapidly evolving technological landscape.
-                    Since its inception, the department has been committed to academic excellence, cutting-edge research,
-                    and fostering innovation among students and faculty alike.
+                    কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি (সিএসটি) বিভাগ দ্রুত বিকশিত প্রযুক্তিগত পরিবেশের চ্যালেঞ্জ মোকাবেলায় সক্ষম দক্ষ কম্পিউটিং পেশাদার তৈরি করার লক্ষ্যে প্রতিষ্ঠিত হয়েছিল। প্রতিষ্ঠার পর থেকে, বিভাগটি একাডেমিক উৎকর্ষ, অত্যাধুনিক গবেষণা এবং শিক্ষার্থী ও অনুষদের মধ্যে উদ্ভাবন উৎসাহিত করতে প্রতিশ্রুতিবদ্ধ।
                 </p>
                 <p style="font-size:15px;color:#64748B;line-height:1.8;margin-bottom:16px;">
-                    Our comprehensive curriculum is designed to provide students with a strong foundation in both
-                    theoretical concepts and practical skills. From fundamental programming and data structures to
-                    advanced topics like artificial intelligence, machine learning, cybersecurity, and cloud computing,
-                    our programs cover the full spectrum of modern computer science.
+                    আমাদের ব্যাপক পাঠ্যক্রম শিক্ষার্থীদের তাত্ত্বিক ধারণা এবং ব্যবহারিক দক্ষতা উভয়ক্ষেত্রে শক্তিশালী ভিত্তি প্রদানের জন্য ডিজাইন করা হয়েছে। মৌলিক প্রোগ্রামিং এবং ডেটা স্ট্রাকচার থেকে শুরু করে আর্টিফিশিয়াল ইন্টেলিজেন্স, মেশিন লার্নিং, সাইবার সিকিউরিটি এবং ক্লাউড কম্পিউটিংয়ের মতো উন্নত বিষয়গুলি আমাদের প্রোগ্রামে অন্তর্ভুক্ত রয়েছে।
                 </p>
                 <p style="font-size:15px;color:#64748B;line-height:1.8;">
-                    We believe in a holistic approach to education that combines rigorous classroom instruction with
-                    hands-on laboratory work, industry internships, research projects, and community engagement.
-                    Our graduates are well-equipped to pursue successful careers in software development, data science,
-                    IT consulting, academia, and entrepreneurial ventures.
+                    আমরা একটি সামগ্রিক শিক্ষা পদ্ধতিতে বিশ্বাস করি যা কঠোর ক্লাসরুম নির্দেশনাকে হাতে-কলমে ল্যাবরেটরি কাজ, শিল্প ইন্টার্নশিপ, গবেষণা প্রকল্প এবং সম্প্রদায়ের সাথে সম্পৃক্ততার সাথে একত্রিত করে। আমাদের স্নাতকরা সফটওয়্যার ডেভেলপমেন্ট, ডেটা সায়েন্স, আইটি কনসালটিং, একাডেমিয়া এবং উদ্যোক্তা উদ্যোগে সফল ক্যারিয়ার অনুসরণ করতে সুসজ্জিত।
                 </p>
             </div>
 
@@ -223,10 +214,10 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                Our Purpose
+                আমাদের উদ্দেশ্য
             </div>
-            <h2 class="section-title">Mission &amp; Vision</h2>
-            <p class="section-desc">The guiding principles that drive everything we do at the CST Department.</p>
+            <h2 class="section-title">লক্ষ্য ও উদ্দেশ্য</h2>
+            <p class="section-desc">সিএসটি বিভাগে আমরা যা করি তার পেছনের পথপ্রদর্শক নীতিসমূহ।</p>
         </div>
 
         <div class="grid-2">
@@ -239,13 +230,9 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
                         <path d="M8 12h8"/>
                     </svg>
                 </div>
-                <h3 style="font-size:20px;font-weight:700;margin-bottom:12px;">Our Mission</h3>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:12px;">আমাদের লক্ষ্য</h3>
                 <p style="font-size:14px;color:#64748B;line-height:1.8;">
-                    To provide quality education in computer science and technology through an industry-aligned
-                    curriculum, fostering critical thinking, creativity, and problem-solving skills. We strive to
-                    produce graduates who are not only technically proficient but also ethically responsible and
-                    socially conscious professionals capable of contributing to the advancement of society through
-                    technology and innovation.
+                    কম্পিউটার সায়েন্স ও টেকনোলজিতে মানসম্মত শিক্ষা প্রদান করা যা শিল্প-সারিবদ্ধ পাঠ্যক্রমের মাধ্যমে সমালোচনামূলক চিন্তা, সৃজনশীলতা এবং সমস্যা সমাধানের দক্ষতা বিকাশ করে। আমরা এমন স্নাতক তৈরি করার চেষ্টা করি যারা কেবল প্রযুক্তিগতভাবে দক্ষই নয়, নৈতিকভাবে দায়িত্বশীল এবং সামাজিকভাবে সচেতন পেশাদারও যারা প্রযুক্তি ও উদ্ভাবনের মাধ্যমে সমাজের উন্নতিতে অবদান রাখতে পারে।
                 </p>
             </div>
 
@@ -257,13 +244,9 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
                         <circle cx="12" cy="12" r="3"/>
                     </svg>
                 </div>
-                <h3 style="font-size:20px;font-weight:700;margin-bottom:12px;">Our Vision</h3>
+                <h3 style="font-size:20px;font-weight:700;margin-bottom:12px;">আমাদের উদ্দেশ্য</h3>
                 <p style="font-size:14px;color:#64748B;line-height:1.8;">
-                    To be a leading department of computer science and technology recognized nationally and
-                    internationally for excellence in education, research, and community engagement. We envision
-                    a vibrant academic environment where students and faculty collaborate on groundbreaking research,
-                    innovative projects, and transformative ideas that shape the future of computing and technology
-                    for the betterment of humanity.
+                    জাতীয় ও আন্তর্জাতিকভাবে শিক্ষা, গবেষণা এবং সম্প্রদায়ের সাথে সম্পৃক্ততার জন্য স্বীকৃত কম্পিউটার সায়েন্স ও টেকনোলজির একটি শ্রেষ্ঠ বিভাগ হওয়া। আমরা একটি প্রাণবন্ত একাডেমিক পরিবেশের কল্পনা করি যেখানে শিক্ষার্থী এবং অনুষদ যৌথভাবে যুগান্তকারী গবেষণা, উদ্ভাবনী প্রকল্প এবং রূপান্তরমূলক ধারণার উপর কাজ করে যা কম্পিউটিং এবং প্রযুক্তির ভবিষ্যতকে মানবজাতির কল্যাণের জন্য রূপদান করবে।
                 </p>
             </div>
         </div>
@@ -278,10 +261,10 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Our Strengths
+                আমাদের শক্তি
             </div>
-            <h2 class="section-title">Why Choose Us</h2>
-            <p class="section-desc">Discover what sets the CST Department apart and makes it the ideal choice for your education.</p>
+            <h2 class="section-title">কেন আমাদের বেছে নেবেন</h2>
+            <p class="section-desc">জেনে নিন কি সিএসটি বিভাগকে আপনার শিক্ষার জন্য আদর্শ পছন্দ করে তুলেছে।</p>
         </div>
 
         <div class="grid-4">
@@ -295,8 +278,8 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                     </svg>
                 </div>
-                <h3>Expert Faculty</h3>
-                <p>Highly qualified and experienced professors with PhDs from reputed universities, dedicated to mentoring students.</p>
+                <h3>অভিজ্ঞ শিক্ষকমণ্ডলী</h3>
+                <p>খ্যাতনামা বিশ্ববিদ্যালয় থেকে পিএইচডি প্রাপ্ত অত্যন্ত যোগ্য ও অভিজ্ঞ অধ্যাপকগণ শিক্ষার্থীদের মেন্টরশিপে নিবেদিত।</p>
             </div>
 
             <!-- Modern Labs -->
@@ -310,8 +293,8 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
                         <path d="M10 8v4"/>
                     </svg>
                 </div>
-                <h3>Modern Labs</h3>
-                <p>State-of-the-art computer laboratories equipped with the latest hardware, software, and high-speed internet connectivity.</p>
+                <h3>আধুনিক ল্যাব</h3>
+                <p>সর্বশেষ হার্ডওয়্যার, সফটওয়্যার এবং উচ্চগতির ইন্টারনেট সংযোগ সহ অত্যাধুনিক কম্পিউটার ল্যাবরেটরি।</p>
             </div>
 
             <!-- Industry Links -->
@@ -323,8 +306,8 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
                         <line x1="10" y1="14" x2="21" y2="3"/>
                     </svg>
                 </div>
-                <h3>Industry Links</h3>
-                <p>Strong partnerships with leading tech companies providing internship opportunities, guest lectures, and placement support.</p>
+                <h3>শিল্প সংযোগ</h3>
+                <p>ইন্টার্নশিপ সুযোগ, অতিথি লেকচার এবং প্লেসমেন্ট সহায়তা প্রদানকারী শীর্ষস্থানীয় প্রযুক্তি কোম্পানির সাথে শক্তিশালী অংশীদারিত্ব।</p>
             </div>
 
             <!-- Active Research -->
@@ -337,8 +320,8 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
                         <line x1="8" y1="11" x2="14" y2="11"/>
                     </svg>
                 </div>
-                <h3>Active Research</h3>
-                <p>Vibrant research culture with faculty and students publishing in top journals and conferences in AI, IoT, and more.</p>
+                <h3>সক্রিয় গবেষণা</h3>
+                <p>এআই, আইওটি এবং আরও অনেক কিছুতে শীর্ষ জার্নাল ও সম্মেলনে অনুষদ ও শিক্ষার্থীদের প্রকাশনার সাথে প্রাণবন্ত গবেষণা সংস্কৃতি।</p>
             </div>
         </div>
     </div>
@@ -394,65 +377,65 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Depart
 
             <!-- Column 2: Quick Links -->
             <div class="footer-col">
-                <h4>Quick Links</h4>
+                <h4>দ্রুত লিংক</h4>
                 <ul class="footer-links">
                     <li><a href="<?php echo SITE_URL; ?>">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Home
+                        হোম
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/about.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        About Us
+                        সম্পর্কে
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/faculty.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Faculty
+                        শিক্ষকমণ্ডলী
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Notices
+                        নোটিশ
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/gallery.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Gallery
+                        গ্যালারি
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/contact.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Contact
+                        যোগাযোগ
                     </a></li>
                 </ul>
             </div>
 
             <!-- Column 3: Resources -->
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4>রিসোর্স</h4>
                 <ul class="footer-links">
                     <li><a href="<?php echo SITE_URL; ?>/resources.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Lecture Notes
+                        লেকচার নোট
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/resources.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        E-Books
+                        ই-বুক
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/resources.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Software
+                        সফটওয়্যার
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Exam Schedule
+                        পরীক্ষার সূচি
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Academic Calendar
+                        একাডেমিক ক্যালেন্ডার
                     </a></li>
                 </ul>
             </div>
 
             <!-- Column 4: Contact Info -->
             <div class="footer-col">
-                <h4>Contact Info</h4>
+                <h4>যোগাযোগের তথ্য</h4>
                 <ul class="footer-links">
                     <?php if ($siteAddress): ?>
                     <li>

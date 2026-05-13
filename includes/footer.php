@@ -45,17 +45,17 @@ if (!empty($credits)) {
     <section class="cta-section" style="background-color: #2563EB; color: #fff; padding: 64px 0; text-align: center;">
         <div class="container" style="position: relative; z-index: 2;">
             <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 12px; color: #fff;">
-                Ready to Explore?
+                অন্বেষণ করতে প্রস্তুত?
             </h2>
             <p style="font-size: 1.1rem; opacity: 0.9; max-width: 560px; margin: 0 auto 32px; color: #fff; line-height: 1.6;">
-                Discover our programs, meet our faculty, and find the resources you need to succeed in Computer Science &amp; Technology.
+                আমাদের প্রোগ্রাম, আমাদের শিক্ষকমণ্ডলীর সাথে পরিচিত হন এবং কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজিতে সফল হওয়ার জন্য প্রয়োজনীয় রিসোর্স খুঁজে নিন।
             </p>
             <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
                 <a href="<?= SITE_URL ?>/notice.php" class="btn btn-primary" style="background: #fff; color: #2563EB; border: 2px solid #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s;">
-                    <?= icon('bell', 16) ?> View Notices
+                    <?= icon('bell', 16) ?> নোটিশ দেখুন
                 </a>
                 <a href="<?= SITE_URL ?>/contact.php" class="btn btn-secondary" style="background: transparent; color: #fff; border: 2px solid #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s;">
-                    <?= icon('send', 16) ?> Contact Us
+                    <?= icon('send', 16) ?> যোগাযোগ করুন
                 </a>
             </div>
         </div>
@@ -70,7 +70,7 @@ if (!empty($credits)) {
     <section class="sponsors-section" style="background-color: #F8FAFC; padding: 48px 0;">
         <div class="container">
             <h2 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 32px; color: #1F2937;">
-                <?= sanitize($settings['sponsored_title'] ?? 'Sponsored By') ?>
+                <?= sanitize($settings['sponsored_title'] ?? 'স্পন্সর') ?>
             </h2>
             <div class="sponsors-row" style="display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap;">
                 <?php foreach ($sponsors as $sponsor): ?>
@@ -96,7 +96,7 @@ if (!empty($credits)) {
     <section class="credits-section" style="background-color: #FFFFFF; padding: 48px 0;">
         <div class="container">
             <h2 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 40px; color: #1F2937;">
-                <?= sanitize($settings['credits_title'] ?? 'Credits & Acknowledgements') ?>
+                <?= sanitize($settings['credits_title'] ?? 'কৃতজ্ঞতা ও স্বীকৃতি') ?>
             </h2>
 
             <?php foreach ($creditsBySection as $sectionName => $sectionCredits): ?>
@@ -203,41 +203,41 @@ if (!empty($credits)) {
 
                 <!-- Column 2: Quick Links -->
                 <div class="footer-col">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">Quick Links</h4>
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">দ্রুত লিংক</h4>
                     <ul style="list-style: none; margin: 0; padding: 0;">
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('home', 14) ?> Home
+                                <?= icon('home', 14) ?> হোম
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/about.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('info', 14) ?> About
+                                <?= icon('info', 14) ?> সম্পর্কে
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/faculty.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('users', 14) ?> Faculty
+                                <?= icon('users', 14) ?> শিক্ষকমণ্ডলী
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/notice.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('bell', 14) ?> Notices
+                                <?= icon('bell', 14) ?> নোটিশ
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/resources.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('book', 14) ?> Resources
+                                <?= icon('book', 14) ?> রিসোর্স
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/gallery.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('image', 14) ?> Gallery
+                                <?= icon('image', 14) ?> গ্যালারি
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/contact.php" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('mail', 14) ?> Contact
+                                <?= icon('mail', 14) ?> যোগাযোগ
                             </a>
                         </li>
                     </ul>
@@ -245,31 +245,31 @@ if (!empty($credits)) {
 
                 <!-- Column 3: Resources -->
                 <div class="footer-col">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">Resources</h4>
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">রিসোর্স</h4>
                     <ul style="list-style: none; margin: 0; padding: 0;">
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/resources.php?type=study_materials" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('file-text', 14) ?> Study Materials
+                                <?= icon('file-text', 14) ?> অধ্যয়ন সামগ্রী
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/resources.php?type=previous_questions" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('file-text', 14) ?> Previous Questions
+                                <?= icon('file-text', 14) ?> বিগত প্রশ্ন
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/resources.php?type=syllabus" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('file-text', 14) ?> Syllabus
+                                <?= icon('file-text', 14) ?> সিলেবাস
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/resources.php?type=class_routine" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('calendar', 14) ?> Class Routine
+                                <?= icon('calendar', 14) ?> ক্লাস রুটিন
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
                             <a href="<?= SITE_URL ?>/resources.php?type=lab_manuals" style="color: #9CA3AF; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('monitor', 14) ?> Lab Manuals
+                                <?= icon('monitor', 14) ?> ল্যাব ম্যানুয়াল
                             </a>
                         </li>
                     </ul>
@@ -277,7 +277,7 @@ if (!empty($credits)) {
 
                 <!-- Column 4: Contact Info -->
                 <div class="footer-col">
-                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">Contact Info</h4>
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #F9FAFB; margin-bottom: 20px;">যোগাযোগের তথ্য</h4>
 
                     <?php if (!empty($settings['phone'])): ?>
                     <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 16px;">
@@ -285,7 +285,7 @@ if (!empty($credits)) {
                             <?= icon('phone', 16) ?>
                         </span>
                         <div>
-                            <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">Phone</span>
+                            <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">ফোন</span>
                             <a href="tel:<?= sanitize($settings['phone']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
                                 <?= sanitize($settings['phone']) ?>
                             </a>
@@ -299,7 +299,7 @@ if (!empty($credits)) {
                             <?= icon('mail', 16) ?>
                         </span>
                         <div>
-                            <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">Email</span>
+                            <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">ইমেইল</span>
                             <a href="mailto:<?= sanitize($settings['email']) ?>" style="color: #D1D5DB; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">
                                 <?= sanitize($settings['email']) ?>
                             </a>
@@ -313,7 +313,7 @@ if (!empty($credits)) {
                             <?= icon('map-pin', 16) ?>
                         </span>
                         <div>
-                            <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">Address</span>
+                            <span style="font-size: 0.8rem; color: #6B7280; display: block; margin-bottom: 2px;">ঠিকানা</span>
                             <p style="color: #D1D5DB; font-size: 0.9rem; line-height: 1.5; margin: 0;">
                                 <?= sanitize($settings['address']) ?>
                             </p>
@@ -326,7 +326,7 @@ if (!empty($credits)) {
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0; margin-top: 48px; text-align: center;">
                 <p style="font-size: 0.85rem; color: #6B7280; margin: 0;">
-                    &copy; <?= date('Y') ?> <?= sanitize(!empty($settings['copyright_text']) ? $settings['copyright_text'] : siteName()) ?>. All rights reserved.
+                    &copy; <?= date('Y') ?> <?= sanitize(!empty($settings['copyright_text']) ? $settings['copyright_text'] : siteName()) ?>. সর্বস্বত্ব সংরক্ষিত।
                 </p>
             </div>
         </div>

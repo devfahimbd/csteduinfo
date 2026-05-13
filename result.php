@@ -38,7 +38,7 @@ try {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +46,7 @@ try {
     <title><?php echo clean($pageTitle); ?></title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Lottie Player -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -554,18 +554,18 @@ try {
 
             <!-- Navigation Links -->
             <ul class="nav-links">
-                <li><a href="<?php echo SITE_URL; ?>"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/about.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>About</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Faculty</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Notices</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>হোম</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/about.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>সম্পর্কে</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>শিক্ষকমণ্ডলী</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>নোটিশ</span></a></li>
                 <li class="nav-more">
-                    <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>More</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+                    <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>আরও</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
                     <div class="nav-dropdown">
-                    <a href="<?php echo SITE_URL; ?>/gallery.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Gallery</span></a>
-                    <a href="<?php echo SITE_URL; ?>/resources.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Resources</span></a>
-                    <a href="<?php echo SITE_URL; ?>/result.php" class="active"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Result</span></a>
+                    <a href="<?php echo SITE_URL; ?>/gallery.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>গ্যালারি</span></a>
+                    <a href="<?php echo SITE_URL; ?>/resources.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>রিসোর্স</span></a>
+                    <a href="<?php echo SITE_URL; ?>/result.php" class="active"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>ফলাফল</span></a>
                     <div class="dropdown-divider"></div>
-                    <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Contact</span></a>
+                    <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>যোগাযোগ</span></a>
                     </div>
                 </li>
                 </ul>
@@ -587,16 +587,16 @@ try {
      ============================================ -->
 <section class="page-banner">
     <div class="container">
-        <h1>Result</h1>
+        <h1>ফলাফল</h1>
         <div class="breadcrumb">
             <a href="<?php echo SITE_URL; ?>">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Home
+                হোম
             </a>
             <span class="separator">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
-            <span>Result</span>
+            <span>ফলাফল</span>
         </div>
     </div>
 </section>
@@ -607,24 +607,24 @@ try {
 <section class="result-hero-section">
     <div class="result-hero-inner">
         <div class="container">
-            <h1>Diploma Engineering Result</h1>
-            <p>Search your BTEB Diploma In Engineering exam results by roll number. Select regulation year and click search.</p>
+            <h1>ডিপ্লোমা ইঞ্জিনিয়ারিং ফলাফল</h1>
+            <p>রোল নম্বর দিয়ে আপনার বিটিইবি ডিপ্লোমা ইন ইঞ্জিনিয়ারিং পরীক্ষার ফলাফল খুঁজুন। রেগুলেশন বছর নির্বাচন করুন এবং সার্চ ক্লিক করুন।</p>
         </div>
     </div>
 
     <!-- Search Card (overlapping hero) -->
     <div class="result-search-card">
-        <h2>Search Your Result</h2>
-        <p class="subtitle">Enter your roll number to find your result. Regulation and Semester are optional.</p>
+        <h2>আপনার ফলাফল খুঁজুন</h2>
+        <p class="subtitle">ফলাফল খুঁজতে আপনার রোল নম্বর লিখুন। রেগুলেশন ও সেমিস্টার ঐচ্ছিক।</p>
         <form id="searchForm" onsubmit="return false;">
             <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
                 <div class="form-group">
-                    <label>Regulation Year <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
+                    <label>রেগুলেশন বছর <span style="font-weight:400;color:var(--text-light);">(ঐচ্ছিক)</span></label>
                     <select id="regulationYear">
                         <?php if (empty($regYears)): ?>
-                            <option value="">No data available</option>
+                            <option value="">কোনো ডেটা নেই</option>
                         <?php else: ?>
-                            <option value="">All Regulations</option>
+                            <option value="">সকল রেগুলেশন</option>
                             <?php foreach ($regYears as $yr): ?>
                                 <option value="<?php echo htmlspecialchars($yr); ?>"><?php echo htmlspecialchars($yr); ?> Regulation</option>
                             <?php endforeach; ?>
@@ -632,12 +632,12 @@ try {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Semester <span style="font-weight:400;color:var(--text-light);">(optional)</span></label>
+                    <label>সেমিস্টার <span style="font-weight:400;color:var(--text-light);">(ঐচ্ছিক)</span></label>
                     <select id="semesterSelect">
                         <?php if (empty($allSemesters)): ?>
-                            <option value="">No data available</option>
+                            <option value="">কোনো ডেটা নেই</option>
                         <?php else: ?>
-                            <option value="">All Semesters</option>
+                            <option value="">সকল সেমিস্টার</option>
                             <?php foreach ($allSemesters as $sem): ?>
                                 <option value="<?php echo htmlspecialchars($sem); ?>"><?php echo htmlspecialchars($sem); ?></option>
                             <?php endforeach; ?>
@@ -645,19 +645,19 @@ try {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Program</label>
+                    <label>প্রোগ্রাম</label>
                     <select disabled>
-                        <option selected>Diploma In Engineering</option>
+                        <option selected>ডিপ্লোমা ইন ইঞ্জিনিয়ারিং</option>
                     </select>
                 </div>
             </div>
             <div class="form-group" style="margin-bottom:20px;">
-                <label>Roll Number</label>
-                <input type="text" id="rollInput" placeholder="Enter your roll number (e.g., 300010)" required autocomplete="off">
+                <label>রোল নম্বর</label>
+                <input type="text" id="rollInput" placeholder="আপনার রোল নম্বর লিখুন (যেমন, ৩০০০১০)" required autocomplete="off">
             </div>
             <button type="submit" class="btn-search" id="searchBtn" onclick="searchResult()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                Search Result
+                ফলাফল খুঁজুন
             </button>
         </form>
     </div>
@@ -668,7 +668,7 @@ try {
      ============================================ -->
 <div class="result-loading" id="resultLoading">
     <lottie-player src="<?php echo SITE_URL; ?>/assets/lottie/loading.json" background="transparent" speed="1" loop autoplay style="width:180px;height:180px;margin:0 auto;"></lottie-player>
-    <p>Searching your result...</p>
+    <p>আপনার ফলাফল খোঁজা হচ্ছে...</p>
 </div>
 
 <!-- ============================================
@@ -676,8 +676,8 @@ try {
      ============================================ -->
 <div class="result-not-found" id="resultNotFound">
     <lottie-player src="<?php echo SITE_URL; ?>/assets/lottie/not-found.json" background="transparent" speed="1" style="width:280px;height:280px;margin:0 auto;" loop autoplay></lottie-player>
-    <h3>No Result Found</h3>
-    <p>We couldn't find any result for this roll number. Please check your roll number and regulation year and try again.</p>
+    <h3>কোনো ফলাফল পাওয়া যায়নি</h3>
+    <p>এই রোল নম্বরের জন্য কোনো ফলাফল পাওয়া যায়নি। অনুগ্রহ করে আপনার রোল নম্বর ও রেগুলেশন বছর পরীক্ষা করে আবার চেষ্টা করুন।</p>
 </div>
 
 <!-- ============================================
@@ -696,10 +696,10 @@ try {
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-                Analytics
+                বিশ্লেষণ
             </div>
-            <h2 class="section-title">Result Statistics</h2>
-            <p class="section-desc">Comprehensive analysis of examination results across all batches.</p>
+            <h2 class="section-title">ফলাফল পরিসংখ্যান</h2>
+            <p class="section-desc">সকল ব্যাচের পরীক্ষার ফলাফলের ব্যাপক বিশ্লেষণ।</p>
         </div>
         <div id="statsContent"></div>
     </div>
@@ -728,7 +728,7 @@ try {
                         <span class="brand-tagline"><?php echo clean($siteTagline); ?></span>
                     </div>
                 </div>
-                <p><?php echo clean($siteDesc) ?: 'Official website of the Department of Computer Science & Technology. Committed to academic excellence and innovation.'; ?></p>
+                <p><?php echo clean($siteDesc) ?: 'কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি বিভাগের অফিসিয়াল ওয়েবসাইট। একাডেমিক উৎকর্ষ ও উদ্ভাবনীর প্রতিশ্রুতি।'; ?></p>
                 <div class="footer-social">
                     <?php if ($facebookUrl && $facebookUrl !== '#'): ?>
                         <a href="<?php echo clean($facebookUrl); ?>" target="_blank" rel="noopener" aria-label="Facebook">
@@ -755,69 +755,69 @@ try {
 
             <!-- Column 2: Quick Links -->
             <div class="footer-col">
-                <h4>Quick Links</h4>
+                <h4>দ্রুত লিংক</h4>
                 <ul class="footer-links">
                     <li><a href="<?php echo SITE_URL; ?>">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Home
+                        হোম
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/about.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        About Us
+                        সম্পর্কে
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/faculty.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Faculty
+                        শিক্ষকমণ্ডলী
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Notices
+                        নোটিশ
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/gallery.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Gallery
+                        গ্যালারি
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/result.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Result
+                        ফলাফল
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/contact.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Contact
+                        যোগাযোগ
                     </a></li>
                 </ul>
             </div>
 
             <!-- Column 3: Resources -->
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4>রিসোর্স</h4>
                 <ul class="footer-links">
                     <li><a href="<?php echo SITE_URL; ?>/resources.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Lecture Notes
+                        লেকচার নোট
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/resources.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        E-Books
+                        ই-বুক
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/resources.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Software
+                        সফটওয়্যার
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Exam Schedule
+                        পরীক্ষার সময়সূচি
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        Academic Calendar
+                        একাডেমিক ক্যালেন্ডার
                     </a></li>
                 </ul>
             </div>
 
             <!-- Column 4: Contact Info -->
             <div class="footer-col">
-                <h4>Contact Info</h4>
+                <h4>যোগাযোগ তথ্য</h4>
                 <ul class="footer-links">
                     <?php if ($siteAddress): ?>
                     <li>
@@ -910,7 +910,7 @@ try {
         document.getElementById('resultNotFound').classList.remove('active');
         document.getElementById('resultLoading').classList.add('active');
         document.getElementById('searchBtn').disabled = true;
-        document.getElementById('searchBtn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><path d="M21 12a9 9 0 11-6.219-8.56"></path></svg> Searching...';
+        document.getElementById('searchBtn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><path d="M21 12a9 9 0 11-6.219-8.56"></path></svg> খোঁজা হচ্ছে...';
 
         var formData = new FormData();
         formData.append('roll', roll);
@@ -925,7 +925,7 @@ try {
         .then(function(data) {
             document.getElementById('resultLoading').classList.remove('active');
             document.getElementById('searchBtn').disabled = false;
-            document.getElementById('searchBtn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search Result';
+            document.getElementById('searchBtn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> ফলাফল খুঁজুন';
 
             if (data.success && data.data.length > 0) {
                 window._searchResults = data.data;
@@ -941,7 +941,7 @@ try {
         .catch(function() {
             document.getElementById('resultLoading').classList.remove('active');
             document.getElementById('searchBtn').disabled = false;
-            document.getElementById('searchBtn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search Result';
+            document.getElementById('searchBtn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> ফলাফল খুঁজুন';
             document.getElementById('resultNotFound').classList.add('active');
         });
     }

@@ -162,14 +162,14 @@ $semesterColors = ['#2563EB', '#7C3AED', '#DB2777', '#EA580C', '#059669', '#0891
 $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 'cpu', 'rocket'];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo clean($siteDesc); ?>">
     <title><?php echo clean($pageTitle); ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
 </head>
@@ -234,18 +234,18 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="<?php echo SITE_URL; ?>/" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/about.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>About</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Faculty</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Notices</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>হোম</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/about.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>সম্পর্কে</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>শিক্ষকমণ্ডলী</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>নোটিশ</span></a></li>
                 <li class="nav-more">
-                    <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>More</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+                    <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>আরও</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
                     <div class="nav-dropdown">
-                    <a href="<?php echo SITE_URL; ?>/gallery.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Gallery</span></a>
-                    <a href="<?php echo SITE_URL; ?>/resources.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>Resources</span></a>
-                    <a href="<?php echo SITE_URL; ?>/result.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>Result</span></a>
+                    <a href="<?php echo SITE_URL; ?>/gallery.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>গ্যালারি</span></a>
+                    <a href="<?php echo SITE_URL; ?>/resources.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span>রিসোর্স</span></a>
+                    <a href="<?php echo SITE_URL; ?>/result.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>ফলাফল</span></a>
                     <div class="dropdown-divider"></div>
-                    <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Contact</span></a>
+                    <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>যোগাযোগ</span></a>
                     </div>
                 </li>
                 </ul>
@@ -259,43 +259,43 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      HERO SECTION - Big Lottie Animation
      ============================================ -->
-<section class="hero hero-large">
+<section class="hero hero-large shine-effect">
     <div class="container">
         <div class="hero-content">
             <div class="hero-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                Khulna Polytechnic Institute
+                খুলনা পলিটেকনিক ইনস্টিটিউট
             </div>
-            <h1 class="hero-title">Welcome to <span class="highlight">CST</span><br>Department</h1>
+            <h1 class="hero-title">স্বাগতম <span class="highlight">CST</span><br>বিভাগে</h1>
             <p class="hero-desc">
-                The Department of Computer Science &amp; Technology at Khulna Polytechnic Institute is dedicated to building skilled technologists. Our 4-year diploma program combines practical training, modern curriculum, and industry exposure to prepare students for the digital future.
+                কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি বিভাগ, খুলনা পলিটেকনিক ইনস্টিটিউট, দক্ষ প্রযুক্তিবিদদের গড়ে তুলতে প্রতিশ্রুতিবদ্ধ। আমাদের ৪ বছরের ডিপ্লোমা প্রোগ্রাম ব্যবহারিক প্রশিক্ষণ, আধুনিক পাঠ্যক্রম এবং শিল্প অভিজ্ঞতাকে একত্রিত করে শিক্ষার্থীদের ডিজিটাল ভবিষ্যতের জন্য প্রস্তুত করে।
             </p>
             <div class="hero-actions">
                 <a href="<?php echo SITE_URL; ?>/resources.php" class="btn btn-primary btn-lg">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    Explore Programs
+                    প্রোগ্রামসমূহ দেখুন
                 </a>
                 <a href="<?php echo SITE_URL; ?>/contact.php" class="btn btn-outline btn-lg">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    Contact Us
+                    যোগাযোগ করুন
                 </a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <h3>500+</h3>
-                    <p>Students</p>
+                    <p>শিক্ষার্থী</p>
                 </div>
                 <div class="hero-stat">
                     <h3>30+</h3>
-                    <p>Faculty</p>
+                    <p>শিক্ষক</p>
                 </div>
                 <div class="hero-stat">
                     <h3>8</h3>
-                    <p>Semesters</p>
+                    <p>সেমিস্টার</p>
                 </div>
                 <div class="hero-stat">
                     <h3>5+</h3>
-                    <p>Modern Labs</p>
+                    <p>আধুনিক ল্যাব</p>
                 </div>
             </div>
         </div>
@@ -315,37 +315,37 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      ABOUT US SECTION (Small)
      ============================================ -->
-<section class="section section-alt" id="about-short">
+<section class="section section-alt shine-effect" id="about-short">
     <div class="container">
         <div class="about-grid-2col">
             <div class="about-text-col">
                 <div class="section-badge">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                    About Us
+                    আমাদের সম্পর্কে
                 </div>
-                <h2 class="section-title" style="text-align:left;">CST at Khulna Polytechnic Institute</h2>
+                <h2 class="section-title" style="text-align:left;">খুলনা পলিটেকনিক ইনস্টিটিউটে সিএসটি</h2>
                 <p style="color:#64748B;line-height:1.8;margin-bottom:16px;">
-                    The Department of Computer Science &amp; Technology (CST) is one of the leading technology departments at <strong style="color:#1E293B;">Khulna Polytechnic Institute</strong>, one of the largest and most prestigious polytechnic institutes in Bangladesh, established in 1963 under the Bangladesh Technical Education Board (BTEB).
+                    কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি (সিএসটি) বিভাগ <strong style="color:#1E293B;">খুলনা পলিটেকনিক ইনস্টিটিউট</strong>-এর অন্যতম প্রধান প্রযুক্তি বিভাগ, যা বাংলাদেশের অন্যতম বৃহৎ ও স্বনামধন্য পলিটেকনিক ইনস্টিটিউট, ১৯৬৩ সালে বাংলাদেশ কারিগরি শিক্ষা বোর্ড (বিটিইবি)-এর অধীনে প্রতিষ্ঠিত।
                 </p>
                 <p style="color:#64748B;line-height:1.8;margin-bottom:24px;">
-                    Our 4-year diploma engineering program equips students with strong foundations in programming, networking, database management, web development, mobile app development, cybersecurity, and emerging technologies like IoT and AI. With state-of-the-art computer labs and experienced faculty, CST KPI produces industry-ready graduates every year.
+                    আমাদের ৪ বছরের ডিপ্লোমা ইঞ্জিনিয়ারিং প্রোগ্রাম শিক্ষার্থীদের প্রোগ্রামিং, নেটওয়ার্কিং, ডাটাবেজ ম্যানেজমেন্ট, ওয়েব ডেভেলপমেন্ট, মোবাইল অ্যাপ ডেভেলপমেন্ট, সাইবার সিকিউরিটি এবং আইওটি ও এআই-এর মতো উদীয়মান প্রযুক্তিতে দক্ষ করে তোলে। আধুনিক কম্পিউটার ল্যাব ও অভিজ্ঞ শিক্ষকমণ্ডলীর সাহায্যে সিএসটি কেপিআই প্রতি বছর শিল্প-প্রস্তুত স্নাতক তৈরি করে।
                 </p>
                 <div class="about-highlights">
                     <div class="about-highlight-item">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        <span>Established Under BTEB</span>
+                        <span>বিটিইবি অধীনে প্রতিষ্ঠিত</span>
                     </div>
                     <div class="about-highlight-item">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        <span>4-Year Diploma Program</span>
+                        <span>৪ বছরের ডিপ্লোমা প্রোগ্রাম</span>
                     </div>
                     <div class="about-highlight-item">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        <span>State-of-the-Art Labs</span>
+                        <span>আধুনিক ল্যাব সুবিধা</span>
                     </div>
                     <div class="about-highlight-item">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        <span>Industry-Aligned Curriculum</span>
+                        <span>শিল্পভিত্তিক পাঠ্যক্রম</span>
                     </div>
                 </div>
             </div>
@@ -356,28 +356,28 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         </div>
                         <div class="about-stat-number">500+</div>
-                        <div class="about-stat-label">Active Students</div>
+                        <div class="about-stat-label">সক্রিয় শিক্ষার্থী</div>
                     </div>
                     <div class="about-stat-card stat-card-green">
                         <div class="about-stat-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         </div>
                         <div class="about-stat-number">30+</div>
-                        <div class="about-stat-label">Expert Faculty</div>
+                        <div class="about-stat-label">অভিজ্ঞ শিক্ষক</div>
                     </div>
                     <div class="about-stat-card stat-card-purple">
                         <div class="about-stat-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                         </div>
                         <div class="about-stat-number">5+</div>
-                        <div class="about-stat-label">Modern Labs</div>
+                        <div class="about-stat-label">আধুনিক ল্যাব</div>
                     </div>
                     <div class="about-stat-card stat-card-orange">
                         <div class="about-stat-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
                         </div>
                         <div class="about-stat-number">95%</div>
-                        <div class="about-stat-label">Pass Rate</div>
+                        <div class="about-stat-label">পাসের হার</div>
                     </div>
                 </div>
             </div>
@@ -388,35 +388,35 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      MISSION & VISION SECTION
      ============================================ -->
-<section class="section">
+<section class="section shine-effect">
     <div class="container">
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16l4-4-4-4"/><path d="M8 12h8"/></svg>
-                Our Purpose
+                আমাদের উদ্দেশ্য
             </div>
-            <h2 class="section-title">Mission &amp; Vision</h2>
-            <p class="section-desc">Guiding principles that drive our commitment to excellence in technology education.</p>
+            <h2 class="section-title">লক্ষ্য ও উদ্দেশ্য</h2>
+            <p class="section-desc">প্রযুক্তি শিক্ষায় শ্রেষ্ঠত্ব অর্জনের প্রতিশ্রুতিতে আমাদের পথপ্রদর্শক নীতিসমূহ।</p>
         </div>
         <div class="mv-grid">
             <div class="mv-card mv-mission">
                 <div class="mv-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                 </div>
-                <h3>Our Mission</h3>
-                <p>To provide quality diploma-level education in Computer Science &amp; Technology that empowers students with practical skills, analytical thinking, and professional ethics. We strive to produce competent technologists who can contribute to the national and global IT industry.</p>
+                <h3>আমাদের লক্ষ্য</h3>
+                <p>কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজিতে মানসম্মত ডিপ্লোমা স্তরের শিক্ষা প্রদান করা যা শিক্ষার্থীদের ব্যবহারিক দক্ষতা, বিশ্লেষণাত্মক চিন্তা এবং পেশাদার নৈতিকতায় সক্ষম করে তুলবে। আমরা জাতীয় ও আন্তর্জাতিক আইটি শিল্পে অবদান রাখতে সক্ষম দক্ষ প্রযুক্তিবিদ তৈরি করার চেষ্টা করি।</p>
                 <ul class="mv-points">
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Hands-on practical training approach
+                        ব্যবহারিক প্রশিক্ষণ পদ্ধতি
                     </li>
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Industry-aligned modern curriculum
+                        শিল্পভিত্তিক আধুনিক পাঠ্যক্রম
                     </li>
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Building strong moral &amp; ethical values
+                        শক্তিশালী নৈতিক মূল্যবোধ গড়ে তোলা
                     </li>
                 </ul>
             </div>
@@ -424,20 +424,20 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <div class="mv-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
-                <h3>Our Vision</h3>
-                <p>To become the leading Computer Science &amp; Technology department among polytechnic institutes in Bangladesh, recognized for producing innovative, skilled, and socially responsible technology professionals who drive digital transformation.</p>
+                <h3>আমাদের উদ্দেশ্য</h3>
+                <p>বাংলাদেশের পলিটেকনিক ইনস্টিটিউটগুলির মধ্যে শ্রেষ্ঠ কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি বিভাগ হিসেবে স্বীকৃতি লাভ করা, যা উদ্ভাবনী, দক্ষ এবং সামাজিকভাবে দায়িত্বশীল প্রযুক্তি পেশাদারদের উৎপাদনের জন্য পরিচিত যারা ডিজিটাল রূপান্তরকে এগিয়ে নেবে।</p>
                 <ul class="mv-points">
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Center of excellence in tech education
+                        প্রযুক্তি শিক্ষায় শ্রেষ্ঠত্বের কেন্দ্র
                     </li>
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        100% employment readiness for graduates
+                        স্নাতকদের জন্য ১০০% কর্মসংস্থান প্রস্তুতি
                     </li>
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Hub of innovation &amp; research activities
+                        উদ্ভাবন ও গবেষণার কেন্দ্র
                     </li>
                 </ul>
             </div>
@@ -448,72 +448,72 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      FEATURES SECTION
      ============================================ -->
-<section class="section section-alt">
+<section class="section section-alt shine-effect">
     <div class="container">
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                Why CST KPI
+                কেন সিএসটি কেপিআই
             </div>
-            <h2 class="section-title">What Makes Us Stand Out</h2>
-            <p class="section-desc">Discover why CST at Khulna Polytechnic Institute is the top choice for aspiring technologists.</p>
+            <h2 class="section-title">আমাদের বৈশিষ্ট্য</h2>
+            <p class="section-desc">জেনে নিন কেন খুলনা পলিটেকনিক ইনস্টিটিউটের সিএসটি বিভাগ আগ্রহী প্রযুক্তিবিদদের জন্য শ্রেষ্ঠ পছন্দ।</p>
         </div>
         <div class="grid-4">
             <div class="feature-card">
                 <div class="feature-icon blue">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 </div>
-                <h3>Modern Computer Labs</h3>
-                <p>5+ well-equipped labs with latest hardware, high-speed internet, and modern software tools for practical learning.</p>
+                <h3>আধুনিক কম্পিউটার ল্যাব</h3>
+                <p>৫টির বেশি সুসজ্জিত ল্যাব যেখানে সর্বশেষ হার্ডওয়্যার, উচ্চগতির ইন্টারনেট এবং আধুনিক সফটওয়্যার টুলস রয়েছে।</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon purple">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
                 </div>
-                <h3>Quality Education</h3>
-                <p>BTEB-approved curriculum taught by experienced instructors with focus on both theory and hands-on practice.</p>
+                <h3>মানসম্মত শিক্ষা</h3>
+                <p>অভিজ্ঞ শিক্ষকদের দ্বারা বিটিইবি-অনুমোদিত পাঠ্যক্রম পড়ানো হয় যেখানে তত্ত্ব ও ব্যবহারিক উভয়ের উপর জোর দেওয়া হয়।</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon orange">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <h3>Industry Connection</h3>
-                <p>Internship opportunities, industry visits, and guest lectures from leading tech companies and professionals.</p>
+                <h3>শিল্প সংযোগ</h3>
+                <p>ইন্টার্নশিপ সুযোগ, শিল্প পরিদর্শন এবং শীর্ষস্থানীয় প্রযুক্তি কোম্পানি ও পেশাদারদের থেকে গেস্ট লেকচার।</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon green">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
                 </div>
-                <h3>Certified Programs</h3>
-                <p>BTEB diploma certification recognized nationwide, opening doors to higher education and employment.</p>
+                <h3>সার্টিফাইড প্রোগ্রাম</h3>
+                <p>বিটিইবি ডিপ্লোমা সার্টিফিকেট সারাদেশে স্বীকৃত, যা উচ্চশিক্ষা ও কর্মসংস্থানের দ্বার উন্মুক্ত করে।</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon blue">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
                 </div>
-                <h3>Co-Curricular Activities</h3>
-                <p>Programming contests, tech fairs, hackathons, seminars, and workshops to enhance practical skills beyond classroom.</p>
+                <h3>সহপাঠক্রমিক কার্যক্রম</h3>
+                <p>প্রোগ্রামিং প্রতিযোগিতা, টেক ফেয়ার, হ্যাকাথন, সেমিনার এবং ওয়ার্কশপের মাধ্যমে ক্লাসরুমের বাইরে ব্যবহারিক দক্ষতা বৃদ্ধি।</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon purple">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </div>
-                <h3>Research &amp; Innovation</h3>
-                <p>Students work on real-world projects, IoT prototypes, web applications, and participate in national competitions.</p>
+                <h3>গবেষণা ও উদ্ভাবন</h3>
+                <p>শিক্ষার্থীরা বাস্তব প্রকল্প, আইওটি প্রোটোটাইপ, ওয়েব অ্যাপ্লিকেশন নিয়ে কাজ করে এবং জাতীয় প্রতিযোগিতায় অংশগ্রহণ করে।</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon orange">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 </div>
-                <h3>Alumni Network</h3>
-                <p>Strong alumni community working in top IT companies at home and abroad, providing mentorship and career guidance.</p>
+                <h3>প্রাক্তন শিক্ষার্থী নেটওয়ার্ক</h3>
+                <p>দেশে ও বিদেশে শীর্ষ আইটি কোম্পানিতে কর্মরত শক্তিশালী প্রাক্তন শিক্ষার্থী সম্প্রদায়, যারা মেন্টরশিপ ও ক্যারিয়ার গাইডলাইন প্রদান করেন।</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon green">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                 </div>
-                <h3>Digital Library</h3>
-                <p>Access to online resources, e-books, video lectures, and digital tools for self-paced learning and reference.</p>
+                <h3>ডিজিটাল লাইব্রেরি</h3>
+                <p>অনলাইন রিসোর্স, ই-বুক, ভিডিও লেকচার এবং স্ব-গতি শিক্ষা ও রেফারেন্সের জন্য ডিজিটাল টুলসে অ্যাক্সেস।</p>
             </div>
         </div>
     </div>
@@ -522,15 +522,15 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      SEMESTER JOURNEY SECTION (Redesigned - Purple Theme)
      ============================================ -->
-<section class="section semester-journey-section" id="semester-section">
+<section class="section semester-journey-section shine-effect" id="semester-section">
     <div class="container">
         <div class="sem-journey-header">
             <div class="sem-journey-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                Academic Roadmap
+                একাডেমিক রোডম্যাপ
             </div>
-            <h2 class="sem-journey-title">Semester Journey</h2>
-            <p class="sem-journey-desc">Our 4-year diploma program covers everything from foundational subjects to cutting-edge technologies like JavaScript, React, Node.js, MongoDB, Next.js, and Express. Click on each semester to explore the curriculum.</p>
+            <h2 class="sem-journey-title">সেমিস্টার যাত্রা</h2>
+            <p class="sem-journey-desc">আমাদের ৪ বছরের ডিপ্লোমা প্রোগ্রাম ভিত্তিগত বিষয় থেকে শুরু করে জাভাস্ক্রিপ্ট, রিঅ্যাক্ট, নোড.জেএস, মঙ্গোডিবি, নেক্সট.জেএস এবং এক্সপ্রেসের মতো অত্যাধুনিক প্রযুক্তি পর্যন্ত সবকিছু অন্তর্ভুক্ত করে। প্রতিটি সেমিস্টারে ক্লিক করে পাঠ্যক্রম দেখুন।</p>
         </div>
 
         <!-- Milestone Tabs Navigation -->
@@ -538,7 +538,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
             <?php foreach ($semesters as $i => $sem): ?>
                 <button class="sem-milestone-tab <?php echo $i === 0 ? 'active' : ''; ?>" data-semester="<?php echo $sem['num']; ?>">
                     <span class="milestone-num"><?php echo str_pad($sem['num'], 2, '0', STR_PAD_LEFT); ?></span>
-                    <span class="milestone-label">Semester <?php echo $sem['num']; ?></span>
+                    <span class="milestone-label">সেমিস্টার <?php echo $sem['num']; ?></span>
                 </button>
             <?php endforeach; ?>
         </div>
@@ -549,7 +549,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <div class="sem-journey-panel <?php echo $i === 0 ? 'active' : ''; ?>" id="semPanel<?php echo $sem['num']; ?>" data-semester="<?php echo $sem['num']; ?>">
                     <!-- Panel Title -->
                     <div class="sem-panel-title-area">
-                        <span class="sem-panel-title"><?php echo $sem['name']; ?> &mdash; Year <?php echo ceil($sem['num'] / 2); ?></span>
+                        <span class="sem-panel-title"><?php echo $sem['name']; ?> &mdash; বছর <?php echo ceil($sem['num'] / 2); ?></span>
                     </div>
 
                     <!-- Mind-Map Layout: Subjects → Animated Line → Big Folder → Branching Lines → Learn Items -->
@@ -593,14 +593,14 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                                 <div class="sem-card-icon">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                                 </div>
-                                <span>Subjects</span>
+                                <span>বিষয়সমূহ</span>
                             </div>
                             <ul class="sem-subject-list">
                                 <?php foreach ($sem['subjects'] as $subj): ?>
                                     <li class="sem-subject-tag"><?php echo clean($subj); ?></li>
                                 <?php endforeach; ?>
                             </ul>
-                            <div class="sem-subject-footer"><?php echo count($sem['subjects']); ?> Subjects in Total</div>
+                            <div class="sem-subject-footer"><?php echo count($sem['subjects']); ?>টি বিষয় মোট</div>
                         </div>
 
                         <!-- Center: BIG Folder Icon with text INSIDE -->
@@ -616,8 +616,8 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                                         <!-- Inner shadow line -->
                                         <path d="M12 28H128" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
                                         <!-- Text: Semester number INSIDE the folder -->
-                                        <text x="70" y="58" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="28" fill="rgba(255,255,255,0.95)"><?php echo str_pad($sem['num'], 2, '0', STR_PAD_LEFT); ?></text>
-                                        <text x="70" y="82" text-anchor="middle" font-family="Inter, sans-serif" font-weight="600" font-size="13" fill="rgba(255,255,255,0.7)" letter-spacing="3">SEMESTER</text>
+                                        <text x="70" y="58" text-anchor="middle" font-family="Hind Siliguri, sans-serif" font-weight="800" font-size="28" fill="rgba(255,255,255,0.95)"><?php echo str_pad($sem['num'], 2, '0', STR_PAD_LEFT); ?></text>
+                                        <text x="70" y="82" text-anchor="middle" font-family="Hind Siliguri, sans-serif" font-weight="600" font-size="13" fill="rgba(255,255,255,0.7)" letter-spacing="3">সেমিস্টার</text>
                                         <defs>
                                             <linearGradient id="fGradBack<?php echo $sem['num']; ?>" x1="70" y1="2" x2="70" y2="108" gradientUnits="userSpaceOnUse">
                                                 <stop stop-color="#A78BFA"/><stop offset="1" stop-color="#7C3AED"/>
@@ -638,7 +638,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                         <div class="sem-outcomes-column" id="semOutcomes<?php echo $sem['num']; ?>">
                             <div class="sem-outcomes-heading">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                                <span>What You'll Learn</span>
+                                <span>আপনি যা শিখবেন</span>
                             </div>
                             <?php foreach ($displayOutcomes as $oi => $outcome): ?>
                                 <div class="sem-outcome-card" id="semOutcome<?php echo $sem['num']; ?>_<?php echo $oi; ?>">
@@ -659,15 +659,15 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      LATEST NOTICES SECTION
      ============================================ -->
-<section class="section section-alt">
+<section class="section section-alt shine-effect">
     <div class="container">
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                Stay Updated
+                সর্বশেষ আপডেট
             </div>
-            <h2 class="section-title">Latest Notices</h2>
-            <p class="section-desc">Important announcements and updates from the department administration.</p>
+            <h2 class="section-title">সাম্প্রতিক নোটিশ</h2>
+            <p class="section-desc">বিভাগের সর্বশেষ ঘোষণা ও আপডেট দেখুন।</p>
         </div>
         <?php if (!empty($notices)): ?>
             <div class="notices-list">
@@ -688,7 +688,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                             <?php if ($notice['is_important']): ?>
                                 <span class="notice-tag important">
                                     <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2z"/><rect x="11" y="10" width="2" height="4" fill="white"/><rect x="11" y="16" width="2" height="2" fill="white"/></svg>
-                                    Important
+                                    গুরুত্বপূর্ণ
                                 </span>
                             <?php else: ?>
                                 <span class="notice-tag <?php echo clean($tagClass); ?>"><?php echo clean($catName); ?></span>
@@ -702,7 +702,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <?php endforeach; ?>
             </div>
             <div style="text-align:center;margin-top:30px;">
-                <a href="<?php echo SITE_URL; ?>/notice.php" class="btn btn-outline">View All Notices <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="<?php echo SITE_URL; ?>/notice.php" class="btn btn-outline">সকল নোটিশ দেখুন <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
         <?php else: ?>
             <div class="empty-state" style="margin-top: -10px;">
@@ -714,8 +714,8 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     loop
                     autoplay>
                 </lottie-player>
-                <h3>No Notices Yet</h3>
-                <p>Important announcements will appear here. Please check back later.</p>
+                <h3>এখনও নোটিশ নেই</h3>
+                <p>গুরুত্বপূর্ণ ঘোষণা এখানে প্রদর্শিত হবে। অনুগ্রহ করে পরে আবার দেখুন।</p>
             </div>
         <?php endif; ?>
     </div>
@@ -724,15 +724,15 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      FACULTY SPOTLIGHT
      ============================================ -->
-<section class="section">
+<section class="section shine-effect">
     <div class="container">
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                Our Team
+                আমাদের দল
             </div>
-            <h2 class="section-title">Faculty Spotlight</h2>
-            <p class="section-desc">Meet our experienced faculty who guide students toward academic and professional excellence.</p>
+            <h2 class="section-title">অভিজ্ঞ শিক্ষকমণ্ডলী</h2>
+            <p class="section-desc">পরবর্তী প্রজন্মের প্রযুক্তি নেতাদের পথপ্রদর্শনকারী নিবেদিতপ্রাণ শিক্ষকগণ।</p>
         </div>
         <?php if (!empty($teachers)): ?>
             <div class="grid-4">
@@ -762,7 +762,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <?php endforeach; ?>
             </div>
             <div style="text-align:center;margin-top:30px;">
-                <a href="<?php echo SITE_URL; ?>/faculty.php" class="btn btn-outline">View All Faculty <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="<?php echo SITE_URL; ?>/faculty.php" class="btn btn-outline">সকল শিক্ষক দেখুন <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
         <?php else: ?>
             <div class="empty-state" style="margin-top: -10px;">
@@ -774,8 +774,8 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     loop
                     autoplay>
                 </lottie-player>
-                <h3>Faculty Coming Soon</h3>
-                <p>Our faculty profiles are being prepared.</p>
+                <h3>শিক্ষকমণ্ডলী শীঘ্রই আসছে</h3>
+                <p>আমাদের শিক্ষকদের প্রোফাইল প্রস্তুত করা হচ্ছে।</p>
             </div>
         <?php endif; ?>
     </div>
@@ -784,15 +784,15 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      GALLERY PREVIEW
      ============================================ -->
-<section class="section section-alt">
+<section class="section section-alt shine-effect">
     <div class="container">
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                Photo Gallery
+                ফটো গ্যালারি
             </div>
-            <h2 class="section-title">Campus Gallery</h2>
-            <p class="section-desc">Explore moments from our campus life, events, and activities.</p>
+            <h2 class="section-title">আমাদের মুহূর্ত</h2>
+            <p class="section-desc">সিএসটি বিভাগের প্রাণবন্ত জীবন, অনুষ্ঠান ও কার্যক্রমের এক ঝলক।</p>
         </div>
         <?php if (!empty($gallery)): ?>
             <div class="gallery-grid">
@@ -812,7 +812,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <?php endforeach; ?>
             </div>
             <div style="text-align:center;margin-top:30px;">
-                <a href="<?php echo SITE_URL; ?>/gallery.php" class="btn btn-outline">View All Photos <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="<?php echo SITE_URL; ?>/gallery.php" class="btn btn-outline">সকল ছবি দেখুন <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
         <?php else: ?>
             <div class="empty-state" style="margin-top: -10px;">
@@ -824,8 +824,8 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     loop
                     autoplay>
                 </lottie-player>
-                <h3>Gallery Coming Soon</h3>
-                <p>Photos from events and campus life will be added soon.</p>
+                <h3>গ্যালারি শীঘ্রই আসছে</h3>
+                <p>অনুষ্ঠান ও ক্যাম্পাস জীবনের ছবি শীঘ্রই যোগ করা হবে।</p>
             </div>
         <?php endif; ?>
     </div>
@@ -835,11 +835,11 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
      SPONSORS SECTION
      ============================================ -->
 <?php if (!empty($sponsors)): ?>
-<section class="sponsor-section">
+<section class="sponsor-section shine-effect">
     <div class="container">
         <div style="text-align:center;margin-bottom:30px;">
-            <div class="section-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg> Our Partners</div>
-            <h2 class="section-title" style="margin-bottom:6px;">Sponsored By</h2>
+            <div class="section-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg> আমাদের অংশীদার</div>
+            <h2 class="section-title" style="margin-bottom:6px;">স্পন্সর</h2>
         </div>
         <div class="sponsor-logos">
             <?php foreach ($sponsors as $sponsor): ?>
@@ -860,12 +860,12 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
      CREDITS SECTION
      ============================================ -->
 <?php if (!empty($credits)): ?>
-<section class="section">
+<section class="section shine-effect">
     <div class="container">
         <div class="section-header">
-            <div class="section-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Team</div>
-            <h2 class="section-title">Credits</h2>
-            <p class="section-desc">The talented people behind this website and department initiatives.</p>
+            <div class="section-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> দল</div>
+            <h2 class="section-title">কৃতজ্ঞতা</h2>
+            <p class="section-desc">এই ওয়েবসাইট ও বিভাগের উদ্যোগের পেছনের প্রতিভাবান মানুষদের প্রশংসা।</p>
         </div>
         <div class="credits-grid">
             <?php foreach ($credits as $credit): ?>
@@ -893,7 +893,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <!-- ============================================
      CTA SECTION
      ============================================ -->
-<section class="cta-section">
+<section class="cta-section shine-effect">
     <div class="container">
         <div class="cta-content">
             <div class="cta-lottie">
@@ -906,16 +906,16 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     style="width:200px;height:200px;">
                 </lottie-player>
             </div>
-            <h2>Ready to Start Your Tech Journey?</h2>
-            <p>Join CST at Khulna Polytechnic Institute and build a successful career in technology. Apply now or reach out to learn more about our programs.</p>
+            <h2>আপনার প্রযুক্তি যাত্রা শুরু করতে প্রস্তুত?</h2>
+            <p>খুলনা পলিটেকনিক ইনস্টিটিউটে সিএসটিতে যোগ দিন এবং প্রযুক্তিতে সফল ক্যারিয়ার গড়ুন। এখনই আবেদন করুন বা আমাদের প্রোগ্রাম সম্পর্কে আরও জানতে যোগাযোগ করুন।</p>
             <div class="cta-actions">
                 <a href="<?php echo SITE_URL; ?>/contact.php" class="btn btn-primary btn-lg" style="background:#fff;color:#2563EB;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    Get In Touch
+                    যোগাযোগ করুন
                 </a>
                 <a href="<?php echo SITE_URL; ?>/about.php" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    Learn More
+                    আরও জানুন
                 </a>
             </div>
         </div>
@@ -940,7 +940,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                         <span class="brand-tagline"><?php echo clean($siteTagline); ?></span>
                     </div>
                 </div>
-                <p><?php echo clean($siteDesc) ?: 'Official website of CST Department at Khulna Polytechnic Institute. Building future technologists since 1963.'; ?></p>
+                <p><?php echo clean($siteDesc) ?: 'খুলনা পলিটেকনিক ইনস্টিটিউটের সিএসটি বিভাগের অফিসিয়াল ওয়েবসাইট। ১৯৬৩ সাল থেকে ভবিষ্যৎ প্রযুক্তিবিদ গড়ে তুলছি।'; ?></p>
                 <div class="footer-social">
                     <?php if ($facebookUrl && $facebookUrl !== '#'): ?><a href="<?php echo clean($facebookUrl); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><?php endif; ?>
                     <?php if ($youtubeUrl && $youtubeUrl !== '#'): ?><a href="<?php echo clean($youtubeUrl); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></svg></a><?php endif; ?>
@@ -948,29 +948,29 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 </div>
             </div>
             <div class="footer-col">
-                <h4>Quick Links</h4>
+                <h4>দ্রুত লিংক</h4>
                 <ul class="footer-links">
-                    <li><a href="<?php echo SITE_URL; ?>">Home</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/about.php">About Us</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/faculty.php">Faculty</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/notice.php">Notices</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/gallery.php">Gallery</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/result.php">Result</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/contact.php">Contact</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>">হোম</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/about.php">সম্পর্কে</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/faculty.php">শিক্ষকমণ্ডলী</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/notice.php">নোটিশ</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/gallery.php">গ্যালারি</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/result.php">ফলাফল</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/contact.php">যোগাযোগ</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Resources</h4>
+                <h4>রিসোর্স</h4>
                 <ul class="footer-links">
-                    <li><a href="<?php echo SITE_URL; ?>/resources.php">Lecture Notes</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/resources.php">E-Books</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/resources.php">Software Tools</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/notice.php">Exam Schedule</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/notice.php">Academic Calendar</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/resources.php">লেকচার নোট</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/resources.php">ই-বুক</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/resources.php">সফটওয়্যার</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/notice.php">পরীক্ষার সূচি</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/notice.php">একাডেমিক ক্যালেন্ডার</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact Info</h4>
+                <h4>যোগাযোগের তথ্য</h4>
                 <ul class="footer-links">
                     <?php if ($siteAddress): ?><li><a href="javascript:void(0)" style="cursor:default;"><?php echo clean($siteAddress); ?></a></li><?php endif; ?>
                     <?php if ($sitePhone): ?><li><a href="tel:<?php echo clean($sitePhone); ?>"><?php echo clean($sitePhone); ?></a></li><?php endif; ?>

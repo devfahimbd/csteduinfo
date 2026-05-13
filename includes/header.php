@@ -15,13 +15,13 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 
 // Nav items with label, slug, and icon
 $navItems = [
-    ['label' => 'Home',      'slug' => 'index',     'icon' => 'home'],
-    ['label' => 'About',     'slug' => 'about',     'icon' => 'info'],
-    ['label' => 'Faculty',   'slug' => 'faculty',   'icon' => 'users'],
-    ['label' => 'Notices',   'slug' => 'notice',    'icon' => 'bell'],
-    ['label' => 'Resources', 'slug' => 'resources', 'icon' => 'book'],
-    ['label' => 'Gallery',   'slug' => 'gallery',   'icon' => 'image'],
-    ['label' => 'Contact',   'slug' => 'contact',   'icon' => 'mail'],
+    ['label' => 'হোম',      'slug' => 'index',     'icon' => 'home'],
+    ['label' => 'সম্পর্কে',     'slug' => 'about',     'icon' => 'info'],
+    ['label' => 'শিক্ষকমণ্ডলী',   'slug' => 'faculty',   'icon' => 'users'],
+    ['label' => 'নোটিশ',   'slug' => 'notice',    'icon' => 'bell'],
+    ['label' => 'রিসোর্স', 'slug' => 'resources', 'icon' => 'book'],
+    ['label' => 'গ্যালারি',   'slug' => 'gallery',   'icon' => 'image'],
+    ['label' => 'যোগাযোগ',   'slug' => 'contact',   'icon' => 'mail'],
 ];
 
 // Helper: check if a nav item is active
@@ -41,7 +41,7 @@ function isNavItemActive($slug, $currentPage) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <?= generateMetaTags($page_title, $page_description, $page_image); ?>
 
@@ -49,10 +49,10 @@ function isNavItemActive($slug, $currentPage) {
     <link rel="icon" href="<?= sanitize($favicon) ?>" type="image/png">
     <?php endif; ?>
 
-    <!-- Google Fonts: Poppins -->
+    <!-- Google Fonts: Hind Siliguri -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/style.css">
