@@ -289,6 +289,42 @@
     });
   }
 
+  /* ─── More Dropdown (Click + Hover) ─── */
+  var navMoreBtns = document.querySelectorAll('.nav-more > a');
+
+  navMoreBtns.forEach(function (btn) {
+    // Click toggle
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var parent = this.parentElement;
+
+      // Close other open dropdowns
+      document.querySelectorAll('.nav-more.open').forEach(function (other) {
+        if (other !== parent) other.classList.remove('open');
+      });
+
+      parent.classList.toggle('open');
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-more')) {
+      document.querySelectorAll('.nav-more.open').forEach(function (item) {
+        item.classList.remove('open');
+      });
+    }
+  });
+
+  // Close dropdown when a dropdown link is clicked
+  document.querySelectorAll('.nav-dropdown a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      document.querySelectorAll('.nav-more.open').forEach(function (item) {
+        item.classList.remove('open');
+      });
+    });
+  });
+
   /* ─── Contact Form Validation ─── */
   var contactForm = document.querySelector('#contact-form, form.contact-form');
 
