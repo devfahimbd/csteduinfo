@@ -7,7 +7,7 @@
  * $activePage values: 'dashboard', 'upload-result', 'result-data', 'subject-codes',
  *                     'notices', 'notice-edit', 'teachers', 'teacher-edit',
  *                     'gallery', 'gallery-edit', 'resources', 'resource-edit',
- *                     'categories', 'sponsors', 'credits', 'settings', 'messages'
+ *                     'categories', 'sponsors', 'credits', 'settings', 'messages' for active state
  */
 if (!isset($activePage)) $activePage = '';
 ?>
