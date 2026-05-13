@@ -320,13 +320,15 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
      ============================================ -->
 <section class="section section-alt shine-effect" id="about-short">
     <div class="container">
+        <div class="section-header">
+            <div class="section-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                আমাদের সম্পর্কে
+            </div>
+            <h2 class="section-title">খুলনা পলিটেকনিক ইনস্টিটিউটে <span class="title-blue">সিএসটি</span></h2>
+        </div>
         <div class="about-grid-2col">
             <div class="about-text-col">
-                <div class="section-badge">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                    আমাদের সম্পর্কে
-                </div>
-                <h2 class="section-title" style="text-align:left;">খুলনা পলিটেকনিক ইনস্টিটিউটে <span class="title-blue">সিএসটি</span></h2>
                 <p style="color:#64748B;line-height:1.8;margin-bottom:16px;">
                     কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি (সিএসটি) বিভাগ <strong style="color:#1E293B;">খুলনা পলিটেকনিক ইনস্টিটিউট</strong>-এর অন্যতম প্রধান প্রযুক্তি বিভাগ, যা বাংলাদেশের অন্যতম বৃহৎ ও স্বনামধন্য পলিটেকনিক ইনস্টিটিউট, ১৯৬৩ সালে বাংলাদেশ কারিগরি শিক্ষা বোর্ড (বিটিইবি)-এর অধীনে প্রতিষ্ঠিত।
                 </p>

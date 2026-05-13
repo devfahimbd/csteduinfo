@@ -2345,14 +2345,9 @@ textarea.form-control {
     align-items: center;
 }
 
-.about-grid-2col .section-badge {
-    margin-bottom: 14px;
-}
+/* Section badge is now in section-header, no longer in about-grid-2col */
 
-.about-text-col .section-title {
-    font-size: 28px;
-    margin-bottom: 16px;
-}
+/* Section title is now in section-header, no longer in about-text-col */
 
 .about-highlights {
     display: grid;
@@ -3090,12 +3085,6 @@ textarea.form-control {
     .about-grid-2col {
         grid-template-columns: 1fr;
         gap: 30px;
-    }
-    .about-text-col .section-title {
-        text-align: center;
-    }
-    .about-text-col .section-badge {
-        display: inline-flex;
     }
     .about-text-col p {
         text-align: center;
