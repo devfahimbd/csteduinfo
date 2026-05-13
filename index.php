@@ -191,6 +191,9 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
      ============================================ -->
 <header class="header" id="mainHeader">
     <div class="header-top">
+        <div class="corner-bubble bubble-tl"></div>
+        <div class="corner-bubble bubble-tr"></div>
+        <div class="corner-bubble bubble-bl"></div>
         <div class="container">
             <div class="top-left">
                 <a href="tel:<?php echo clean($sitePhone); ?>">
