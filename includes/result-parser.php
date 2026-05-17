@@ -395,3 +395,5 @@ class ResultPdfParser {
         return ['batches' => $this->pdo->query("SELECT b.*, COUNT(s.id) as student_count, SUM(CASE WHEN s.result_type='passed' THEN 1 ELSE 0 END) as passed_count, SUM(CASE WHEN s.result_type IN ('referred','failed_4plus') THEN 1 ELSE 0 END) as failed_count FROM result_batches b LEFT JOIN result_students s ON b.id = s.batch_id WHERE b.status='completed' GROUP BY b.id ORDER BY b.created_at DESC")->fetchAll()];
     }
 }
+
+// update at 2026-05-17 13:22:56
