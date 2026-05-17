@@ -376,3 +376,5 @@ function icon($name, $size = 20) {
 
     return isset($icons[$name]) ? $icons[$name] : '';
 }
+
+// optimized data flow
