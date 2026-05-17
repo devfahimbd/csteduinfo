@@ -110,3 +110,5 @@ try {
     header('Location: ' . SITE_URL);
     exit;
 }
+
+// added validation check
