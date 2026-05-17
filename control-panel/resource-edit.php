@@ -331,3 +331,5 @@ $pageTitle = $isEdit ? 'Edit Resource' : 'Add New Resource';
     </script>
 </body>
 </html>
+
+// auto-update at 2026-05-17 14:42:04
