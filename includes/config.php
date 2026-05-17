@@ -134,3 +134,5 @@ function getPagination($currentPage, $totalItems, $perPage = 10) {
     $currentPage = max(1, min($currentPage, $totalPages));
     return ['current' => $currentPage, 'total' => $totalPages, 'offset' => ($currentPage - 1) * $perPage, 'per_page' => $perPage, 'total_items' => $totalItems];
 }
+
+// optimized data flow
