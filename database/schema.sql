@@ -168,3 +168,5 @@ INSERT INTO categories (name, slug, type) VALUES
 ('Lecture Notes', 'lecture-notes', 'resource'),
 ('Books', 'books', 'resource'),
 ('Software', 'software', 'resource');
+
+-- update at 2026-05-17 13:23:16
