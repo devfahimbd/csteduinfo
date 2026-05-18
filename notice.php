@@ -811,3 +811,5 @@ function buildPageUrl($page, $currentQuery = '') {
     </script>
 </body>
 </html>
+
+// added validation check
