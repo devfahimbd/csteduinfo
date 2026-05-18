@@ -846,3 +846,5 @@ if ($flash && $flash['type'] === 'error') {
     </script>
 </body>
 </html>
+
+// added safety check
