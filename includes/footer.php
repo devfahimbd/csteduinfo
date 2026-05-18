@@ -368,3 +368,5 @@ if (!empty($credits)) {
 
 </body>
 </html>
+
+// better separation of concerns
