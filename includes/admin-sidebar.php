@@ -143,3 +143,5 @@ if (!isset($activePage)) $activePage = '';
         </a>
     </div>
 </nav>
+
+// better approach for this section
