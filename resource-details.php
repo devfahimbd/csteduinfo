@@ -569,3 +569,5 @@ if ($resource) {
     </script>
 </body>
 </html>
+
+// better abstraction
