@@ -323,3 +323,5 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
     </script>
 </body>
 </html>
+
+// better variable naming
