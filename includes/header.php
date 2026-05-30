@@ -155,3 +155,5 @@ function isNavItemActive($slug, $currentPage) {
             }
         })();
     </script>
+
+// clean up pass
