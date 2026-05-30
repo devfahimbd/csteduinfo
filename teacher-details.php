@@ -1,6 +1,6 @@
 <?php
 /**
- * CST Department Website - Teacher Detail Page
+ * পলিটেকনিক শিক্ষা বাংলাদেশ - Teacher Detail Page
  * Core PHP + MySQL with PDO
  */
 
@@ -35,11 +35,11 @@ try {
 }
 
 // ─── Page Title ───
-$pageTitle = ($teacher ? clean($teacher['name']) . ' - ' : 'শিক্ষকমণ্ডলী - ') . SITE_NAME;
+$pageTitle = ($teacher ? clean($teacher['name']) . ' - ' : 'পলিটেকনিক সূমহ - ') . SITE_NAME;
 
 // ─── Settings ───
-$siteName      = siteSetting('site_name', 'CST Department');
-$siteTagline   = siteSetting('site_tagline', 'Department of Computer Science & Technology');
+$siteName      = siteSetting('site_name', 'পলিটেকনিক শিক্ষা বাংলাদেশ');
+$siteTagline   = siteSetting('site_tagline', 'বাংলাদেশের পলিটেকনিক শিক্ষা তথ্য পোর্টাল');
 $sitePhone     = siteSetting('site_phone', '');
 $siteEmail     = siteSetting('site_email', '');
 $siteAddress   = siteSetting('site_address', '');
@@ -49,7 +49,7 @@ $facebookUrl   = siteSetting('facebook_url', '#');
 $twitterUrl    = siteSetting('twitter_url', '#');
 $linkedinUrl   = siteSetting('linkedin_url', '#');
 $youtubeUrl    = siteSetting('youtube_url', '#');
-$footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএসটি বিভাগ। সর্বস্বত্ব সংরক্ষিত।');
+$footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলিটেকনিক শিক্ষা বাংলাদেশ। সর্বস্বত্ব সংরক্ষিত।');
 ?>
 <!DOCTYPE html>
 <html lang="bn">
@@ -321,7 +321,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএ�
             <ul class="nav-links">
                 <li><a href="<?php echo SITE_URL; ?>/"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>হোম</span></a></li>
                 <li><a href="<?php echo SITE_URL; ?>/about.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>সম্পর্কে</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/faculty.php" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>শিক্ষকমণ্ডলী</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/faculty.php" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>পলিটেকনিক সূমহ</span></a></li>
                 <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>নোটিশ</span></a></li>
                 <li class="nav-more">
                     <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>আরও</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
@@ -362,7 +362,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএ�
             <span class="separator">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
-            <a href="<?php echo SITE_URL; ?>/faculty.php">শিক্ষকমণ্ডলী</a>
+            <a href="<?php echo SITE_URL; ?>/faculty.php">পলিটেকনিক সূমহ</a>
             <span class="separator">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
@@ -456,7 +456,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএ�
         <div class="back-link-wrapper" style="margin-top:32px;">
             <a href="<?php echo SITE_URL; ?>/faculty.php" class="back-link">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                শিক্ষকমণ্ডলীতে ফিরে যান
+                পলিটেকনিক সূমহে ফিরে যান
             </a>
         </div>
     </div>
@@ -477,7 +477,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএ�
     <p>আপনি যে শিক্ষকটি খুঁজছেন সেটি বিদ্যমান নেই বা সরানো হয়েছে।</p>
     <a href="<?php echo SITE_URL; ?>/faculty.php" class="btn btn-outline">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        শিক্ষকমণ্ডলীতে ফিরে যান
+        পলিটেকনিক সূমহে ফিরে যান
     </a>
 </section>
 
@@ -506,7 +506,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএ�
                         <span class="brand-tagline"><?php echo clean($siteTagline); ?></span>
                     </div>
                 </div>
-                <p><?php echo clean($siteDesc) ?: 'কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি বিভাগের অফিসিয়াল ওয়েবসাইট। একাডেমিক উৎকর্ষ এবং উদ্ভাবনার প্রতিশ্রুতিবদ্ধ।'; ?></p>
+                <p><?php echo clean($siteDesc) ?: 'পলিটেকনিক শিক্ষার অফিসিয়াল ওয়েবসাইট। একাডেমিক উৎকর্ষ এবং উদ্ভাবনের প্রতি প্রতিশ্রুতিবদ্ধ।'; ?></p>
                 <div class="footer-social">
                     <?php if ($facebookUrl && $facebookUrl !== '#'): ?>
                         <a href="<?php echo clean($facebookUrl); ?>" target="_blank" rel="noopener" aria-label="Facebook">
@@ -537,7 +537,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএ�
                 <ul class="footer-links">
                     <li><a href="<?php echo SITE_URL; ?>/"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg> হোম</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/about.php"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg> সম্পর্কে</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg> শিক্ষকমণ্ডলী</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svgপলিটেকনিক সূমহ</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg> নোটিশ</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/gallery.php"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg> গ্যালারি</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/contact.php"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg> যোগাযোগ</a></li>

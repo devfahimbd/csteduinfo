@@ -7,7 +7,8 @@
  * $activePage values: 'dashboard', 'upload-result', 'result-data', 'subject-codes',
  *                     'notices', 'notice-edit', 'teachers', 'teacher-edit',
  *                     'gallery', 'gallery-edit', 'resources', 'resource-edit',
- *                     'categories', 'sponsors', 'credits', 'settings', 'messages'
+ *                     'categories', 'sponsors', 'credits', 'settings', 'messages',
+ *                     'polytechnics'
  */
 if (!isset($activePage)) $activePage = '';
 ?>
@@ -103,6 +104,17 @@ if (!isset($activePage)) $activePage = '';
     <!-- MANAGEMENT -->
     <div class="nav-section">
         <div class="nav-section-title">MANAGEMENT</div>
+        <a href="polytechnics.php" <?php echo $activePage === 'polytechnics' ? 'class="active"' : ''; ?>>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"></path>
+                <path d="M5 21V7l8-4v18"></path>
+                <path d="M19 21V11l-6-4"></path>
+                <path d="M9 9h1"></path>
+                <path d="M9 13h1"></path>
+                <path d="M9 17h1"></path>
+            </svg>
+            পলিটেকনিক সূমহ
+        </a>
         <a href="categories.php" <?php echo $activePage === 'categories' ? 'class="active"' : ''; ?>>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>

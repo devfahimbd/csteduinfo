@@ -1,5 +1,5 @@
 =============================================
-CST Department Website - Deployment Guide
+পলিটেকনিক শিক্ষা বাংলাদেশ - Deployment Guide
 =============================================
 
 SYSTEM REQUIREMENTS:

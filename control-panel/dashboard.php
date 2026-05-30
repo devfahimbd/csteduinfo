@@ -10,11 +10,16 @@ try {
     $activeNotices = $pdo->query("SELECT COUNT(*) FROM notices WHERE status = 1")->fetchColumn();
     $activeResources = $pdo->query("SELECT COUNT(*) FROM resources WHERE status = 1")->fetchColumn();
     $galleryImages = $pdo->query("SELECT COUNT(*) FROM gallery")->fetchColumn();
+    try {
+        $totalPolytechnics = $pdo->query("SELECT COUNT(*) FROM polytechnics")->fetchColumn();
+    } catch (PDOException $e) {
+        $totalPolytechnics = 0;
+    }
 
     $stmt = $pdo->query("SELECT n.title, c.name AS category, n.created_at, n.status FROM notices n LEFT JOIN categories c ON n.category_id = c.id ORDER BY n.created_at DESC LIMIT 5");
     $recentNotices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    $totalTeachers = $activeNotices = $activeResources = $galleryImages = 0;
+    $totalTeachers = $activeNotices = $activeResources = $galleryImages = $totalPolytechnics = 0;
     $recentNotices = [];
 }
 
@@ -119,7 +124,7 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
         <div class="sidebar-header">
             <a href="../" class="sidebar-logo">
                 <img src="<?php echo defined('SITE_URL') ? SITE_URL : ''; ?>/assets/images/logo.png" alt="Logo" onerror="this.style.display='none'">
-                CST Admin
+                Admin Panel
             </a>
         </div>
         <nav class="sidebar-nav">
@@ -190,6 +195,22 @@ $adminName = $_SESSION['admin_name'] ?? 'Admin';
                     <div class="stat-info">
                         <h3><?php echo (int)$galleryImages; ?></h3>
                         <p>Gallery Images</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue" style="background:#ede9fe;color:#7c3aed;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"></path>
+                            <path d="M5 21V7l8-4v18"></path>
+                            <path d="M19 21V11l-6-4"></path>
+                            <path d="M9 9h1"></path>
+                            <path d="M9 13h1"></path>
+                            <path d="M9 17h1"></path>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <h3><?php echo (int)$totalPolytechnics; ?></h3>
+                        <p>Total Polytechnics</p>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/cst-kpi/csteduinfo/main/assets/images/readme-banner.png" alt="CST Department Website Banner" width="100%"/>
+<img src="https://raw.githubusercontent.com/cst-kpi/csteduinfo/main/assets/images/readme-banner.png" alt="পলিটেকনিক শিক্ষা বাংলাদেশ ওয়েবসাইট ব্যানার" width="100%"/>
 
-<h1>CST Department Website</h1>
+<h1>পলিটেকনিক শিক্ষা বাংলাদেশ</h1>
 
 <p><strong>Computer Science & Technology Department, Khulna Polytechnic Institute</strong></p>
 

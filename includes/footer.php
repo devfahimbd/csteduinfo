@@ -1,6 +1,6 @@
 <?php
 // ============================================
-// CST Department - Footer
+// Admin Panel - Footer
 // ============================================
 
 // Ensure settings are available
@@ -48,7 +48,7 @@ if (!empty($credits)) {
                 অন্বেষণ করতে প্রস্তুত?
             </h2>
             <p style="font-size: 1.1rem; max-width: 560px; margin: 0 auto 32px; color: #64748b; line-height: 1.6;">
-                আমাদের প্রোগ্রাম, আমাদের শিক্ষকমণ্ডলীর সাথে পরিচিত হন এবং কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজিতে সফল হওয়ার জন্য প্রয়োজনীয় রিসোর্স খুঁজে নিন।
+                আমাদের প্রোগ্রাম, বাংলাদেশের পলিটেকনিক শিক্ষা প্রতিষ্ঠানসমূহের সাথে পরিচিত হন এবং প্রযুক্তি শিক্ষায় সফল হওয়ার জন্য প্রয়োজনীয় রিসোর্স খুঁজে নিন।
             </p>
             <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
                 <a href="<?= SITE_URL ?>/notice.php" class="btn btn-primary" style="padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s;">
@@ -89,62 +89,7 @@ if (!empty($credits)) {
     </section>
     <?php endif; ?>
 
-    <!-- ============================================
-         Credits & Acknowledgements Section
-         ============================================ -->
-    <?php if (!empty($creditsBySection)): ?>
-    <section class="credits-section" style="background-color: #FFFFFF; padding: 48px 0;">
-        <div class="container">
-            <h2 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 40px; color: #1F2937;">
-                <?= sanitize($settings['credits_title'] ?? 'কৃতজ্ঞতা ও স্বীকৃতি') ?>
-            </h2>
 
-            <?php foreach ($creditsBySection as $sectionName => $sectionCredits): ?>
-                <?php if (count($creditsBySection) > 1): ?>
-                    <h3 style="font-size: 1.1rem; font-weight: 600; color: #4B5563; margin-bottom: 16px; margin-top: 32px; padding-bottom: 8px; border-bottom: 2px solid #E5E7EB;">
-                        <?= sanitize($sectionName) ?>
-                    </h3>
-                <?php endif; ?>
-                <div class="credits-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;">
-                    <?php foreach ($sectionCredits as $credit): ?>
-                        <div class="credit-card" style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 20px; display: flex; align-items: center; gap: 14px; transition: box-shadow 0.2s;">
-                            <?php if (!empty($credit['icon'])): ?>
-                                <div class="credit-icon" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; color: #2563EB;">
-                                    <img src="<?= UPLOAD_URL . sanitize($credit['icon']) ?>" alt="" style="width: 28px; height: 28px; object-fit: contain; border-radius: 50%;">
-                                </div>
-                            <?php else: ?>
-                                <div class="credit-icon" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #EFF6FF; display: flex; align-items: center; justify-content: center; color: #2563EB;">
-                                    <?= icon('award', 22) ?>
-                                </div>
-                            <?php endif; ?>
-                            <div class="credit-info" style="min-width: 0;">
-                                <?php if (!empty($credit['url'])): ?>
-                                    <a href="<?= sanitize($credit['url']) ?>" target="_blank" rel="noopener" class="credit-name" style="font-weight: 600; color: #1F2937; text-decoration: none; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <?= sanitize($credit['name']) ?>
-                                    </a>
-                                <?php else: ?>
-                                    <span class="credit-name" style="font-weight: 600; color: #1F2937; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <?= sanitize($credit['name']) ?>
-                                    </span>
-                                <?php endif; ?>
-                                <?php if (!empty($credit['role'])): ?>
-                                    <span class="credit-role" style="font-size: 0.875rem; color: #6B7280; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <?= sanitize($credit['role']) ?>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                            <?php if (!empty($credit['url'])): ?>
-                                <a href="<?= sanitize($credit['url']) ?>" target="_blank" rel="noopener" style="flex-shrink: 0; color: #9CA3AF; transition: color 0.2s; margin-left: auto;" aria-label="Visit external link">
-                                    <?= icon('link', 16) ?>
-                                </a>
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
-    <?php endif; ?>
 
     <!-- ============================================
          Main Footer
@@ -216,8 +161,13 @@ if (!empty($credits)) {
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="<?= SITE_URL ?>/faculty.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
-                                <?= icon('users', 14) ?> শিক্ষকমণ্ডলী
+                            <a href="<?= SITE_URL ?>/polytechnics.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                                <?= icon('users', 14) ?> পলিটেকনিক সূমহ
+                            </a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <a href="<?= SITE_URL ?>/credits.php" style="color: #64748b; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: color 0.2s;">
+                                <?= icon('heart', 14) ?> কৃতজ্ঞতা
                             </a>
                         </li>
                         <li style="margin-bottom: 10px;">

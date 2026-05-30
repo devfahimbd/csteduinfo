@@ -1,6 +1,6 @@
 <?php
 // ============================================
-// CST Department - Header
+// পলিটেকনিক শিক্ষা বাংলাদেশ - Header
 // ============================================
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/functions.php';
@@ -17,7 +17,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 $navItems = [
     ['label' => 'হোম',      'slug' => 'index',     'icon' => 'home'],
     ['label' => 'সম্পর্কে',     'slug' => 'about',     'icon' => 'info'],
-    ['label' => 'শিক্ষকমণ্ডলী',   'slug' => 'faculty',   'icon' => 'users'],
+    ['label' => 'পলিটেকনিক সূমহ', 'slug' => 'polytechnics', 'icon' => 'users'],
     ['label' => 'নোটিশ',   'slug' => 'notice',    'icon' => 'bell'],
     ['label' => 'রিসোর্স', 'slug' => 'resources', 'icon' => 'book'],
     ['label' => 'গ্যালারি',   'slug' => 'gallery',   'icon' => 'image'],

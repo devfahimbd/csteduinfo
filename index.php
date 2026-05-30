@@ -1,28 +1,21 @@
 <?php
 /**
- * CST Department - Khulna Polytechnic Institute
- * Homepage - Professional Landing Page
+ * Polytechnic Education Bangladesh - Homepage
+ * Generic polytechnic education portal for all Bangladesh
  */
 require_once 'includes/config.php';
 
-$pageTitle = 'Home - CST Department | Khulna Polytechnic Institute';
+$pageTitle = 'হোম - পলিটেকনিক শিক্ষা বাংলাদেশ';
 
 // Fetch Data
 $notices = [];
-$teachers = [];
 $gallery = [];
 $sponsors = [];
-$credits = [];
 
 try {
     $stmt = safeQuery($pdo, "SELECT * FROM notices WHERE status = 1 ORDER BY created_at DESC LIMIT 5");
     if ($stmt) $notices = $stmt->fetchAll();
 } catch (Exception $e) { $notices = []; }
-
-try {
-    $stmt = safeQuery($pdo, "SELECT * FROM teachers WHERE status = 1 ORDER BY sort_order ASC LIMIT 4");
-    if ($stmt) $teachers = $stmt->fetchAll();
-} catch (Exception $e) { $teachers = []; }
 
 try {
     $stmt = safeQuery($pdo, "SELECT * FROM gallery WHERE status = 1 ORDER BY created_at DESC LIMIT 6");
@@ -33,11 +26,6 @@ try {
     $stmt = safeQuery($pdo, "SELECT * FROM sponsors WHERE status = 1 ORDER BY sort_order ASC");
     if ($stmt) $sponsors = $stmt->fetchAll();
 } catch (Exception $e) { $sponsors = []; }
-
-try {
-    $stmt = safeQuery($pdo, "SELECT * FROM credits WHERE status = 1 ORDER BY sort_order ASC");
-    if ($stmt) $credits = $stmt->fetchAll();
-} catch (Exception $e) { $credits = []; }
 
 function noticeTagClass($catName) {
     $n = strtolower($catName);
@@ -54,19 +42,19 @@ function monthAbbr($dateStr) {
     return $months[(int)$dt->format('m') - 1];
 }
 
-$siteName = siteSetting('site_name', 'CST Department');
-$siteTagline = siteSetting('site_tagline', 'Khulna Polytechnic Institute');
-$sitePhone = siteSetting('site_phone', '+880-XXXX-XXXXXX');
-$siteEmail = siteSetting('site_email', 'info@cst-kpi.edu.bd');
-$siteAddress = siteSetting('site_address', 'Khulna Polytechnic Institute, Sonadanga, Khulna, Bangladesh');
+$siteName = siteSetting('site_name', 'পলিটেকনিক শিক্ষা বাংলাদেশ');
+$siteTagline = siteSetting('site_tagline', 'বাংলাদেশের পলিটেকনিক শিক্ষা তথ্য পোর্টাল');
+$sitePhone = siteSetting('site_phone', '');
+$siteEmail = siteSetting('site_email', 'info@polytechnic.edu.bd');
+$siteAddress = siteSetting('site_address', 'বাংলাদেশ');
 $siteLogo = siteSetting('site_logo', '');
 $siteDesc = siteSetting('site_description', '');
 $facebookUrl = siteSetting('facebook_url', '#');
 $youtubeUrl = siteSetting('youtube_url', '#');
 $linkedinUrl = siteSetting('linkedin_url', '#');
-$footerText = siteSetting('footer_text', '&copy; ' . date('Y') . ' CST Department, Khulna Polytechnic Institute. All Rights Reserved.');
+$footerText = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলিটেকনিক শিক্ষা বাংলাদেশ। সর্বস্বত্ব সংরক্ষিত।');
 
-// Semester Data (for KPI CST - 8 semesters, 4-year diploma)
+// Semester Data (for 4-year diploma programs)
 $semesters = [
     ['num' => 1, 'name' => '1st Semester',
         'subjects' => ['Engineering Drawing', 'Bangla-I', 'English-I', 'Mathematics-I', 'Physics-I', 'Computer Office Application', 'Basic Electricity'],
@@ -222,7 +210,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
         <div class="nav-wrapper">
             <a href="<?php echo SITE_URL; ?>/" class="nav-brand">
                 <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
-                    <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="KPI CST">
+                    <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?>">
                 <?php else: ?>
                     <svg width="44" height="44" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;">
                         <rect x="10" y="12" width="24" height="18" rx="2" stroke="#fff" stroke-width="1.5" fill="none"/>
@@ -239,7 +227,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
             <ul class="nav-links" id="navLinks">
                 <li><a href="<?php echo SITE_URL; ?>/" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>হোম</span></a></li>
                 <li><a href="<?php echo SITE_URL; ?>/about.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>সম্পর্কে</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>শিক্ষকমণ্ডলী</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/polytechnics.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/></svg><span>পলিটেকনিক সূমহ</span></a></li>
                 <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>নোটিশ</span></a></li>
                 <li class="nav-more">
                     <a href="javascript:void(0)"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg><span>আরও</span><svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
@@ -249,6 +237,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     <a href="<?php echo SITE_URL; ?>/result.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>ফলাফল</span></a>
                     <div class="dropdown-divider"></div>
                     <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>যোগাযোগ</span></a>
+                    <a href="<?php echo SITE_URL; ?>/credits.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>কৃতজ্ঞতা</span></a>
                     </div>
                 </li>
                 </ul>
@@ -267,11 +256,11 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
         <div class="hero-content">
             <div class="hero-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                খুলনা পলিটেকনিক ইনস্টিটিউট
+                বাংলাদেশ পলিটেকনিক শিক্ষা
             </div>
-            <h1 class="hero-title">স্বাগতম <span class="highlight">CST</span><br>বিভাগে</h1>
+            <h1 class="hero-title">স্বাগতম <span class="highlight">পলিটেকনিক</span><br>শিক্ষা পোর্টালে</h1>
             <p class="hero-desc">
-                কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি বিভাগ, খুলনা পলিটেকনিক ইনস্টিটিউট, দক্ষ প্রযুক্তিবিদদের গড়ে তুলতে প্রতিশ্রুতিবদ্ধ। আমাদের ৪ বছরের ডিপ্লোমা প্রোগ্রাম ব্যবহারিক প্রশিক্ষণ, আধুনিক পাঠ্যক্রম এবং শিল্প অভিজ্ঞতাকে একত্রিত করে শিক্ষার্থীদের ডিজিটাল ভবিষ্যতের জন্য প্রস্তুত করে।
+                বাংলাদেশের পলিটেকনিক শিক্ষা তথ্য পোর্টাল। বিটিইবি-এর অধীনে পরিচালিত সকল পলিটেকনিক ইনস্টিটিউটের তথ্য, পাঠ্যক্রম, রিসোর্স এবং শিক্ষা সংক্রান্ত সকল তথ্য এক জায়গায়। প্রযুক্তি শিক্ষায় এগিয়ে যাওয়ার জন্য প্রয়োজনীয় সবকিছু খুঁজে নিন।
             </p>
             <div class="hero-actions">
                 <a href="<?php echo SITE_URL; ?>/resources.php" class="btn btn-primary btn-lg">
@@ -325,15 +314,15 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                 আমাদের সম্পর্কে
             </div>
-            <h2 class="section-title">খুলনা পলিটেকনিক ইনস্টিটিউটে <span class="title-blue">সিএসটি</span></h2>
+            <h2 class="section-title">বাংলাদেশের <span class="title-blue">পলিটেকনিক শিক্ষা</span></h2>
         </div>
         <div class="about-grid-2col">
             <div class="about-text-col">
                 <p style="color:#64748B;line-height:1.8;margin-bottom:16px;">
-                    কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি (সিএসটি) বিভাগ <strong style="color:#1E293B;">খুলনা পলিটেকনিক ইনস্টিটিউট</strong>-এর অন্যতম প্রধান প্রযুক্তি বিভাগ, যা বাংলাদেশের অন্যতম বৃহৎ ও স্বনামধন্য পলিটেকনিক ইনস্টিটিউট, ১৯৬৩ সালে বাংলাদেশ কারিগরি শিক্ষা বোর্ড (বিটিইবি)-এর অধীনে প্রতিষ্ঠিত।
+                    বাংলাদেশের পলিটেকনিক শিক্ষা ব্যবস্থা বাংলাদেশ কারিগরি শিক্ষা বোর্ড (বিটিইবি)-এর অধীনে পরিচালিত, যা দক্ষ প্রযুক্তিবিদ তৈরির লক্ষ্যে প্রতিষ্ঠিত। সারাদেশে ৫০টিরও বেশি সরকারি ও বেসরকারি পলিটেকনিক ইনস্টিটিউট রয়েছে যেখানে বিভিন্ন প্রযুক্তি বিষয়ে ৪ বছরের ডিপ্লোমা ইঞ্জিনিয়ারিং প্রোগ্রাম প্রদান করা হয়।
                 </p>
                 <p style="color:#64748B;line-height:1.8;margin-bottom:24px;">
-                    আমাদের ৪ বছরের ডিপ্লোমা ইঞ্জিনিয়ারিং প্রোগ্রাম শিক্ষার্থীদের প্রোগ্রামিং, নেটওয়ার্কিং, ডাটাবেজ ম্যানেজমেন্ট, ওয়েব ডেভেলপমেন্ট, মোবাইল অ্যাপ ডেভেলপমেন্ট, সাইবার সিকিউরিটি এবং আইওটি ও এআই-এর মতো উদীয়মান প্রযুক্তিতে দক্ষ করে তোলে। আধুনিক কম্পিউটার ল্যাব ও অভিজ্ঞ শিক্ষকমণ্ডলীর সাহায্যে সিএসটি কেপিআই প্রতি বছর শিল্প-প্রস্তুত স্নাতক তৈরি করে।
+                    এই পোর্টালটি বাংলাদেশের সকল পলিটেকনিক ইনস্টিটিউটের শিক্ষার্থী, শিক্ষক এবং কর্মীদের জন্য একটি কেন্দ্রীয় তথ্য ভাণ্ডার। পাঠ্যক্রম, রিসোর্স, নোটিশ, ফলাফল এবং পলিটেকনিক সংক্রান্ত সকল তথ্য এখানে পাওয়া যাবে।
                 </p>
                 <div class="about-highlights">
                     <div class="about-highlight-item">
@@ -409,7 +398,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                 </div>
                 <h3>আমাদের লক্ষ্য</h3>
-                <p>কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজিতে মানসম্মত ডিপ্লোমা স্তরের শিক্ষা প্রদান করা যা শিক্ষার্থীদের ব্যবহারিক দক্ষতা, বিশ্লেষণাত্মক চিন্তা এবং পেশাদার নৈতিকতায় সক্ষম করে তুলবে। আমরা জাতীয় ও আন্তর্জাতিক আইটি শিল্পে অবদান রাখতে সক্ষম দক্ষ প্রযুক্তিবিদ তৈরি করার চেষ্টা করি।</p>
+                <p>বাংলাদেশের পলিটেকনিক ইনস্টিটিউটগুলিতে মানসম্মত ডিপ্লোমা স্তরের শিক্ষা প্রদান করা যা শিক্ষার্থীদের ব্যবহারিক দক্ষতা, বিশ্লেষণাত্মক চিন্তা এবং পেশাদার নৈতিকতায় সক্ষম করে তুলবে। আমরা জাতীয় ও আন্তর্জাতিক শিল্পে অবদান রাখতে সক্ষম দক্ষ প্রযুক্তিবিদ তৈরি করার লক্ষ্য নিয়ে কাজ করি।</p>
                 <ul class="mv-points">
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -430,7 +419,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
                 <h3>আমাদের উদ্দেশ্য</h3>
-                <p>বাংলাদেশের পলিটেকনিক ইনস্টিটিউটগুলির মধ্যে শ্রেষ্ঠ কম্পিউটার সায়েন্স অ্যান্ড টেকনোলজি বিভাগ হিসেবে স্বীকৃতি লাভ করা, যা উদ্ভাবনী, দক্ষ এবং সামাজিকভাবে দায়িত্বশীল প্রযুক্তি পেশাদারদের উৎপাদনের জন্য পরিচিত যারা ডিজিটাল রূপান্তরকে এগিয়ে নেবে।</p>
+                <p>বাংলাদেশের পলিটেকনিক শিক্ষাকে আরও সহজলভ্য, তথ্যভিত্তিক এবং কার্যকর করে তুলা, যেখানে প্রতিটি শিক্ষার্থী তাদের প্রতিভার পূর্ণ বিকাশ ঘটাতে পারে এবং দেশের উন্নয়নে অবদান রাখতে পারে।</p>
                 <ul class="mv-points">
                     <li>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -458,10 +447,10 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
         <div class="section-header">
             <div class="section-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                কেন সিএসটি কেপিআই
+                কেন পলিটেকনিক শিক্ষা
             </div>
-            <h2 class="section-title">আমাদের <span class="title-blue">বৈশিষ্ট্য</span></h2>
-            <p class="section-desc">জেনে নিন কেন খুলনা পলিটেকনিক ইনস্টিটিউটের সিএসটি বিভাগ আগ্রহী প্রযুক্তিবিদদের জন্য শ্রেষ্ঠ পছন্দ।</p>
+            <h2 class="section-title">পলিটেকনিক শিক্ষার <span class="title-blue">সুবিধা</span></h2>
+            <p class="section-desc">জেনে নিন কেন বাংলাদেশের পলিটেকনিক শিক্ষা আগ্রহী শিক্ষার্থীদের জন্য শ্রেষ্ঠ পছন্দ।</p>
         </div>
         <div class="grid-4">
             <div class="feature-card">
@@ -672,7 +661,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 সর্বশেষ আপডেট
             </div>
             <h2 class="section-title">সাম্প্রতিক <span class="title-blue">নোটিশ</span></h2>
-            <p class="section-desc">বিভাগের সর্বশেষ ঘোষণা ও আপডেট দেখুন।</p>
+            <p class="section-desc">সর্বশেষ ঘোষণা ও আপডেট দেখুন।</p>
         </div>
         <?php if (!empty($notices)): ?>
             <div class="notices-list">
@@ -727,66 +716,6 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 </section>
 
 <!-- ============================================
-     FACULTY SPOTLIGHT
-     ============================================ -->
-<section class="section shine-effect">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                আমাদের দল
-            </div>
-            <h2 class="section-title">অভিজ্ঞ <span class="title-blue">শিক্ষকমণ্ডলী</span></h2>
-            <p class="section-desc">পরবর্তী প্রজন্মের প্রযুক্তি নেতাদের পথপ্রদর্শনকারী নিবেদিতপ্রাণ শিক্ষকগণ।</p>
-        </div>
-        <?php if (!empty($teachers)): ?>
-            <div class="grid-4">
-                <?php foreach ($teachers as $teacher): ?>
-                    <div class="teacher-card">
-                        <div class="teacher-img-wrap">
-                            <?php if ($teacher['image'] && file_exists(UPLOAD_PATH . '/' . $teacher['image'])): ?>
-                                <img src="<?php echo UPLOAD_URL . '/' . clean($teacher['image']); ?>" alt="<?php echo clean($teacher['name']); ?>">
-                            <?php else: ?>
-                                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(clean($teacher['name'])); ?>&background=DBEAFE&color=2563EB&size=300&bold=true" alt="<?php echo clean($teacher['name']); ?>">
-                            <?php endif; ?>
-                            <div class="teacher-social">
-                                <?php if (!empty($teacher['facebook'])): ?>
-                                    <a href="<?php echo clean($teacher['facebook']); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-                                <?php endif; ?>
-                                <?php if (!empty($teacher['linkedin'])): ?>
-                                    <a href="<?php echo clean($teacher['linkedin']); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <div class="teacher-info">
-                            <h3><?php echo clean($teacher['name']); ?></h3>
-                            <?php if (!empty($teacher['designation'])): ?><p class="designation"><?php echo clean($teacher['designation']); ?></p><?php endif; ?>
-                            <?php if (!empty($teacher['qualification'])): ?><p class="qualification"><?php echo clean($teacher['qualification']); ?></p><?php endif; ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div style="text-align:center;margin-top:30px;">
-                <a href="<?php echo SITE_URL; ?>/faculty.php" class="btn btn-outline">সকল শিক্ষক দেখুন <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </div>
-        <?php else: ?>
-            <div class="empty-state" style="margin-top: -10px;">
-                <lottie-player
-                    src="<?php echo SITE_URL; ?>/assets/lottie/not-found.json"
-                    background="transparent"
-                    speed="1"
-                    style="width: 220px; height: 220px; display: block; margin: 0 auto; margin-bottom: 0;"
-                    loop
-                    autoplay>
-                </lottie-player>
-                <h3>শিক্ষকমণ্ডলী শীঘ্রই আসছে</h3>
-                <p>আমাদের শিক্ষকদের প্রোফাইল প্রস্তুত করা হচ্ছে।</p>
-            </div>
-        <?php endif; ?>
-    </div>
-</section>
-
-<!-- ============================================
      GALLERY PREVIEW
      ============================================ -->
 <section class="section section-alt shine-effect">
@@ -797,7 +726,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 ফটো গ্যালারি
             </div>
             <h2 class="section-title">আমাদের <span class="title-blue">মুহূর্ত</span></h2>
-            <p class="section-desc">সিএসটি বিভাগের প্রাণবন্ত জীবন, অনুষ্ঠান ও কার্যক্রমের এক ঝলক।</p>
+            <p class="section-desc">বাংলাদেশের পলিটেকনিক ইনস্টিটিউটগুলোর প্রাণবন্ত জীবন, অনুষ্ঠান ও কার্যক্রমের এক ঝলক।</p>
         </div>
         <?php if (!empty($gallery)): ?>
             <div class="gallery-grid">
@@ -862,40 +791,6 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
 <?php endif; ?>
 
 <!-- ============================================
-     CREDITS SECTION
-     ============================================ -->
-<?php if (!empty($credits)): ?>
-<section class="section shine-effect">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> দল</div>
-            <h2 class="section-title"><span class="title-blue">কৃতজ্ঞতা</span></h2>
-            <p class="section-desc">এই ওয়েবসাইট ও বিভাগের উদ্যোগের পেছনের প্রতিভাবান মানুষদের প্রশংসা।</p>
-        </div>
-        <div class="credits-grid">
-            <?php foreach ($credits as $credit): ?>
-                <div class="credit-card">
-                    <?php if ($credit['image'] && file_exists(UPLOAD_PATH . '/' . $credit['image'])): ?>
-                        <img src="<?php echo UPLOAD_URL . '/' . clean($credit['image']); ?>" alt="<?php echo clean($credit['name']); ?>">
-                    <?php else: ?>
-                        <img src="https://ui-avatars.com/api/?name=<?php echo urlencode(clean($credit['name'])); ?>&background=EFF6FF&color=2563EB&size=200&bold=true" alt="<?php echo clean($credit['name']); ?>">
-                    <?php endif; ?>
-                    <h3><?php echo clean($credit['name']); ?></h3>
-                    <p class="role"><?php echo clean($credit['role']); ?></p>
-                    <?php if (!empty($credit['about'])): ?><p><?php echo clean(mb_substr($credit['about'], 0, 100)); ?></p><?php endif; ?>
-                    <div class="social-links">
-                        <?php if (!empty($credit['facebook'])): ?><a href="<?php echo clean($credit['facebook']); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><?php endif; ?>
-                        <?php if (!empty($credit['linkedin'])): ?><a href="<?php echo clean($credit['linkedin']); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><?php endif; ?>
-                        <?php if (!empty($credit['github'])): ?><a href="<?php echo clean($credit['github']); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a><?php endif; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
-
-<!-- ============================================
      CTA SECTION
      ============================================ -->
 <section class="cta-section shine-effect">
@@ -912,7 +807,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 </lottie-player>
             </div>
             <h2>আপনার প্রযুক্তি যাত্রা শুরু করতে প্রস্তুত?</h2>
-            <p>খুলনা পলিটেকনিক ইনস্টিটিউটে সিএসটিতে যোগ দিন এবং প্রযুক্তিতে সফল ক্যারিয়ার গড়ুন। এখনই আবেদন করুন বা আমাদের প্রোগ্রাম সম্পর্কে আরও জানতে যোগাযোগ করুন।</p>
+            <p>বাংলাদেশের পলিটেকনিক শিক্ষায় ভর্তি নিয়ে প্রযুক্তিতে সফল ক্যারিয়ার গড়ুন। এখনই আবেদন করুন বা আমাদের প্রোগ্রাম সম্পর্কে আরও জানতে যোগাযোগ করুন।</p>
             <div class="cta-actions">
                 <a href="<?php echo SITE_URL; ?>/contact.php" class="btn btn-primary btn-lg" style="background:#fff;color:#2563EB;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -936,7 +831,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
             <div class="footer-col">
                 <div class="nav-brand" style="margin-bottom:14px;">
                     <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
-                        <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="KPI CST">
+                        <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="<?php echo clean($siteName); ?>">
                     <?php else: ?>
                         <svg width="40" height="40" viewBox="0 0 44 44" fill="none" style="background:#2563EB;border-radius:10px;padding:8px;"><rect x="10" y="12" width="24" height="18" rx="2" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M15 20h14M15 24h10M15 28h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="32" cy="14" r="4" fill="#10B981"/></svg>
                     <?php endif; ?>
@@ -945,7 +840,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                         <span class="brand-tagline"><?php echo clean($siteTagline); ?></span>
                     </div>
                 </div>
-                <p><?php echo clean($siteDesc) ?: 'খুলনা পলিটেকনিক ইনস্টিটিউটের সিএসটি বিভাগের অফিসিয়াল ওয়েবসাইট। ১৯৬৩ সাল থেকে ভবিষ্যৎ প্রযুক্তিবিদ গড়ে তুলছি।'; ?></p>
+                <p><?php echo clean($siteDesc) ?: 'বাংলাদেশের পলিটেকনিক শিক্ষা তথ্য পোর্টাল। সকল পলিটেকনিক ইনস্টিটিউটের তথ্য, পাঠ্যক্রম ও রিসোর্স এক জায়গায়।'; ?></p>
                 <div class="footer-social">
                     <?php if ($facebookUrl && $facebookUrl !== '#'): ?><a href="<?php echo clean($facebookUrl); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><?php endif; ?>
                     <?php if ($youtubeUrl && $youtubeUrl !== '#'): ?><a href="<?php echo clean($youtubeUrl); ?>" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/></svg></a><?php endif; ?>
@@ -957,7 +852,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
                 <ul class="footer-links">
                     <li><a href="<?php echo SITE_URL; ?>/"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> হোম</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/about.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> সম্পর্কে</a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> শিক্ষকমণ্ডলী</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/polytechnics.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> পলিটেকনিক সূমহ</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> নোটিশ</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/gallery.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> গ্যালারি</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/result.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> ফলাফল</a></li>

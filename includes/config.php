@@ -74,12 +74,12 @@ function getSettings() {
 }
 
 function siteLogo() { return siteSetting('site_logo', ''); }
-function siteName() { return defined('SITE_NAME') ? SITE_NAME : siteSetting('site_name', 'CST Department'); }
-function siteTagline() { return defined('SITE_TAGLINE') ? SITE_TAGLINE : siteSetting('site_tagline', 'Department of Computer Science & Technology'); }
+function siteName() { return defined('SITE_NAME') ? SITE_NAME : siteSetting('site_name', 'পলিটেকনিক শিক্ষা বাংলাদেশ'); }
+function siteTagline() { return defined('SITE_TAGLINE') ? SITE_TAGLINE : siteSetting('site_tagline', 'বাংলাদেশের পলিটেকনিক শিক্ষা তথ্য পোর্টাল'); }
 function siteFavicon() { return siteSetting('site_favicon', ''); }
 
-define('SITE_NAME', siteSetting('site_name', 'CST Department'));
-define('SITE_TAGLINE', siteSetting('site_tagline', 'Department of Computer Science & Technology'));
+define('SITE_NAME', siteSetting('site_name', 'পলিটেকনিক শিক্ষা বাংলাদেশ'));
+define('SITE_TAGLINE', siteSetting('site_tagline', 'বাংলাদেশের পলিটেকনিক শিক্ষা তথ্য পোর্টাল'));
 
 function isAdminLoggedIn() { return isset($_SESSION['admin_id']) && !empty($_SESSION['admin_id']); }
 function requireAdmin() { if (!isAdminLoggedIn()) { header('Location: ' . SITE_URL . '/control-panel/login.php'); exit; } }

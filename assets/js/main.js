@@ -1,5 +1,5 @@
 /**
- * CST Department Website - Main Frontend JavaScript
+ * পলিটেকনিক শিক্ষা বাংলাদেশ - Main Frontend JavaScript
  */
 
 (function () {

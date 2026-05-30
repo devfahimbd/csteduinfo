@@ -45,7 +45,7 @@ $flash = getFlash();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login — CST Department</title>
+    <title>Admin Login — পলিটেকনিক অ্যাডমিন</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -80,7 +80,7 @@ $flash = getFlash();
         <form method="POST" action="" id="loginForm">
             <div class="form-group">
                 <label class="form-label" for="email">Email Address</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="admin@cst.edu" required autofocus>
+                <input type="email" name="email" id="email" class="form-control" placeholder="admin@polytechnic.edu.bd" required autofocus>
             </div>
             <div class="form-group">
                 <label class="form-label" for="password">Password</label>

@@ -1,6 +1,6 @@
 ===============================================================
   BULK UPLOAD UPDATE - Setup Guide
-  CST Department Result System
+  পলিটেকনিক শিক্ষা বাংলাদেশ Result System
 ===============================================================
 
 PROBLEM SOLVED:

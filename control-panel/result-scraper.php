@@ -81,7 +81,7 @@ $allBatches = $parser->getAllBatches();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result Scraper — CST Admin</title>
+    <title>Result Scraper — অ্যাডমিন প্যানেল</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -97,7 +97,7 @@ $allBatches = $parser->getAllBatches();
                 <line x1="8" y1="21" x2="16" y2="21"></line>
                 <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            <span>CST Admin</span>
+            <span>অ্যাডমিন প্যানেল</span>
         </div>
         <nav class="sidebar-nav">
             <div class="nav-section">

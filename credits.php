@@ -1,12 +1,12 @@
 <?php
 /**
- * পলিটেকনিক শিক্ষা বাংলাদেশ - সম্পর্কে
- * Core PHP + MySQL with PDO
+ * পলিটেকনিক শিক্ষা বাংলাদেশ - কৃতজ্ঞতা
+ * Credits / Thanks Page
  */
 
 require_once 'includes/config.php';
 
-$pageTitle = 'About Us - ' . SITE_NAME;
+$pageTitle = 'কৃতজ্ঞতা - ' . SITE_NAME;
 
 // ─── Settings ───
 $siteName      = siteSetting('site_name', 'পলিটেকনিক শিক্ষা বাংলাদেশ');
@@ -21,6 +21,32 @@ $twitterUrl    = siteSetting('twitter_url', '#');
 $linkedinUrl   = siteSetting('linkedin_url', '#');
 $youtubeUrl    = siteSetting('youtube_url', '#');
 $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলিটেকনিক শিক্ষা বাংলাদেশ। সর্বস্বত্ব সংরক্ষিত।');
+
+// ─── Fetch Credits ───
+$credits = [];
+try {
+    $stmt = safeQuery($pdo, "SELECT * FROM credits WHERE status = 1 ORDER BY section ASC, sort_order ASC");
+    if ($stmt) $credits = $stmt->fetchAll();
+} catch (Exception $e) {
+    $credits = [];
+}
+
+// Group credits by section
+$groupedCredits = [];
+foreach ($credits as $credit) {
+    $section = !empty($credit['section']) ? $credit['section'] : 'সাধারণ';
+    if (!isset($groupedCredits[$section])) $groupedCredits[$section] = [];
+    $groupedCredits[$section][] = $credit;
+}
+
+// Section icon/color mapping
+$sectionColors = [
+    'অর্থ সহযোগিতা'     => ['color' => '#2563EB', 'class' => 'blue',   'icon' => 'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'],
+    'তথ্য সহযোগিতা'     => ['color' => '#10B981', 'class' => 'green',  'icon' => 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'],
+    'টেকনোলজি সহযোগিতা' => ['color' => '#7C3AED', 'class' => 'purple', 'icon' => 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'],
+    'বিশেষ সহযোগিতা'    => ['color' => '#F59E0B', 'class' => 'orange', 'icon' => 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'],
+];
+$defaultSectionStyle = ['color' => '#2563EB', 'class' => 'blue', 'icon' => 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'];
 ?>
 <!DOCTYPE html>
 <html lang="bn">
@@ -38,6 +64,228 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলি�
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
+
+    <!-- Credits Page Specific Styles -->
+    <style>
+        /* ─── Credit Card ─── */
+        .credit-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #F1F5F9;
+            position: relative;
+            overflow: hidden;
+        }
+        .credit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
+        }
+        .credit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent, #2563EB);
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .credit-card:hover::before {
+            opacity: 1;
+        }
+
+        /* ─── Credit Avatar ─── */
+        .credit-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 16px;
+            border: 3px solid #E2E8F0;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            background: #F8FAFC;
+        }
+        .credit-card:hover .credit-avatar {
+            border-color: var(--accent, #2563EB);
+            transform: scale(1.05);
+        }
+        .credit-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ─── Credit Card Content ─── */
+        .credit-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1E293B;
+            margin: 0 0 6px;
+            line-height: 1.4;
+        }
+        .credit-card .credit-role {
+            font-size: 13px;
+            color: #64748B;
+            margin: 0 0 4px;
+            line-height: 1.5;
+        }
+        .credit-card .credit-desc {
+            font-size: 13px;
+            color: #94A3B8;
+            margin: 0 0 14px;
+            line-height: 1.6;
+        }
+
+        /* ─── Credit Social Links ─── */
+        .credit-socials {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .credit-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: #F1F5F9;
+            color: #64748B;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .credit-socials a:hover {
+            background: var(--accent, #2563EB);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .credit-socials a svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ─── Credit Website Button ─── */
+        .credit-url-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent, #2563EB);
+            background: color-mix(in srgb, var(--accent, #2563EB) 8%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent, #2563EB) 20%, transparent);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .credit-url-btn:hover {
+            background: var(--accent, #2563EB);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .credit-url-btn svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* ─── Section Heading ─── */
+        .credit-section-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 48px;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #E5E7EB;
+        }
+        .credit-section-heading:first-child {
+            margin-top: 0;
+        }
+        .credit-section-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .credit-section-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        .credit-section-heading h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1E293B;
+            margin: 0;
+            flex: 1;
+        }
+        .credit-section-count {
+            font-size: 12px;
+            font-weight: 600;
+            color: #94A3B8;
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* ─── Empty State ─── */
+        .credits-empty {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .credits-empty h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1E293B;
+            margin: 0 0 8px;
+        }
+        .credits-empty p {
+            font-size: 15px;
+            color: #64748B;
+            line-height: 1.6;
+        }
+
+        /* ─── Credits Intro Section ─── */
+        .credits-intro {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 20px;
+        }
+        .credits-intro p {
+            font-size: 15px;
+            color: #64748B;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .credit-card {
+                padding: 24px 20px;
+            }
+            .credit-avatar {
+                width: 70px;
+                height: 70px;
+            }
+            .credit-section-heading {
+                margin-top: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Loading Overlay -->
@@ -121,7 +369,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলি�
             <!-- Navigation Links -->
             <ul class="nav-links">
                 <li><a href="<?php echo SITE_URL; ?>/"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>হোম</span></a></li>
-                <li><a href="<?php echo SITE_URL; ?>/about.php" class="active"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>সম্পর্কে</span></a></li>
+                <li><a href="<?php echo SITE_URL; ?>/about.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>সম্পর্কে</span></a></li>
                 <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>পলিটেকনিক সূমহ</span></a></li>
                 <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>নোটিশ</span></a></li>
                 <li class="nav-more">
@@ -132,6 +380,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলি�
                     <a href="<?php echo SITE_URL; ?>/result.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>ফলাফল</span></a>
                     <div class="dropdown-divider"></div>
                     <a href="<?php echo SITE_URL; ?>/contact.php"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>যোগাযোগ</span></a>
+                    <a href="<?php echo SITE_URL; ?>/credits.php" class="active"><svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>কৃতজ্ঞতা</span></a>
                     </div>
                 </li>
                 </ul>
@@ -153,7 +402,7 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলি�
      ============================================ -->
 <section class="page-banner">
     <div class="container">
-        <h1>আমাদের সম্পর্কে</h1>
+        <h1>কৃতজ্ঞতা</h1>
         <div class="breadcrumb">
             <a href="<?php echo SITE_URL; ?>/">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -162,168 +411,138 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলি�
             <span class="separator">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
             </span>
-            <span>সম্পর্কে</span>
+            <span>কৃতজ্ঞতা</span>
         </div>
     </div>
 </section>
 
 <!-- ============================================
-     ABOUT CONTENT SECTION
+     CREDITS CONTENT SECTION
      ============================================ -->
-<section class="section section-alt">
+<section class="section">
     <div class="container">
-        <div class="grid-2" style="align-items:center;gap:50px;">
-            <!-- Left: Text Content -->
-            <div>
-                <div class="section-badge">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                    আমরা কারা
-                </div>
-                <h2 class="section-title" style="text-align:left;margin-bottom:20px;">পলিটেকনিক শিক্ষা বাংলাদেশ</h2>
-                <p style="font-size:15px;color:#64748B;line-height:1.8;margin-bottom:16px;">
-                    পলিটেকনিক শিক্ষা বাংলাদেশ দেশের সকল পলিটেকনিক ইনস্টিটিউটের তথ্য সংগ্রহ, প্রদর্শন এবং সহজলভ্য করার লক্ষ্যে প্রতিষ্ঠিত। বাংলাদেশের প্রায় ৫০টি সরকারি পলিটেকনিক ইনস্টিটিউট এবং অসংখ্য বেসরকারি প্রতিষ্ঠান কারিগরি ও বৃত্তিমূলক শিক্ষায় গুরুত্বপূর্ণ ভূমিকা পালন করছে।
-                </p>
-                <p style="font-size:15px;color:#64748B;line-height:1.8;margin-bottom:16px;">
-                    আমাদের পোর্টালে প্রতিটি পলিটেকনিকের বিস্তারিত তথ্য, অনুষদ সম্পর্কে জানুন, নোটিশ ও রিসোর্স পান এবং ফলাফল দেখুন। আমরা শিক্ষার্থী, শিক্ষক এবং প্রশাসকদের জন্য একটি কেন্দ্রীভূত তথ্য ভাণ্ডার তৈরি করতে প্রতিশ্রুতিবদ্ধ।
-                </p>
-                <p style="font-size:15px;color:#64748B;line-height:1.8;">
-                    বাংলাদেশ সরকারের কারিগরি শিক্ষা অধিদপ্তরের অধীনে পরিচালিত এই পলিটেকনিকগুলো ডিপ্লোমা-ইন-ইঞ্জিনিয়ারিং এবং বিভিন্ন কারিগরি প্রোগ্রামে শিক্ষা প্রদান করে। এই পোর্টালটি সেই সমস্ত তথ্য এক জায়গায় পৌঁছে দেওয়ার চেষ্টা করে।
-                </p>
+        <!-- Section Header -->
+        <div class="section-header">
+            <div class="section-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                স্বীকৃতি ও সম্মান
             </div>
+            <h2 class="section-title">কৃতজ্ঞতা ও স্বীকৃতি</h2>
+            <p class="section-desc">আমাদের প্রকল্পে সহায়তা প্রদানকারী ব্যক্তি ও প্রতিষ্ঠানকে আন্তরিক ধন্যবাদ।</p>
+        </div>
 
-            <!-- Right: Lottie Animation -->
-            <div style="display:flex;justify-content:center;">
+        <!-- Intro Text -->
+        <div class="credits-intro">
+            <p>পলিটেকনিক শিক্ষা বাংলাদেশ পোর্টালটি তৈরি ও রক্ষণাবেক্ষণে যারা বিভিন্নভাবে সহাযোগিতা করেছেন তাদের প্রতি আমাদের গভীর কৃতজ্ঞতা। নিচে তাদের তালিকা দেওয়া হলো।</p>
+        </div>
+
+        <?php if (!empty($groupedCredits)): ?>
+            <?php $sectionIndex = 0; ?>
+            <?php foreach ($groupedCredits as $sectionName => $sectionCredits): ?>
+                <?php
+                    $sectionStyle = $sectionColors[$sectionName] ?? $defaultSectionStyle;
+                    $accentColor  = $sectionStyle['color'];
+                    $accentClass  = $sectionStyle['class'];
+                    $accentIcon   = $sectionStyle['icon'];
+                ?>
+
+                <!-- Section Group Heading -->
+                <div class="credit-section-heading">
+                    <div class="credit-section-icon" style="background: <?php echo $accentColor; ?>15; color: <?php echo $accentColor; ?>;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="<?php echo $accentIcon; ?>"/></svg>
+                    </div>
+                    <h3><?php echo clean($sectionName); ?></h3>
+                    <span class="credit-section-count"><?php echo count($sectionCredits); ?>টি</span>
+                </div>
+
+                <!-- Credit Cards Grid -->
+                <div class="grid-4">
+                    <?php foreach ($sectionCredits as $credit): ?>
+                        <?php
+                            $cardAccent = $accentColor;
+                            $hasImage = !empty($credit['image']) && file_exists(UPLOAD_PATH . '/' . $credit['image']);
+                            $initials = mb_substr($credit['name'] ?? 'N/A', 0, 1, 'UTF-8');
+                        ?>
+                        <div class="credit-card" style="--accent: <?php echo $cardAccent; ?>;">
+                            <!-- Avatar / Logo -->
+                            <?php if ($hasImage): ?>
+                                <div class="credit-avatar">
+                                    <img src="<?php echo UPLOAD_URL . '/' . clean($credit['image']); ?>" alt="<?php echo clean($credit['name']); ?>" loading="lazy">
+                                </div>
+                            <?php else: ?>
+                                <div class="credit-avatar" style="background: <?php echo $cardAccent; ?>12; border-color: <?php echo $cardAccent; ?>30; display:flex; align-items:center; justify-content:center;">
+                                    <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($credit['name'] ?? 'N/A'); ?>&background=<?php echo substr($cardAccent, 1); ?>&color=fff&font-size=0.35&bold=true" alt="<?php echo clean($credit['name']); ?>" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=&quot;font-size:28px;font-weight:700;color:<?php echo $cardAccent; ?>&quot;><?php echo $initials; ?></span>';">
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- Name -->
+                            <h3><?php echo clean($credit['name']); ?></h3>
+
+                            <!-- Role / Company -->
+                            <?php if (!empty($credit['role'])): ?>
+                                <p class="credit-role"><?php echo clean($credit['role']); ?></p>
+                            <?php endif; ?>
+
+                            <!-- Description -->
+                            <?php if (!empty($credit['description'])): ?>
+                                <p class="credit-desc"><?php echo clean($credit['description']); ?></p>
+                            <?php endif; ?>
+
+                            <!-- Social Links -->
+                            <?php
+                                $hasSocial = !empty($credit['facebook']) || !empty($credit['twitter']) || !empty($credit['linkedin']) || !empty($credit['website']);
+                            ?>
+                            <?php if ($hasSocial): ?>
+                                <div class="credit-socials">
+                                    <?php if (!empty($credit['website'])): ?>
+                                        <a href="<?php echo clean($credit['website']); ?>" target="_blank" rel="noopener" title="ওয়েবসাইট">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if (!empty($credit['facebook'])): ?>
+                                        <a href="<?php echo clean($credit['facebook']); ?>" target="_blank" rel="noopener" title="Facebook">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if (!empty($credit['twitter'])): ?>
+                                        <a href="<?php echo clean($credit['twitter']); ?>" target="_blank" rel="noopener" title="Twitter">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.36.36 9 9 0 0 1 18.94 2a4.49 4.49 0 0 0-7.66 4.09A12.76 12.76 0 0 1 3.2 2.27a4.49 4.49 0 0 0 1.39 6.01A4.47 4.47 0 0 1 2.58 7.7v.06a4.49 4.49 0 0 0 3.6 4.4 4.47 4.47 0 0 1-2.02.08 4.49 4.49 0 0 0 4.19 3.12A9 9 0 0 1 1 17.54a12.72 12.72 0 0 0 6.9 2.02c8.28 0 12.8-6.86 12.8-12.8 0-.2 0-.4-.01-.6A9.14 9.14 0 0 0 23 3z"/></svg>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if (!empty($credit['linkedin'])): ?>
+                                        <a href="<?php echo clean($credit['linkedin']); ?>" target="_blank" rel="noopener" title="LinkedIn">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- Website / URL Button (legacy support) -->
+                            <?php if (!empty($credit['url']) && empty($credit['website'])): ?>
+                                <a href="<?php echo clean($credit['url']); ?>" target="_blank" rel="noopener" class="credit-url-btn">
+                                    ওয়েবসাইট দেখুন
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <!-- Empty State -->
+            <div class="credits-empty">
                 <lottie-player
-                    src="https://lottie.host/9c240974-98ae-4f24-9f75-27a36c845237/CqE32wJ95E.json"
+                    src="https://lottie.host/d6a883b8-1c16-4eb3-89eb-6c7e2495370f/DGRs98M9VI.json"
                     background="transparent"
                     speed="1"
                     loop
                     autoplay
-                    style="width:100%;max-width:400px;">
+                    style="width:240px;height:240px;display:block;margin:0 auto 24px;">
                 </lottie-player>
+                <h3>কৃতজ্ঞতা তালিকা শীঘ্রই আসছে</h3>
+                <p>কৃতজ্ঞতা তালিকা প্রস্তুত করা হচ্ছে। অনুগ্রহ করে শীঘ্রই আবার দেখুন।</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================
-     MISSION & VISION SECTION
-     ============================================ -->
-<section class="section">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-                আমাদের উদ্দেশ্য
-            </div>
-            <h2 class="section-title">লক্ষ্য ও উদ্দেশ্য</h2>
-            <p class="section-desc">পলিটেকনিক শিক্ষায় আমরা যা করি তার পেছনের পথপ্রদর্শক নীতিসমূহ।</p>
-        </div>
-
-        <div class="grid-2">
-            <!-- Mission Card -->
-            <div class="feature-card" style="text-align:left;padding:36px;">
-                <div class="feature-icon blue" style="margin:0 0 20px;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 16l4-4-4-4"/>
-                        <path d="M8 12h8"/>
-                    </svg>
-                </div>
-                <h3 style="font-size:20px;font-weight:700;margin-bottom:12px;">আমাদের লক্ষ্য</h3>
-                <p style="font-size:14px;color:#64748B;line-height:1.8;">
-                    বাংলাদেশের সকল পলিটেকনিক ইনস্টিটিউটের তথ্য এক জায়গায় সংগঠিত করা এবং শিক্ষার্থীদের জন্য সহজে অ্যাক্সেসযোগ্য করে তুলা। আমরা প্রতিটি পলিটেকনিকের অনুষদ, নোটিশ, রিসোর্স এবং ফলাফল তথ্য প্রদান করি যাতে শিক্ষার্থীরা তাদের শিক্ষাজীবনে সঠিক তথ্য পেতে পারে।
-                </p>
-            </div>
-
-            <!-- Vision Card -->
-            <div class="feature-card" style="text-align:left;padding:36px;">
-                <div class="feature-icon purple" style="margin:0 0 20px;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                        <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                </div>
-                <h3 style="font-size:20px;font-weight:700;margin-bottom:12px;">আমাদের উদ্দেশ্য</h3>
-                <p style="font-size:14px;color:#64748B;line-height:1.8;">
-                    বাংলাদেশের পলিটেকনিক শিক্ষা সম্পর্কে একটি সম্পূর্ণ এবং আপডেট তথ্য পোর্টাল হওয়া। আমরা এমন একটি প্লাটফর্ম তৈরি করতে চাই যেখানে যেকোনো শিক্ষার্থী তার প্রয়োজনীয় তথ্য, নোটিশ, ফলাফল এবং রিসোর্স সহজেই খুঁজে পেতে পারবে।
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============================================
-     WHY CHOOSE US SECTION
-     ============================================ -->
-<section class="section section-alt">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                আমাদের শক্তি
-            </div>
-            <h2 class="section-title">কেন আমাদের বেছে নেবেন</h2>
-            <p class="section-desc">জেনে নিন কি পলিটেকনিক শিক্ষাকে আপনার শিক্ষার জন্য আদর্শ পছন্দ করে তুলেছে।</p>
-        </div>
-
-        <div class="grid-4">
-            <!-- Expert Faculty -->
-            <div class="feature-card">
-                <div class="feature-icon blue">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                </div>
-                <h3>সকল পলিটেকনিকের তথ্য</h3>
-                <p>বাংলাদেশের সকল সরকারি ও বেসরকারি পলিটেকনিক ইনস্টিটিউটের সম্পূর্ণ তথ্য এক জায়গায়।</p>
-            </div>
-
-            <!-- Modern Labs -->
-            <div class="feature-card">
-                <div class="feature-icon green">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2"/>
-                        <line x1="8" y1="21" x2="16" y2="21"/>
-                        <line x1="12" y1="17" x2="12" y2="21"/>
-                        <path d="M6 10l2-2 2 2"/>
-                        <path d="M10 8v4"/>
-                    </svg>
-                </div>
-                <h3>আধুনিক ল্যাব</h3>
-                <p>সর্বশেষ হার্ডওয়্যার, সফটওয়্যার এবং উচ্চগতির ইন্টারনেট সংযোগ সহ অত্যাধুনিক কারিগরি ল্যাব ও ওয়ার্কশপ।</p>
-            </div>
-
-            <!-- Industry Links -->
-            <div class="feature-card">
-                <div class="feature-icon orange">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
-                </div>
-                <h3>শিল্প সংযোগ</h3>
-                <p>ইন্টার্নশিপ সুযোগ, অতিথি লেকচার এবং প্লেসমেন্ট সহায়তা প্রদানকারী শীর্ষস্থানীয় প্রযুক্তি কোম্পানির সাথে শক্তিশালী অংশীদারিত্ব।</p>
-            </div>
-
-            <!-- Active Research -->
-            <div class="feature-card">
-                <div class="feature-icon purple">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                        <line x1="11" y1="8" x2="11" y2="14"/>
-                        <line x1="8" y1="11" x2="14" y2="11"/>
-                    </svg>
-                </div>
-                <h3>সক্রিয় গবেষণা</h3>
-                <p>এআই, আইওটি এবং আরও অনেক কিছুতে শীর্ষ জার্নাল ও সম্মেলনে অনুষদ ও শিক্ষার্থীদের প্রকাশনার সাথে প্রাণবন্ত গবেষণা সংস্কৃতি।</p>
-            </div>
-        </div>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -395,9 +614,9 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' পলি�
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                         নোটিশ
                     </a></li>
-                    <li><a href="<?php echo SITE_URL; ?>/gallery.php">
+                    <li><a href="<?php echo SITE_URL; ?>/credits.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                        গ্যালারি
+                        কৃতজ্ঞতা
                     </a></li>
                     <li><a href="<?php echo SITE_URL; ?>/contact.php">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>

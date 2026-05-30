@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $role = trim($_POST['role'] ?? '');
     $about = trim($_POST['about'] ?? '');
+    $section = trim($_POST['section'] ?? 'সাধারণ');
     $facebook = trim($_POST['facebook'] ?? '');
     $linkedin = trim($_POST['linkedin'] ?? '');
     $github = trim($_POST['github'] ?? '');
@@ -70,12 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     deleteFile($old['image']);
                 }
             }
-            $pdo->prepare('UPDATE credits SET name = ?, role = ?, about = ?, image = ?, facebook = ?, linkedin = ?, github = ?, sort_order = ?, status = ? WHERE id = ?')
-                ->execute([$name, $role, $about, $image, $facebook, $linkedin, $github, $sortOrder, $status, $editId]);
+            $pdo->prepare('UPDATE credits SET name = ?, role = ?, about = ?, section = ?, image = ?, facebook = ?, linkedin = ?, github = ?, sort_order = ?, status = ? WHERE id = ?')
+                ->execute([$name, $role, $about, $section, $image, $facebook, $linkedin, $github, $sortOrder, $status, $editId]);
             setFlash('success', 'Team member updated successfully.');
         } else {
-            $pdo->prepare('INSERT INTO credits (name, role, about, image, facebook, linkedin, github, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
-                ->execute([$name, $role, $about, $image, $facebook, $linkedin, $github, $sortOrder, $status]);
+            $pdo->prepare('INSERT INTO credits (name, role, about, section, image, facebook, linkedin, github, sort_order, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+                ->execute([$name, $role, $about, $section, $image, $facebook, $linkedin, $github, $sortOrder, $status]);
             setFlash('success', 'Team member added successfully.');
         }
         header('Location: credits.php');
@@ -87,6 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $stmt = $pdo->query('SELECT * FROM credits ORDER BY sort_order ASC, id DESC');
 $credits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Group credits by section
+$creditsBySection = [];
+foreach ($credits as $cr) {
+    $sec = !empty($cr['section']) ? $cr['section'] : 'সাধারণ';
+    $creditsBySection[$sec][] = $cr;
+}
+
 $flash = getFlash();
 $adminName = $_SESSION['admin_name'] ?? 'Admin';
 $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
@@ -96,7 +104,7 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credits — CST Admin</title>
+    <title>Credits — Admin Panel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -112,7 +120,7 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
                 <line x1="8" y1="21" x2="16" y2="21"></line>
                 <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            <span>CST Admin</span>
+            <span>Admin Panel</span>
         </div>
 
         <?php $activePage = 'credits'; ?>
@@ -194,6 +202,15 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
                                 <label class="form-label">About</label>
                                 <textarea name="about" class="form-input" rows="3" placeholder="Brief description..."><?php echo htmlspecialchars($editCredit['about'] ?? ''); ?></textarea>
                             </div>
+                            <div>
+                                <label class="form-label">Section</label>
+                                <select name="section" class="form-select">
+                                    <option value="সাধারণ" <?php echo (($editCredit['section'] ?? 'সাধারণ') === 'সাধারণ') ? 'selected' : ''; ?>>সাধারণ (General)</option>
+                                    <option value="অর্থ সহযোগিতা" <?php echo (($editCredit['section'] ?? '') === 'অর্থ সহযোগিতা') ? 'selected' : ''; ?>>অর্থ সহযোগিতা (Financial Support)</option>
+                                    <option value="তথ্য সহযোগিতা" <?php echo (($editCredit['section'] ?? '') === 'তথ্য সহযোগিতা') ? 'selected' : ''; ?>>তথ্য সহযোগিতা (Information Support)</option>
+                                    <option value="টেকনোলজি সহযোগিতা" <?php echo (($editCredit['section'] ?? '') === 'টেকনোলজি সহযোগিতা') ? 'selected' : ''; ?>>টেকনোলজি সহযোগিতা (Technology Support)</option>
+                                </select>
+                            </div>
                             <div style="grid-column:span 2;">
                                 <label class="form-label">Image</label>
                                 <?php if ($editCredit && !empty($editCredit['image'])): ?>
@@ -254,21 +271,30 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
                             </svg>
                             <p style="color:#94A3B8;font-size:14px;">No team members found. Add your first team member.</p>
                         </div>
-                    <?php else: ?>
+                    <?php elseif (!empty($creditsBySection)): ?>
+                    <?php foreach ($creditsBySection as $sectionName => $sectionCredits): ?>
+                    <?php if (count($creditsBySection) > 1): ?>
+                        <div style="padding:12px 20px 0;font-weight:600;font-size:14px;color:#374151;border-bottom:2px solid #E5E7EB;margin-bottom:0;">
+                            <?php echo htmlspecialchars($sectionName); ?>
+                        </div>
+                    <?php endif; ?>
                     <div style="overflow-x:auto;">
                         <table class="data-table">
+                            <?php if (count($creditsBySection) <= 1 || $sectionName === array_key_first($creditsBySection)): ?>
                             <thead>
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Role</th>
+                                    <th>Section</th>
                                     <th>Status</th>
                                     <th>Sort</th>
                                     <th class="table-actions">Actions</th>
                                 </tr>
                             </thead>
+                            <?php endif; ?>
                             <tbody>
-                                <?php foreach ($credits as $cr): ?>
+                                <?php foreach ($sectionCredits as $cr): ?>
                                 <tr>
                                     <td>
                                         <?php if (!empty($cr['image'])): ?>
@@ -281,6 +307,7 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
                                     </td>
                                     <td style="font-weight:500;"><?php echo htmlspecialchars($cr['name']); ?></td>
                                     <td style="color:#64748B;"><?php echo htmlspecialchars($cr['role'] ?? '&mdash;'); ?></td>
+                                    <td style="color:#64748B;font-size:12px;"><?php echo htmlspecialchars($cr['section'] ?? 'সাধারণ'); ?></td>
                                     <td>
                                         <?php if (!empty($cr['status'])): ?>
                                             <span class="badge badge-success">Active</span>
@@ -298,6 +325,7 @@ $adminInitial = strtoupper(mb_substr($adminName, 0, 1));
                             </tbody>
                         </table>
                     </div>
+                    <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
             </div>
