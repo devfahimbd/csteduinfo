@@ -21,5 +21,3 @@ session_start();
 $_SESSION['flash'] = ['type' => 'success', 'message' => 'You have been logged out.'];
 header('Location: login.php');
 exit;
-
-// minor refactor

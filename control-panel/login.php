@@ -101,5 +101,3 @@ $flash = getFlash();
     </script>
 </body>
 </html>
-
-// improved type safety

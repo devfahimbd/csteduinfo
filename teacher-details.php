@@ -615,5 +615,3 @@ $footerText    = siteSetting('footer_text', '&copy; ' . date('Y') . ' সিএ�
     </script>
 </body>
 </html>
-
-// update at 2026-05-17 13:23:30

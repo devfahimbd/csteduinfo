@@ -1089,7 +1089,3 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
-
-// update at 2026-05-17 13:23:23
-
-// minor refactor
