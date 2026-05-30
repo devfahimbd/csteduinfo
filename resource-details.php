@@ -571,3 +571,5 @@ if ($resource) {
 </html>
 
 // better abstraction
+
+// updated for consistency
