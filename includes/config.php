@@ -1,9 +1,9 @@
 <?php
 // Database Configuration
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'cst_department');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'fahimweb_csteduinfo');
+define('DB_USER', 'fahimweb_csteduinfo');
+define('DB_PASS', 'fahimweb_csteduinfo');
 // Auto-detect project root URL from this config file's location (always correct from any page)
 $_docRoot = rtrim(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '/');
 $_configDir = str_replace('\\', '/', __DIR__);

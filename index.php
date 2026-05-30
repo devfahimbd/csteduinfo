@@ -220,7 +220,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
     </div>
     <div class="nav-container">
         <div class="nav-wrapper">
-            <a href="<?php echo SITE_URL; ?>" class="nav-brand">
+            <a href="<?php echo SITE_URL; ?>/" class="nav-brand">
                 <?php if ($siteLogo && file_exists(UPLOAD_PATH . '/' . $siteLogo)): ?>
                     <img src="<?php echo UPLOAD_URL . '/' . clean($siteLogo); ?>" alt="KPI CST">
                 <?php else: ?>
@@ -955,7 +955,7 @@ $semesterIcons = ['book-open', 'code', 'database', 'globe', 'server', 'shield', 
             <div class="footer-col">
                 <h4>দ্রুত লিংক</h4>
                 <ul class="footer-links">
-                    <li><a href="<?php echo SITE_URL; ?>"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> হোম</a></li>
+                    <li><a href="<?php echo SITE_URL; ?>/"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> হোম</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/about.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> সম্পর্কে</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/faculty.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> শিক্ষকমণ্ডলী</a></li>
                     <li><a href="<?php echo SITE_URL; ?>/notice.php"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="9 18 15 12 9 6"/></svg> নোটিশ</a></li>
